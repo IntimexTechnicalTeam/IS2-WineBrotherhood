@@ -1,0 +1,149 @@
+<template>
+  <div class="page_warrper" :style="styla">
+    <span class="last" :class="{ 'noClick': Page === 1 }" @click="current--">{{$t('CheckOut.Last')}} </span>
+    <select v-model="current" class="selectPage">
+      <option v-for="(item,index) in T" :value ="index + 1" :key="index" >{{ $t('product.per') + ' ' + (index + 1) + ' ' + $t('product.page')}}</option>
+    </select>
+    <span style="letter-spacing:2px"> / {{$t('CheckOut.Total') + Math.ceil(this.total / this.pageNum) + $t('product.page')}} </span>
+    <span class="next" :class="{ 'noClick': Page === T.length }" @click="current++">{{$t('CheckOut.Next')}} </span>
+  </div>
+</template>
+<script lang="ts">
+import { Vue, Prop, Component, Watch } from 'vue-property-decorator';
+@Component
+export default class InsPage extends Vue {
+  @Prop() total!: number;
+  @Prop() styla!: string;
+  @Prop() pageNum!: number;
+  @Prop({ default: 1 }) value!: number;
+  private Page!: number;
+  created () {
+    this.Page = this.value;
+  }
+  @Watch('value')
+  onValueChange () {
+    this.current = this.value;
+  }
+  set current (num) {
+    if (num < 1 || num > Math.ceil(this.total / this.pageNum)) {
+      // Vue.prototype.$Confirm('页码范围在 1 到 ' + Math.ceil(this.total) + ' 之间', 'content some content');
+      return;
+    };
+    this.Page = num;
+    this.$emit('input', this.Page);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // let target = this.$refs.value as HTMLInputElement;
+    // target.value = String(this.current);
+  }
+  get current () {
+    return this.Page;
+  }
+  handleCurrentChange (currentPage) {
+    this.current = currentPage;
+  }
+  get T () {
+    return Array(Math.ceil(this.total / this.pageNum));
+  }
+  // first () {
+  //   this.current = 1;
+  // }
+  // before () {
+  //   this.current--;
+  // }
+  // after () {
+  //   this.current++;
+  // }
+  // last () {
+  //   this.current = Math.ceil(this.total);
+  // }
+}
+</script>
+<style scoped lang=less>
+.page_warrper {
+  margin: 50px auto;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.item {
+  height: 30px;
+  line-height: 30px;
+  width: 30px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  user-select: none;
+}
+.item input {
+  height: 100%;
+  width: 100%;
+  background: none;
+  outline: none;
+  border: 0px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+.before {
+  position: relative;
+}
+.before::after {
+  content: " ";
+  position: absolute;
+  border-right: 7.5px solid black;
+  border-left: 7.5px solid transparent;
+  border-top: 7.5px solid transparent;
+  border-bottom: 7.5px solid transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-75%, -50%);
+}
+.after {
+  position: relative;
+}
+.after::after {
+  content: " ";
+  position: absolute;
+  border-right: 7.5px solid transparent;
+  border-left: 7.5px solid black;
+  border-top: 7.5px solid transparent;
+  border-bottom: 7.5px solid transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-25%, -50%);
+}
+.first {
+  border-left: 1px solid black;
+}
+.last,.next{
+  padding: 3px 18px;
+  margin: 0 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #000;
+}
+.noClick{
+  color: black;
+  background: white;
+  cursor: not-allowed;
+  border: 1px solid #000;
+}
+.selectPage{
+    border: 1px solid #000;
+    padding: 4px 18px;
+    margin: 0 12px;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 28px;
+}
+</style>

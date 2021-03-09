@@ -1,0 +1,9 @@
+const all = require('./SysConst2.ts');
+export const AppId: string = all.AppId;
+export const ApiServer: string = all.ApiServer;
+export const ApiVersion: string = all.ApiVersion;
+export const Authorization: string = all.Authorization;
+export const AdminServer: string = all.AdminServer;
+export const AutoOpenAdmin: Boolean = all.AutoOpenAdmin;
+export const AdminLoginUrl: string = all.AdminLoginUrl;
+export const FrontE: any = all.FrontE;

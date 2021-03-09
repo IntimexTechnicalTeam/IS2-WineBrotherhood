@@ -1,0 +1,260 @@
+﻿html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size:12px;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+}
+
+
+.clear {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Print Form */
+#rnp-main-content {
+  padding: 30px 15px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+#rnp-main-content .record-title {
+  font-size: 30px;
+  color: #59ab61;
+  padding: 20px 0;
+  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 20px;
+}
+#rnp-main-content .SubRecord {
+  display: flex;
+  justify-content: space-between;
+}
+#rnp-main-content .SubRecord .left-part {
+  font-size: 16px;
+  width: 70%;
+}
+#rnp-main-content .SubRecord .left-part >p {
+  font-size: 16px;
+  color: #373737;
+  padding: 8px 0;
+}
+#rnp-main-content .SubRecord .left-part >p > b {
+  font-size: 16px;
+  color: #59ab61;
+  margin-right: 10px;
+}
+#rnp-main-content .SubRecord .left-part >p > span {
+  font-size: 16px;
+  color: #373737;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-select-method {
+  margin: 22px 0;
+  display: block;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-select-method > label {
+  width: 160px;
+  height: 65px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-select-method > label:hover {
+  border: 1px solid #59ab61;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-select-method > label img {
+  max-width: 100%;
+  max-height: 100%;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-select-method > label p {
+  display: none;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-select-method > label.checked {
+  border: 1px solid #59ab61;
+}
+#rnp-main-content .SubRecord .left-part .payment .pay-btn {
+  margin: 82px 0 50px;
+  width: 165px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #59ab61;
+  color: #fff;
+  font-size: 16px;
+}
+#rnp-main-content .SubRecord .right-part {
+  max-width: 30%;
+}
+#rnp-main-content .SubRecord .right-part .QrCode {
+  width: 168px;
+  border: 1px solid #eee;
+}
+#rnp-main-content .SubRecord .right-part .msg {
+  font-size: 14px;
+  color: #010101;
+  margin: 10px 0;
+  text-align: center;
+  max-width: 168px;
+}
+#rnp-main-content .info-form {
+  padding: 35px 80px 80px;
+  margin-top: 30px;
+  border: 1px solid #59ab61;
+  position: relative;
+}
+#rnp-main-content .info-form .form-top {
+  text-align: right;
+}
+#rnp-main-content .info-form .form-top input[type="button"] {
+  width: 165px;
+  height: 45px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #696969;
+  border: 0;
+  cursor: pointer;
+}
+#rnp-main-content .info-form #PrintArea .form-title {
+  font-size: 24px;
+  color: #59ab61;
+  text-align: center;
+  padding: 20px 0;
+}
+#rnp-main-content .info-form #PrintArea .question-one {
+  font-size: 16px;
+  color: #59ab61;
+  margin-bottom: 22px;
+  line-height: 25px;
+}
+#rnp-main-content .info-form #PrintArea .question-one .question {
+  font-weight: bold;
+}
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one {
+  display: inline-block;
+  color: #373737;
+}
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one a,
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one span {
+  color: #373737;
+  font-size: 16px;
+  line-height: 25px;
+}
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one .qty-pay {
+  margin-left: 10px;
+  display: inline-block;
+}
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one .qty-pay > span {
+  margin-left: 5px;
+}
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one .qty-pay > span:first-child {
+  margin-left: 0;
+}
+#rnp-main-content .info-form #PrintArea .question-one .answer-list .answer-one .subtotal {
+  margin-left: 10px;
+}
+#rnp-main-content .info-form #PrintArea .TotalPrice {
+  margin: 65px 0 55px;
+}
+#rnp-main-content .info-form #PrintArea .TotalPrice > p {
+  font-size: 24px;
+  font-weight: bold;
+  display: inline-block;
+}
+#rnp-main-content .info-form #PrintArea .TotalPrice > p:first-child {
+  color: #59ab61;
+  margin-right: 18px;
+}
+#rnp-main-content .info-form #PrintArea .TotalPrice > p:nth-child(2) {
+  color: #373737;
+}

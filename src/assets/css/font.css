@@ -1,0 +1,18 @@
+
+/* style3字體庫 */
+@font-face{
+	font-family: 'Century Gothic';
+	src: url('../fonts/GOTHIC.otf') format('OpenType'), url('../fonts/GOTHIC.TTF') format('truetype'), url('../fonts/GOTHIC.eot') format('embedded-opentype'), url('../fonts/GOTHIC.woff') format('woff');
+}
+@font-face{
+	font-family: 'Georgia';
+	src:url('../fonts/georgia-regular.otf') format('OpenType'), url('../fonts/georgia-regular.ttf') format('truetype'), url('../fonts/georgia-regular.eot') format('embedded-opentype'), url('../fonts/georgia-regular.woff') format('woff');
+}
+@font-face{
+	font-family: 'FuturaNext';
+	src:url('../fonts/FuturaNext-DemiBold.otf') format('OpenType'), url('../fonts/FuturaNext-DemiBold.ttf') format('truetype'), url('../fonts/FuturaNext-DemiBold.eot') format('embedded-opentype'), url('../fonts/FuturaNext-DemiBold.woff') format('woff');
+}
+@font-face{
+	font-family: 'PingFang';
+	src:url('../fonts/pingfang.otf') format('OpenType'), url('../fonts/pingfang.ttf') format('truetype'), url('../fonts/pingfang.eot') format('embedded-opentype'), url('../fonts/pingfang.woff') format('woff');
+}

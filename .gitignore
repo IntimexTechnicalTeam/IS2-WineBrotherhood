@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+/.vs
+public/images/mobile/mobileIndex_29 - 副本 - 副本.png
+public/images/pc/index_32 - 副本.png
+src/model/unitInfo.ts
+src/sdk/common/ApiAndAdminServer.ts
