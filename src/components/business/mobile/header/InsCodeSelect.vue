@@ -61,18 +61,29 @@ export default class InsCodeSelect extends Vue {
 
   select {
       width: 100%;
-      background: transparent url('/images/mobile/arrow-down-back.png')  80% 50% no-repeat;
-      background-size: 1rem;
+      background: transparent url('/images/mobile/arrow-down-back.png')  90% 50% no-repeat;
+      background-size: 1.4rem;
       border:none;
       box-sizing: border-box;
       text-align: center;
-      color:#666666;
+      color:#8b0b04;
       appearance: none;
       -moz-appearance: none;
       -webkit-appearance: none;
       padding-left: .8rem;
       font-size: 1.4rem;
       outline: none;
+      position: relative;
+      line-height: 34px;
+      &::after{
+        content: '';
+        width: 1px;
+        height: 18px;
+        background-color: #8b0b04;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
       option{
         color:#666666;
         outline: none;

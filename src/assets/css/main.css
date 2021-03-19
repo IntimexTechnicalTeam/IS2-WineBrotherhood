@@ -9,47 +9,78 @@ h4,
 h5,
 h6,
 p div {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
-body{
-  padding: 0 !important;
+
+body {
+    padding: 0 !important;
 }
+
 ul,
 li {
-  list-style: none;
+    list-style: none;
 }
+
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
-p, a, span {
-  font-family: 'Arial', 'Microsoft YaHei';
+
+p,
+a,
+span {
+    font-family: 'Arial', 'Microsoft YaHei';
 }
+
 body {
-  font-family: 'Arial', 'Microsoft YaHei';
-  overflow-x: hidden!important;
+    font-family: 'Arial', 'Microsoft YaHei';
+    overflow-x: hidden!important;
 }
+
 #container {
-  position: relative;
-  background-position: center;
-  background-size: 100%;
-  margin-top:0px;
+    position: relative;
+    background-position: center;
+    background-size: 100%;
+    margin-top: 0px;
 }
-.maincontent{
-  width: 1200px;
-  margin: 0 auto;
+
+.maincontent {
+    width: 1200px;
+    margin: 0 auto;
 }
-.pageTitle{
-  font-size: 24px;
-  margin: 0 auto;
-  margin-top: 50px;
-  line-height: 30px;
-  border-left: 5px solid #262626;
-  text-indent: 10px;
-  margin-bottom: 20px;
+
+.pageTitle {
+    font-size: 24px;
+    margin: 0 auto;
+    margin-top: 50px;
+    line-height: 30px;
+    border-left: 5px solid #262626;
+    text-indent: 10px;
+    margin-bottom: 20px;
 }
+
 .clear {
-  clear: both;
+    clear: both;
 }
+
+
 /* 解决苹果手机按钮颜色与安卓机不一致的问题 */
-input[type=button], button { cursor: pointer; -webkit-appearance: none; }
+
+input[type=button],
+button {
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.fix {
+    *zoom: 1;
+}
+
+.fix:after {
+    display: block;
+    content: "clear";
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}

@@ -361,17 +361,7 @@ export default class InsDeliveryAddress extends Vue {
       if (valid) {
         this.$Api.delivery.saveAddress(this.AddForm).then((result) => {
           this.getAddress();
-          this.AddForm = {
-            FirstName: '',
-            LastName: '',
-            Mobile: '',
-            Phone: '',
-            PostalCode: '',
-            CountryId: '',
-            Province: '',
-            Address: '',
-            Default: ''
-          };
+          (this.$refs.AddForm as Form).resetFields();
           _this.$message({
             message: this.$t('Message.SavedSuccessfully') as string,
             type: 'success',
@@ -465,7 +455,7 @@ export default class InsDeliveryAddress extends Vue {
 .MembercenterMobile .MemberInfoMain .el-button{
     width: 100%;
     display: block;
-    background: #333333;
+    background: #8b0b04;
     background-size: 100%;
     height: 4rem;
     border:0px!important;
@@ -497,16 +487,22 @@ export default class InsDeliveryAddress extends Vue {
 .MembercenterMobile .MemberInfoMain .el-select >.el-input{
   width: 100%!important;
   border: 1px solid #000;
+  box-sizing: border-box;
 }
 .MembercenterMobile .MemberInfoMain .el-select >.el-input .el-input__inner{
   border: 0px!important;
 }
 .MembercenterMobile .MemberInfoMain .el-select .el-input__suffix{
-  background: #333333;
+  background: #14234f;
   color:#fff;
   right: 0px!important;
 }
-.MembercenterMobile .MemberInfoMain .el-select .el-input .el-select__caret{
+.MembercenterMobile .new-address-content .el-select .el-input__suffix{
+  background: #14234f;
+  color:#fff;
+  right: 0px!important;
+}
+.MembercenterMobile .new-address-content .el-select .el-input .el-select__caret{
   color:#fff!important;
 }
 .MembercenterMobile .MemberInfoMain input::-webkit-input-placeholder {
@@ -668,7 +664,7 @@ export default class InsDeliveryAddress extends Vue {
     width: 100%;
     margin: 0 auto;
     display: block;
-    background: #333;
+    background: #8B0B04;
     background-size: cover;
     border:0px!important;
 }

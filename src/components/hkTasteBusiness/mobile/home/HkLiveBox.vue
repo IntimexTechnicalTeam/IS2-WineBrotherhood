@@ -1,10 +1,10 @@
 <template>
   <div class="liveBox mobileVersion" style="text-align: center;">
     <div class="liveBox_in">
-        <div class="TitleBg"><div class="innerBox">{{$t('Cms.WhatNews')}}</div></div>
-        <div class="videoBg">
+        <!-- <div class="TitleBg"><div class="innerBox">{{$t('Cms.WhatNews')}}</div></div> -->
+        <!-- <div class="videoBg">
             <p v-html="videoContent.Body"></p>
-        </div>
+        </div> -->
         <div class="mapBg">
            <p v-html="fbContent.Body"></p>
         </div>
@@ -78,13 +78,12 @@ export default class PkLiveBox extends Vue {
 }
 .liveBox {
     width: 100%;
-    padding-bottom: 4.5rem;
-    background: url('/images/mobile/Mobile-index_04.jpg') no-repeat center center;
+    padding-bottom: 4rem;
+    // background: url('/images/mobile/Mobile-index_04.jpg') no-repeat center center;
     background-size: 100% 100%;
     .liveBox_in{
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    padding-top:3rem;
       // .mapBg{
         // background: url('/images/mobile/mobileIndex_27.png') center center no-repeat;
         // background-size: 100% 100%;

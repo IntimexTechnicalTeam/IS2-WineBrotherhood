@@ -3,18 +3,20 @@
         <div class="header_logo" v-if="!this.FrontE.slideMenu.Embedded">
             <i class="el-icon-close" @click="closeSlideMenu"></i>
         </div>
-        <div class="searchBox">
+        <div class="header_top fix">
+            <CodeSelect class="header-code" />
+            <img class="close-meun" src="/images/mobile/out.png" @click="showSlideMenu" v-show="this.$store.state.isShowMenu"  />
+        </div>
+        <!-- <div class="searchBox">
             <input type="text" v-model="searchKey" />
             <span class="search_btn"  @click="searchFun(searchKey)"><img src="/images/mobile/searchbtn.png"></span>
-        </div>
+        </div> -->
         <div id="menu">
             <Menu :backColor="'@base_color'" :textColor="'#fff'" :uniqueOpened="true" />
         </div>
         <div class="menu_footer">
             <div class="innerShare">
-                <a href="https://www.facebook.com/hktastefood/" class="nav" target="_blank"><img src="/images/mobile/facebook.png"/></a>
-                <a href="https://www.facebook.com/hktastefood/" class="nav" target="_blank"><img src="/images/mobile/ig.png"/></a>
-                <a href="https://www.youtube.com/embed/videoseries?list=PLeU-XfKN4KcjVolI4daTvRI2oNOSLCILM"  class="nav" target="_blank"><img src="/images/mobile/youtube.png" /></a>
+                <ins-lang-switch class="headerLang" />
             </div>
         </div>
     </div>
@@ -27,7 +29,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   components: {
     InsLogo: () => import('@/components/base/mobile/InsLogo.vue'),
     Menu: () => import('@/components/business/mobile/header/InsElMenu.vue'),
-    InsLangSwitch: () => import('@/components/business/mobile/header/InsLangSwitch.vue')
+    InsLangSwitch: () => import('@/components/business/mobile/header/InsLangSwitch.vue'),
+    CodeSelect: () => import('@/components/business/mobile/header/InsCodeSelect.vue')
   }
 })
 export default class InsMenuLayout extends Vue {
@@ -71,6 +74,13 @@ export default class InsMenuLayout extends Vue {
   get isLogin () {
     return this.$store.state.isLogin;
   }
+  showSlideMenu () {
+    let isShow = !JSON.parse(JSON.stringify(this.menuShow));
+    this.$store.dispatch('isShowMenu', isShow);
+  }
+  get menuShow () {
+    return this.$store.state.isShowMenu;
+  }
 }
 </script>
 
@@ -95,8 +105,8 @@ export default class InsMenuLayout extends Vue {
     display: flex;
     margin-top: 2rem;
     padding-bottom: 5rem;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
 }
 .innerShare a {
     display: inline-block;
@@ -145,15 +155,18 @@ export default class InsMenuLayout extends Vue {
     }
 
     .el-submenu__title {
-        padding-top: 0.375rem;
-        padding-bottom: 0.375rem;
-        border: 1px solid #666;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
         height: auto!important;
         line-height: unset;
-        background-color:#fff!important;
+        box-sizing: border-box;
+        border-bottom:1px solid #8b0b04;
+        text-align: left;
+        padding-left: 1rem !important;
+        background-color: #fff !important;
         .name{
             font-size: 1.6rem!important;
-            color:#666;
+            color:#8b0b04;
         }
     }
 
@@ -167,43 +180,41 @@ export default class InsMenuLayout extends Vue {
         .el-submenu__icon-arrow {
             display: block;
             font-size: 1.6rem;
+            color: #8b0b04;
         }
 
         > li {
             height: auto;
             line-height: unset;
             text-align: center;
-            margin-bottom: 1rem;
              >a {
-                 color:#666666;
-                 background: #fff;
-                 background-size: 100% 100%;
-                 display:block;
-                 width: 100%;
-                 padding-top: .8rem;
-                 padding-bottom: .8rem;
-                 margin: 0 auto;
-                 border:1px solid #666666;
-                 font-weight: 500;
+                color:#8b0b04;
+                background: #fff;
+                background-size: 100% 100%;
+                display:block;
+                width: 100%;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                margin: 0 auto;
+                border-bottom:1px solid #8b0b04;
+                font-weight: 500;
+                box-sizing: border-box;
+                padding-left: 1rem;
+                text-align: left;
                  b{
-                     color:#FFF;
+                     color:#8b0b04;
                      display: block;
                      width: 100%;
                      font-weight: 500;
-                     &:nth-child(1){
-                        color:#666666;
-                        font-weight: 500;
-                        font-size: 1.6rem;
-                     }
-                     &:nth-child(2){
-                         color:#262626;
-                         font-size: 1.2rem;
-                     }
+                     font-size: 1.4rem;
                  }
             }
 
             a {
                 text-decoration: none;
+            }
+            &:nth-child(1) a{
+                border-top: 1px solid #8b0b04;
             }
         }
 
@@ -215,14 +226,14 @@ export default class InsMenuLayout extends Vue {
     }
 }
 #menu .is-opened > .el-submenu__title{
-    background: #666!important;
-    color:#fff!important;
+    background: #fff!important;
+    color:#8b0b04!important;
     .name{
-        color:#FFF!important;
+        color:#8b0b04!important;
     }
 }
 #menu .is-opened > .el-submenu__title .el-submenu__icon-arrow{
-    color:#fff!important;
+    color:#8b0b04!important;
 }
 </style>
 
@@ -252,19 +263,44 @@ export default class InsMenuLayout extends Vue {
 }
 
 /deep/ .langSwitch {
-    font-size: 1.5rem;
-    color: #106919;
-    text-align: center;
     p {
         font-size: 1.5rem;
         display: inline-block;
-        color: #fff;
+        color: #8b0b04;
         margin: 0 0.8rem;
+        border: 1px solid #8b0b04;
+        background: #fff;
+        font-size: 1.5rem;
+        line-height: 30px;
 
         &.active {
-            color: #127437;
+            color: #fff;
+            background-color: #8b0b04;
+            border: 1px solid #8b0b04;
             font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 30px;
         }
+    }
+}
+.header_top{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    /deep/ .header-code{
+        float: left;
+        width: 90px;
+        height: 32px;
+        line-height: 32px;
+        border: 1px solid #8b0b04;
+        border-radius: 16px;
+        margin-top: 3px;
+    }
+    .close-meun{
+        float: right;
+        width: 30px;
+        height: 30px;
     }
 }
 </style>

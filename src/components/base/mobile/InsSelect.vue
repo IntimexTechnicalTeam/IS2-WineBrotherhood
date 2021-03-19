@@ -81,7 +81,7 @@ export default class InsSelect extends Vue {
 }
 .in_select_label {
   width: 100px;
-  font-size: 16px;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
   text-align: left;

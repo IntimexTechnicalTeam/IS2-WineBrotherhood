@@ -14,8 +14,8 @@
               </a>
             </swiperSlide>
             <!-- Optional controls -->
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div
+            <div class="swiper-pagination swiper-pagination-banner" slot="pagination"></div>
+            <!-- <div
               class="swiper-button-prev"
               slot="button-prev"
               v-if="swiperOption.navigation && swiperOption.navigation.nextEl"
@@ -24,7 +24,7 @@
               class="swiper-button-next"
               slot="button-next"
               v-if="swiperOption.navigation && swiperOption.navigation.prevEl"
-            ></div>
+            ></div> -->
           </swiper>
           <!-- <img :src="bannerImg" v-else /> -->
         </div>
@@ -58,17 +58,16 @@ export default class InsBanner extends Vue {
   bannerImg: string = '';
   isload: boolean = false;
   swiperOption: object = {
+    spaceBetween: 0,
     autoplay: {
+      delay: 5000,
       disableOnInteraction: false
     },
     pagination: {
-      el: '.swiper-pagination',
+      el: '.swiper-pagination-banner',
       clickable: true
     },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
+    observer: true
   };
   getBanner () {
     let _this = this;
@@ -121,6 +120,7 @@ export default class InsBanner extends Vue {
   height: 12px!important;
   background: #fff;
   opacity: 1;
+  outline: none;
 }
 .mobileBanner .swiper-pagination-bullet-active{
   background: #666666!important;
@@ -190,6 +190,7 @@ export default class InsBanner extends Vue {
 .header-index .header_mid .tutor-btn:hover {
   cursor: pointer;
 }
+
 .banner {
   width: 100%;
   position: relative;

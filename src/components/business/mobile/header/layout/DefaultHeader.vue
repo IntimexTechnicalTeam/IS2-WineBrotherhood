@@ -1,18 +1,21 @@
 <template>
     <div class="header-box">
-      <div class="headerTop">
-          <ins-login />
-          <ins-fav  />
-          <shopcart class="shoppingcart" />
+      <!-- <div class="headerTop">
+
           <CodeSelect class="header-code" />
           <ins-lang-switch class="headerLang" />
-      </div>
+      </div> -->
+      <div class="banner-bg"></div>
         <div class="flex-box">
-        <ins-logo />
-        <!-- <ins-menu /> -->
-        <!-- <ins-menu :layout="1" /> -->
-          <img class="slide-menu" src="/images/mobile/Mobile-index_05.png" @click="showSlideMenu" v-show="!this.$store.state.isShowMenu" />
-          <img class="close-meun" src="/images/mobile/out.png" @click="showSlideMenu" v-show="this.$store.state.isShowMenu"  />
+          <div class="left">
+            <ins-logo />
+          </div>
+          <div class="right">
+            <ins-login />
+            <shopcart class="shoppingcart" />
+            <ins-fav  />
+            <img class="slide-menu" src="/images/mobile/Mobile-index_05.png" @click="showSlideMenu" />
+          </div>
         </div>
     </div>
 </template>
@@ -56,9 +59,10 @@ export default class DefaultHeader extends Vue {
 
 <style scoped lang="less">
     .header-box {
+      position: relative;
       .flex-box {
-        height: 7rem;
-        background-color: @positive_color;
+        height: 5rem;
+        // background-color: @positive_color;
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -72,37 +76,44 @@ export default class DefaultHeader extends Vue {
 
         .slide-menu {
           cursor: pointer;
-          width: 3rem;
+          height: 2.4rem;
+          padding: 0 0.5rem;
         }
         .close-meun {
           cursor: pointer;
-          width: 2.5rem;
+          width: 2.4rem;
+        }
+        .left{
+          float: left;
+        }
+        .right{
+          float: right;
+          display: flex;
         }
       }
     }
 .headerTop{
   width: 100%;
-  display: flex;
-  background: #fff;
-  position: relative;
-  border-bottom: 1px solid #e6e6e6;
-  flex-wrap: wrap;
-  .shoppingcart{
-      padding-left: 1rem;
-      padding-right: 1rem;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+}
+.shoppingcart{
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
       float: left;
-      height: 3.5rem;
-      border-right: 1px solid #e6e6e6;
+      height: 2.5rem;
+      // border-right: 1px solid #e6e6e6;
       display: flex;
       align-items: center;
       justify-content: center;
     }
   .headerLang{
     width:20%;
-    border-left: 1px solid #e6e6e6;
+    // border-left: 1px solid #e6e6e6;
     position: absolute;
     right: 0px;
-    height: 3.5rem;
+    height: 2.5rem;
     padding-left: 1rem;
     display: flex;
     align-items: center;
@@ -113,10 +124,10 @@ export default class DefaultHeader extends Vue {
     border-left: 1px solid #e6e6e6;
     position: absolute;
     right: 25%;
-    height: 3.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-}
+
 </style>

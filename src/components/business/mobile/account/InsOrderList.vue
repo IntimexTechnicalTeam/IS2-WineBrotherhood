@@ -4,7 +4,7 @@
     <p class="pageTitle">{{$t('Order.OrderTitle')}}</p>
     <transition name="slide">
       <div key="1" v-if="!waiting">
-    <div class="OrderMain OrderMobile">
+    <div class="OrderMain OrderMobile" v-if="OrderList.length>0">
     <Card shadow="hover" class="OrderCard">
       <Row
         :gutter="20"
@@ -73,8 +73,11 @@
     </Card>
       <!-- 列表循环结束 -->
       <!-- 分页开始 -->
-        <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin-top:20px;" v-show="TotalRecord>0"></inPage>
+        <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin-top:20px;" v-show="TotalRecord>pageNumber"></inPage>
       <!-- 分页结束 -->
+    </div>
+    <div class="OrderMain" v-else>
+      <h2 class="Noorders">{{$t('Order.Noorders')}}</h2>
     </div>
     </div>
     </transition>
@@ -192,6 +195,13 @@ export default class InsOrderList extends Vue {
 }
 .OrderMain .el-pagination.is-background .el-pager li:not(.disabled).active {
     background-color: @base_color;
+}
+.OrderMain .Noorders{
+  color: #333;
+  font-size: 2rem;
+  min-height: 10rem;
+  text-align: center;
+  padding-top: 5rem;
 }
 .CreateTime {
   text-align: left;

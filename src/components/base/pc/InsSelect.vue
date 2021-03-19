@@ -124,6 +124,7 @@ export default class InsSelect extends Vue {
   padding: 0 20px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .in_select_main::after {
   content: " ";

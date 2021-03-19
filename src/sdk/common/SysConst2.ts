@@ -1,5 +1,5 @@
 const ana = require('./ApiAndAdminServer');
-const AppId = '39b82895-70bd-4aa3-a0b2-b5f318bc7eac';
+const AppId = '74bd5e4e-9790-4fce-adc7-8032147fa987';
 // let AdminServer = 'http://admin.dev.in-store.hk:84'; // DEV
 // let AdminServer = 'https://admin.uat.intimex.hk'; // UAT
 let AdminServer = ana.AdminServer;
@@ -15,7 +15,7 @@ module.exports = {
   // api version for this app 統一配置Api版本號
   ApiVersion: 'V2',
   // api Authorization 身份认真，用于后端识别客户端
-  Authorization: 'MzliODI4OTUtNzBiZC00YWEzLWEwYjItYjVmMzE4YmM3ZWFjOmYyNWEzMDhhLTA5MGQtNDM3Ny1hNzE4LTNhZDZiMjAzMDlkZA==',
+  Authorization: 'NzRiZDVlNGUtOTc5MC00ZmNlLWFkYzctODAzMjE0N2ZhOTg3OjgxOTNkNzhhLTA0YTMtNDU5OC1iOTg4LTI2MzYzNzE3Yjc1ZQ==',
   // admin server url, for login management platform 統一配置admin服務器
 
   AdminServer: AdminServer,
@@ -25,7 +25,7 @@ module.exports = {
   AdminLoginUrl: AdminServer + '/default/ClientLogin/' + AppId,
   // 前端默认配置
   FrontE: {
-    defaultLang: 'C',
+    defaultLang: 'E',
     defaultCurrency: 1,
     mobileBuilding: false,
     pcBuilding: false,
@@ -47,7 +47,7 @@ module.exports = {
     // 手機版側欄滑動菜單設置
     slideMenu: {
       direction: 'right', // 菜單滑出方向 => 默認值 'top', 可選值 'top', 'left', 'right'
-      width: '80%', // 菜單寬度 => 默認值'100%'，僅在position值為非'top'的情況生效
+      width: '100%', // 菜單寬度 => 默認值'100%'，僅在position值為非'top'的情況生效
       height: '100%', // 菜單高度 => 默認值'100%'，僅在position值為'top'的情況生效
       Embedded: true // 菜單是否內嵌 => 默認值 false ，僅在position值為非'top'的情況生效
     }

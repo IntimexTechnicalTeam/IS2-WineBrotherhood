@@ -7,13 +7,13 @@
             <div class="shoppingcart_item_name">{{ShopcartItem.Product.Name}}</div>
             <div class="shoppingcart_item_code">{{ShopcartItem.Product.Code}}</div>
             <div class="shoppingcart_item_attr">
-                <span v-if="ShopcartItem.AttrTypeName1 && ShopcartItem.AttrName1">{{ShopcartItem.AttrTypeName1}}:{{ShopcartItem.AttrName1}}</span>
-                <span v-if="ShopcartItem.AttrTypeName2 && ShopcartItem.AttrName2">{{ShopcartItem.AttrTypeName2}}:{{ShopcartItem.AttrName2}}</span>
-                <span v-if="ShopcartItem.AttrTypeName3 && ShopcartItem.AttrName3">{{ShopcartItem.AttrTypeName3}}:{{ShopcartItem.AttrName3}}</span>
+                <span v-if="ShopcartItem.AttrTypeName1 && ShopcartItem.AttrName1">{{ShopcartItem.AttrTypeName1}}: {{ShopcartItem.AttrName1}}</span>
+                <span v-if="ShopcartItem.AttrTypeName2 && ShopcartItem.AttrName2">{{ShopcartItem.AttrTypeName2}}: {{ShopcartItem.AttrName2}}</span>
+                <span v-if="ShopcartItem.AttrTypeName3 && ShopcartItem.AttrName3">{{ShopcartItem.AttrTypeName3}}: {{ShopcartItem.AttrName3}}</span>
             </div>
             <div class="shoppingcart_item_qty">
                 <div class="qty_count">{{$t('Shoppingcart.Quantity')}}:&nbsp;</div>
-                <inNum v-if="!lock" :min="ShopcartItem.Product.MinPurQty" :max="10000000" size="mini" :v="ShopcartItem.Qty" @input="(value)=>{this.ShopcartItem.Qty = value;}"></inNum>
+                <inNum v-if="!lock" :min="ShopcartItem.Product.MinPurQty" :max="100" size="mini" :v="ShopcartItem.Qty" @input="(value)=>{this.ShopcartItem.Qty = value;}"></inNum>
                 <div class="qty_count" v-else>{{ShopcartItem.Qty}}</div>
             </div>
             <div class="shoppingcart_item_price">
@@ -110,6 +110,10 @@ export default class InsShoppingcartItem extends Vue {
 .shoppingcart_item_attr{
     span{
         margin-right: 1rem;
+        font-size: 1.2rem;
+        &:last-child{
+            margin-right: 0;
+        }
     }
 }
 .shoppingcart_item_price{

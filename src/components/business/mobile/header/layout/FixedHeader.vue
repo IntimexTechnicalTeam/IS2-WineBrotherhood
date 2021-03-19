@@ -23,7 +23,7 @@ export default class FixedHeader extends Vue {
     addEventListener('scroll', () => {
       var _this = this;
 
-      let headerHeight = (document.getElementById('header') as HTMLElement).clientHeight;
+      let headerHeight = (document.getElementById('headerTop') as HTMLElement).clientHeight;
       let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
 
       if (scrollTop >= headerHeight) {
@@ -46,6 +46,19 @@ export default class FixedHeader extends Vue {
   top: 0;
   z-index: 9999;
   box-shadow: 0 0 10px 0 #d4d5d1;
+  background-color: #8B0B04;
+  /deep/.header-box .flex-box {
+    height: 5rem;
+    .logo img{
+      width: 4rem;
+    }
+    .top-window{
+      top: 5rem;
+    }
+    .window-top{
+      top: 2.5rem;
+    }
+  }
 }
 
 /* 可以设置不同的进入和离开动画 */

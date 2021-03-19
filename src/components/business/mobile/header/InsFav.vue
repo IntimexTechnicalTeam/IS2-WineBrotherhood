@@ -16,16 +16,16 @@ export default class InsLangSwitch extends Vue {
 </script>
 <style scoped lang="less">
   .headerFav{
-    padding-left:1rem;
-    padding-right: 1rem;
+    padding-left:0.5rem;
+    padding-right: 0.5rem;
     float: left;
-    height: 3.5rem;
-    border-right: 1px solid #e6e6e6;
+    height: 2.5rem;
+    // border-right: 1px solid #e6e6e6;
     display: flex;
     align-items: center;
     justify-content: center;
     img{
-      width:2.5rem;
+      height:2rem;
       margin: 0 auto;
       display: block;
     }

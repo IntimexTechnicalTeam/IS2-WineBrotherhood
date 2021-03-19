@@ -56,6 +56,7 @@ export default class InsShoppingcartItem extends Vue {
         right: 12px;
         i{
             font-size: 2rem;
+            color: #d92526;
         }
     }
 }
@@ -93,8 +94,13 @@ export default class InsShoppingcartItem extends Vue {
 }
 .shoppingcart_item_qty{
     .qty_count{
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         line-height: 1.6rem;
+        margin-bottom: 0.5rem;
+        &:last-child{
+            color: #8b0b04;
+            margin-bottom: 0;
+        }
     }
 }
 .shoppingcart_item_attr{

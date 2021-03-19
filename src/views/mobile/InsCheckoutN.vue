@@ -32,7 +32,7 @@
                                 <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                                 <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                                 <div class="coupon_is_valid">
-                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.NotUse') : $t('MyCoupon.Used') }}</span>
+                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.NotUse') }}</span>
                                 </div>
                               </div>
                             </Checkbox>
@@ -47,7 +47,7 @@
                               <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                               <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                               <div class="coupon_is_valid">
-                                <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.NotUse') : $t('MyCoupon.Used') }}</span>
+                                <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.NotUse') }}</span>
                               </div>
                             </div>
                           </Checkbox>
@@ -55,7 +55,27 @@
                     </div>
                   </div>
             </div>
-            <div v-else-if="promotionCode !== '' && coupon.length > 0" class="candp">{{this.$t('CheckOut.CandP')}}</div>
+            <div v-else-if="promotionCode !== '' && coupon.length > 0" >
+              <!-- <div class="coupon_alltitle">{{$t('MyCoupon.Coupon')}}</div>
+              <div class="coupon_main">
+                <CheckboxGroup size="mini" v-model="delete1">
+                    <Checkbox v-for="(item,index) in coupon" :key="index" :min="0" :max="100" :label="item.Id" :disabled="true">
+                      <div class="coupon_item">
+                        <div class="coupon_title">{{item.Title}}</div>
+                        <div class="coupon_remark" v-if="!item.IsDiscount">{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Minus')}} {{item.DiscountAmount}}</div>
+                        <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
+                        <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
+                        <div class="coupon_is_valid">
+                          <span class="valid_content">{{ $t('MyCoupon.NotUse') }}</span>
+                        </div>
+                      </div>
+                    </Checkbox>
+                </CheckboxGroup>
+              </div> -->
+              <div class="candp">
+                {{this.$t('CheckOut.CandP')}}
+              </div>
+            </div>
             <div class="payment_warpper" v-else-if='coupon.length === 0'>
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
@@ -78,8 +98,8 @@
                   <span>{{Shoppcart.DefaultCurrency.Code}} {{(totalAmount) | PriceFormat}}</span>
                 </div>
               </div>
-              <div class="discount">
-                <p class="price_item" v-show="checkouting">
+              <div class="discount discount_price">
+                <p class="price_item price_Couponcode" v-show="checkouting">
                   <span>{{$t('CheckOut.Couponcode')}}</span>
                   <span style="flex-shrink:0;">
                     <ElInput :placeholder="$t('CheckOut.Couponcode')" class="input-text promotion_code" v-bind:disabled="orderSure" v-model="promotionCode" clearable></ElInput>
@@ -92,9 +112,12 @@
                 </p>
                 <p v-if="promotionCode===''" class="promotionCodeTips">{{$t('Action.PromotionCodeTips')}}</p>
                 <div class="price_item">
-                  <span>{{$t('Order.Discount')}}:</span>
-                <p v-show="showDistcount" style="width:100%">
-                    <span class="promotionA"><i>{{promotionCode}};</i><br/>{{$t('Message.AdditionalDiscount')}}</span>
+                  <span class="Discountbox">{{$t('Order.Discount')}}:</span>
+                <p v-show="showDistcount" class="Discount_promotion">
+                    <span class="promotionA">
+                      <!-- <i>{{promotionCode}};</i><br/> -->
+                      {{$t('Message.AdditionalDiscount')}}
+                      </span>
                     <span class="promotionB">-{{Shoppcart.DefaultCurrency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
                     <span class="promotionC" @click="promotionCodeCancel">{{$t('Message.Delete')}}</span>
                   </p>
@@ -170,6 +193,9 @@ export default class InsCheckoutN extends Vue {
     private TimeRangeId:string='';
     private DeliveryDate:string='';
     private Remark:string='';
+    private CurrentPage: number = 1;
+    private pageNumber: number = 10;
+
     // 點擊創建訂單后loading
     COloading = false;
     data () {
@@ -202,7 +228,7 @@ export default class InsCheckoutN extends Vue {
         this.currentPrice = this.totalP;
         this.Shoppcart = sc.ShopCart;
 
-        this.$Api.member.getActiveCoupon({ Page: 1, PageSize: 10 }).then((result) => {
+        this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
           this.coupon = result.Coupon;
           this.coupon.forEach((element) => {
             if (element.MeetAmount >= this.totalP) return;
@@ -424,11 +450,13 @@ export default class InsCheckoutN extends Vue {
     }).catch((error) => {
       console.log(this.$t('Message.Message'), error);
       this.$Confirm(this.$t('Message.Message'), this.$t('CheckOut.promotionCodeError'));
+      this.promotionCode = '';
     });
   }
   promotionCodeCancel () {
       this.$store.dispatch('setPromotionDiscount', new PromotionDiscount());
       this.$emit('promotionCode', '');
+      this.promotionCode = '';
       this.showDistcount = false;
       this.$message({
         message: this.$t('Message.SuccessfullyDeleted') as string,
@@ -465,23 +493,44 @@ export default class InsCheckoutN extends Vue {
   }
 }
 .coupon_warpper{
+  margin-bottom: 2rem;
+  border: 1px solid rgb(229 229 229);
   .el-checkbox__input{
       display: none;
     }
   .el-checkbox{
-    width: calc(100% - 4px);
+    width: 100%;
+    padding: 0 .5rem;
+    box-sizing: border-box;
+    margin: .5rem 0;
+    display: grid;
     .el-checkbox__label{
       width: 100%;
       padding: 0;
     }
   }
   .el-checkbox__input.is-checked+.el-checkbox__label {
-      color: @primary_color2;
-      border: solid 1px @primary_color2;
+      color: #8b0b04;
+      border: solid 1px #8b0b04;
+      box-sizing: border-box;
+      border-radius: 0.5rem;
+      .coupon_item {
+      border: none !important;
+      border-radius: 0.2rem;
+    }
   }
   .el-checkbox__label{
       // color: @primary_color2;
-      border: solid 1px transparent;
+      // border: solid 1px transparent;
+  }
+  .is-disabled {
+    // border: 1px solid #e5e5e5 !important;
+    .coupon_title {
+      // background-color: #c0c4cc !important;
+    }
+    .coupon_is_valid {
+      background-color: #c0c4cc !important;
+    }
   }
 }
 .btnStyle span{
@@ -507,9 +556,11 @@ export default class InsCheckoutN extends Vue {
 .checkoutn_warpper{
   // margin: 100px auto;
   width: 100vw;
+  padding: 0 0.8rem;
+  box-sizing: border-box;
   .main_warpper{
     display: flex;
-    width: 100vw;
+    // width: 100vw;
     margin: 0 auto;
     flex-wrap: wrap;
     .checkoutl{
@@ -565,7 +616,7 @@ export default class InsCheckoutN extends Vue {
           width: 100%;
         .shopCart_warpper{
           border: solid 1px rgba(0,0,0,.1);
-          margin-bottom: 5rem;
+          margin-bottom: 2rem;
           .shopcartTitle{
             font-size: 1.6rem;
             background-color:@base_color;
@@ -598,10 +649,33 @@ export default class InsCheckoutN extends Vue {
             span{
               font-size: 1.4rem;
             }
+            .Discountbox{
+              display: inline-block;
+              width: 30%;
+              font-size: 1.2rem;
+            }
+            .Discount_promotion{
+              display: inline-block;
+              width: 70%;
+            }
           }
           .discount,.price{
             margin: 20px;
             border-bottom: solid 1px rgba(0,0,0,.1);
+          }
+          .discount_price{
+            .price_Couponcode{
+              padding-bottom: 10px;
+              /deep/ .el-input__inner{
+                padding-right: 20px;
+              }
+              >span{
+                line-height: 40px;
+              }
+            }
+            .price_item{
+              padding-top: 0;
+            }
           }
         }
         .payment_warpper{
@@ -628,6 +702,9 @@ export default class InsCheckoutN extends Vue {
   }
   .btn_warpper{
     text-align: center;
+    /deep/ .middle{
+      margin: 5px 0;
+    }
   }
 }
 
@@ -636,7 +713,7 @@ export default class InsCheckoutN extends Vue {
   transition: height .5s;
 }
 .coupon_warpper{
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   .coupon_alltitle{
     font-size: 1.6rem;
     background-color: @base_color;
@@ -646,7 +723,7 @@ export default class InsCheckoutN extends Vue {
   .coupon_item{
     .coupon_expiryDate,.coupon_remark,.coupon_title{
       font-size: 1.4rem;
-      line-height: 4rem;
+      line-height: 3rem;
     }
     position: relative;
     padding: 1.4rem 1rem;
@@ -659,11 +736,11 @@ export default class InsCheckoutN extends Vue {
       right: 0;
       width: 50%;
       height: 80%;
-      background-color: black;
+      background-color: #8b0b04;
       color: white;
       transform:translate(50%, -50%) rotateZ(45deg);
       .valid_content{
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         position:absolute;
         top: 85%;
         left: 50%;
@@ -675,6 +752,8 @@ export default class InsCheckoutN extends Vue {
 .candp{
   text-align: center;
   font-size: 1.6rem;
+  color: red;
+  margin-bottom: 2rem;
 }
 .input-text {
   appearance: none;
@@ -694,7 +773,7 @@ export default class InsCheckoutN extends Vue {
   line-height: 40px !important;
   outline: none;
   // padding: 0 5px;
-  width: 150px !important;
+  width: 140px !important;
   box-sizing: border-box;
   vertical-align: top;
 }
@@ -711,10 +790,13 @@ export default class InsCheckoutN extends Vue {
   position: relative;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  margin-left: -4px;
 }
 .promotionCodeTips{
   text-align: right;
-  color:#262626;
+  color:#8b0b04;
+  padding-bottom: 10px;
+  font-size: 1.2rem;
 }
 .DefaultCurrency {
   float: right;
@@ -741,6 +823,7 @@ export default class InsCheckoutN extends Vue {
   margin-bottom: 10px;
   width: 50%;
   float: left;
+  font-size: 1.2rem !important;
   i{
     font-style: normal;
     color: green;
@@ -755,6 +838,7 @@ export default class InsCheckoutN extends Vue {
     color: #c62828;
     width: 50%;
     float: left;
+    font-size: 1.2rem !important;
 }
 .promotionC {
   display: block;
@@ -762,5 +846,11 @@ export default class InsCheckoutN extends Vue {
   text-align: right;
   cursor: pointer;
   color: green;
+  font-size: 1.2rem !important;
+}
+@media screen and (max-width: 375px){
+  .price_Couponcode > span{
+    line-height: initial !important;
+  }
 }
 </style>

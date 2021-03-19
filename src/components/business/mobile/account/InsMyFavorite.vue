@@ -7,7 +7,7 @@
     <div key="1" v-if="!waiting">
         <div id="main-content">
           <div class="favorite-box">
-            <div class="favorite-box-content">
+            <div class="favorite-box-content" v-if="favoriteList.length>0">
               <Row
                 :gutter="0"
                 v-for="(d,index) in favoriteList.slice((currentPage- 1)*pagesize,currentPage*pagesize)"
@@ -65,6 +65,9 @@
                 background
               ></Pagination>
               <!-- 分页结束 -->
+            </div>
+            <div class="noFavorite" v-else>
+              {{$t('MyFavorite.noFavorite')}}
             </div>
           </div>
         </div>
@@ -239,5 +242,12 @@ export default class InsMyFavorite extends Vue {
   width: 100%;
   height: 29vw;
   background-color: aliceblue;
+}
+.noFavorite{
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 45px;
+  color: #333;
+  min-height: 10rem;
 }
 </style>

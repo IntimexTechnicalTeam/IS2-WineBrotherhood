@@ -1,12 +1,10 @@
 <template>
   <div class="siderbarContainer">
     <div id="sidebar" v-show="isShow">
-      <a href="javascript:void(0);" @click="toTop"
+      <!-- <a href="javascript:void(0);" @click="toTop"
         ><img src="/static/Image/mobile/home/down.png"
-      /></a>
-      <a href="javascript:void(0);" @click="show = !show"
-        ><img src="/static/Image/mobile/home/down2.png"
-      /></a>
+      /></a> -->
+
       <span v-show="show">
         <a
           href="https://api.whatsapp.com/send?phone=8529876%205436&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%8B"
@@ -16,13 +14,16 @@
         <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/static/Image/mobile/home/facebook.png"
         /></a>
-        <a href="tel:85298765436" class="fb-button" target="_blank"
+        <a href="tel:85228989211" class="fb-button" target="_blank"
           ><img src="/static/Image/mobile/home/phone.png"
         /></a>
         <a href="mailto:info@hktaste.com.hk" class="fb-button"
           ><img src="/static/Image/mobile/home/news.png"
         /></a>
       </span>
+      <a href="javascript:void(0);" @click="show = !show"
+        ><img src="/static/Image/mobile/home/down2.png"
+      /></a>
     </div>
     <!-- 显示livechat -->
     <div class="fb-livechat">
@@ -46,7 +47,7 @@
         </div>
         <div class="fb-credit">
           <a href="https://www.facebook.com/hktastefood/" target="_blank"
-            >Facebook Chat Widget by Style3-New</a
+            >Facebook Chat Widget by Wine Brotherhood</a
           >
         </div>
         <div id="fb-root"></div>
@@ -61,15 +62,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import $ from "jquery";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import $ from 'jquery';
 @Component
 export default class InsSidebar extends Vue {
   isShow: boolean = true;
   showFBMessenger: boolean = false;
   show: boolean = false;
   showLivechat() {
-    $(".fb-livechat").fadeToggle();
+    $('.fb-livechat').fadeToggle();
   }
   toTop() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -95,22 +96,22 @@ export default class InsSidebar extends Vue {
 
   mounted() {
     // this.showSidebar();
-    $(".fb-close").on("click", function() {
-      $(".fb-livechat").fadeOut();
+    $('.fb-close').on('click', function() {
+      $('.fb-livechat').fadeOut();
     });
-    const s = document.createElement("script");
-    s.type = "text/javascript";
-    s.setAttribute("rel", "preload");
-    let local = this.$Storage.get("locale") || this.FrontE.defaultLang;
+    const s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.setAttribute('rel', 'preload');
+    let local = this.$Storage.get('locale') || this.FrontE.defaultLang;
     let lang = {
-      E: "en_US",
-      S: "zh_CN",
-      C: "zh_HK"
+      E: 'en_US',
+      S: 'zh_CN',
+      C: 'zh_HK'
     };
     s.src =
-      "https://connect.facebook.net/" +
+      'https://connect.facebook.net/' +
       lang[local] +
-      "/sdk.js#xfbml=1&version=v3.0";
+      '/sdk.js#xfbml=1&version=v3.0';
     document.body.appendChild(s);
   }
 }
@@ -200,12 +201,20 @@ export default class InsSidebar extends Vue {
   font-family: sans-serif;
 }
 #sidebar {
+  span{
+    img {
+    width: 4rem;
+        margin-bottom: 1rem;
+    display: block;
+  }
+  }
   img {
     width: 4rem;
+    display: block;
   }
   position: fixed;
-  right: 0 !important;
-  bottom: 60px;
+  right: 1rem !important;
+  bottom: 2rem;
   width: 4rem;
   // text-align: center;
   z-index: 997;

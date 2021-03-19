@@ -79,16 +79,19 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  /* border: 0; */
-  font-size: 12px;
-  transform-origin: 50% 50%;
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
+    margin: 0;
+    padding: 0;
+    /* border: 0; */
+    font-size: 12px;
+    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
 }
+
+
 /* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -100,44 +103,78 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+    display: block;
 }
-a{
-  text-decoration: none;
+
+a {
+    text-decoration: none;
 }
-div,li,ul{
-  list-style: none;
+
+div,
+li,
+ul {
+    list-style: none;
 }
-p, a, span {
-  font-family: 'Arial', 'Microsoft YaHei';
+
+p,
+a,
+span {
+    font-family: 'Arial', 'Microsoft YaHei';
 }
+
 body {
-  font-family: 'Arial', 'Microsoft YaHei';
+    font-family: 'Arial', 'Microsoft YaHei';
 }
+
 div {
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent; /* 防止ios 出现点击div 出现选中效果*/
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    /* 防止ios 出现点击div 出现选中效果*/
 }
-#app{
-  overflow: hidden;
+
+#app {
+    overflow: hidden;
 }
-.pageTitle{
-  font-size: 24px;
-  width: 95%;
-  margin: 0 auto;
-  margin-top: 20px;
-  line-height: 30px;
-  border-left: 5px solid #262626;
-  text-indent: 10px;
+
+.pageTitle {
+    font-size: 24px;
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    line-height: 30px;
+    border-left: 5px solid #262626;
+    text-indent: 10px;
 }
+
 #main-content {
-  width: 95%!important;
-  margin: 0 auto!important;
-  margin-top: 1rem!important;
+    width: 95%!important;
+    margin: 0 auto!important;
+    margin-top: 1rem!important;
 }
-.clear{
-  clear: both;
+
+.clear {
+    clear: both;
 }
+
+
 /* 解决苹果手机按钮颜色与安卓机不一致的问题 */
-input[type=button], button { cursor: pointer; -webkit-appearance: none; }
+
+input[type=button],
+button {
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.fix {
+    *zoom: 1;
+}
+
+.fix:after {
+    display: block;
+    content: "clear";
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}

@@ -1,7 +1,7 @@
 <template>
-  <a href="/" class="logo">
-    <img src="/images/mobile/pcindex_09.png" />
-  </a>
+<router-link to="/" class="logo">
+  <img src="/images/mobile/logo.png" />
+</router-link>
 </template>
 
 <script lang="ts">
@@ -14,7 +14,7 @@ export default class InsLogo extends Vue {
 <style scoped lang="less">
 .logo {
   img {
-    width: 15rem;
+    width: 4rem;
   }
 }
 </style>

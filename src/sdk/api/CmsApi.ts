@@ -35,15 +35,21 @@ export class CmsApi extends WSAPI {
     });
   };
 
-  getContentsByCatId (catId: string, page:number, pageSize:number) {
+  getContentsByCatId (catId: string, page:number, pageSize:number, sortName:string, sortOrder:string) {
     return this.instance.get(this.apiPath + '/cms/GetContentsByCatId',
-      { params: { catId: catId, page: page, pageSize: pageSize } }).then((result) => {
+      { params: { catId: catId, page: page, pageSize: pageSize, sortName: sortName, sortOrder: sortOrder } }).then((result) => {
       return result.data;
     });
   };
   // getContentByDevice () {
   //   return this.instance.get(this.apiPath + '/cms/GetContentByDevice', {});
   // }
+  getFromContentByCatId (catId: string, page:number, pageSize:number, IsMobile: boolean, sortName:string, sortOrder:string) {
+    return this.instance.post(this.apiPath + '/cms/GetFromContentByCatId',
+      { catId: catId, page: page, pageSize: pageSize, IsMobile: IsMobile, sortName: sortName, sortOrder: sortOrder }).then((result) => {
+      return result.data;
+    });
+  }
   getCatOtherContent (cond: any) {
     return this.instance.post(this.apiPath + '/cms/GetCategoryRelateContent',
       cond).then((result) => {

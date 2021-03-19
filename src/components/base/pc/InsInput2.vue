@@ -76,6 +76,7 @@ export default class InsInput extends Vue {
   private ruleerr: boolean = false;
   private ruleerrmsg: string = '';
   private inputtype: string = '';
+  private needValie: boolean = true;
   private static defaultRule: any = {
     textarea: '',
     text: '',
@@ -100,86 +101,27 @@ export default class InsInput extends Vue {
       this.inputtype = 'text';
     }
   }
-  pickerOptions : object = {
-      disabledDate(time) {
-        return time.getTime() < Date.now();
-      }
-  }
+  pickerOptions: object = {
+    disabledDate(time) {
+      return time.getTime() < Date.now();
+    }
+  };
   @Watch('Value')
   onValueChange() {
     this.error = true;
     // this.ruleerr = true;
     this.none = false;
     this.$emit('input', this.Value);
-    if (this.Value !== '') {
-      this.none = false;
-    } else {
-      this.none = true;
-      this.ruleerr = true;
-      this.ruleerrmsg = '';
-      return false;
-    }
-
-    // this.Shake(() => {
-    if (this.type === 'password') {
-      // var i = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
-      var i = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/;
-      if (i.test(this.Value) === false) {
-        this.ruleerr = false;
-        this.ruleerrmsg = this.$t('Register.Registerdigital') + '';
-        return false;
+    if (this.needValie === true) {
+      if (this.Value !== '') {
+        this.none = false;
       } else {
+        this.none = true;
         this.ruleerr = true;
         this.ruleerrmsg = '';
-      }
-    }
-    // 国内电话和香港电话正则表达式
-      if (this.type === 'phone') {
-        /* eslint-disable */
-        var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
-        if (mobile.test(this.Value) === false) {
-          this.ruleerr = false;
-          this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
-          return false;
-        } else {
-          this.ruleerr = true;
-          this.ruleerrmsg = '';
-        }
-    }
-    if (!this.rule || this.rule === '') {
-    } else {
-      if (this.rule instanceof RegExp) {
-this.error =
-          (this.rule as RegExp).test(this.Value) || this.Value === '';
- } else if (typeof this.rule === 'string') { this.error = this.rule === this.Value; }
-      if (this.error === false) return false;
-    }
-    if (InsInput.defaultRule[this.type] instanceof RegExp) {
-      this.error =
-        (InsInput.defaultRule[this.type] as RegExp).test(this.Value) ||
-        this.Value === '';
-      // if (this.error === false) this.$emit('error');
-    }
-
-    // });
-  }
-  @Watch('value')
-  onvalueChange() {
-    this.Value = this.value;
-  }
-  blur() {
-    if (this.error === true) {
-      this.error = true;
-      this.ruleerr = true;
-      this.none = false;
-
-      if (this.Value === '' && this.must) {
-        this.none = true;
         return false;
-      } else {
-        this.none = false;
       }
-      // 密码正则表达式
+      // this.Shake(() => {
       if (this.type === 'password') {
         // var i = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
         var i = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/;
@@ -198,11 +140,75 @@ this.error =
         var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
         if (mobile.test(this.Value) === false) {
           this.ruleerr = false;
-          this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
+          this.ruleerrmsg = this.$t("Input.phoneincorrect") + "";
           return false;
         } else {
           this.ruleerr = true;
-          this.ruleerrmsg = '';
+          this.ruleerrmsg = "";
+        }
+      }
+      if (!this.rule || this.rule === "") {
+      } else {
+        if (this.rule instanceof RegExp) {
+          this.error =
+            (this.rule as RegExp).test(this.Value) || this.Value === "";
+        } else if (typeof this.rule === "string") {
+          this.error = this.rule === this.Value;
+        }
+        if (this.error === false) return false;
+      }
+      if (InsInput.defaultRule[this.type] instanceof RegExp) {
+        this.error =
+          (InsInput.defaultRule[this.type] as RegExp).test(this.Value) ||
+          this.Value === "";
+        // if (this.error === false) this.$emit('error');
+      }
+
+      // });
+    } else {
+      return false;
+    }
+  }
+  @Watch("value")
+  onvalueChange() {
+    this.Value = this.value;
+  }
+  blur() {
+    if (this.error === true) {
+      this.error = true;
+      this.ruleerr = true;
+      this.none = false;
+
+      if (this.Value === "" && this.must) {
+        this.none = true;
+        return false;
+      } else {
+        this.none = false;
+      }
+      // 密码正则表达式
+      if (this.type === "password") {
+        // var i = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
+        var i = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/;
+        if (i.test(this.Value) === false) {
+          this.ruleerr = false;
+          this.ruleerrmsg = this.$t("Register.Registerdigital") + "";
+          return false;
+        } else {
+          this.ruleerr = true;
+          this.ruleerrmsg = "";
+        }
+      }
+      // 国内电话和香港电话正则表达式
+      if (this.type === "phone") {
+        /* eslint-disable */
+        var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
+        if (mobile.test(this.Value) === false) {
+          this.ruleerr = false;
+          this.ruleerrmsg = this.$t("Input.phoneincorrect") + "";
+          return false;
+        } else {
+          this.ruleerr = true;
+          this.ruleerrmsg = "";
         }
       }
     }
@@ -212,52 +218,64 @@ this.error =
     this.ruleerr = true;
     this.none = false;
     if (!this.needValidate || !this.must) return true;
-    if (this.Value === '') {
+    if (this.Value === "") {
       this.none = true;
       return false;
     }
-    if (this.type === 'password') {
+    if (this.type === "password") {
       // var i = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
       /* eslint-disable */
       var i = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/;
       if (i.test(this.Value) === false) {
         this.ruleerr = false;
-        this.ruleerrmsg = this.$t('Register.Registerdigital') + '';
+        this.ruleerrmsg = this.$t("Register.Registerdigital") + "";
         return false;
       } else {
         this.ruleerr = true;
-        this.ruleerrmsg = '';
+        this.ruleerrmsg = "";
       }
     }
     // 国内电话和香港电话正则表达式
-    if (this.type === 'phone') {
+    if (this.type === "phone") {
       /* eslint-disable */
       var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
       if (mobile.test(this.Value) === false) {
         this.ruleerr = false;
-        this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
+        this.ruleerrmsg = this.$t("Input.phoneincorrect") + "";
         return false;
       } else {
         this.ruleerr = true;
-        this.ruleerrmsg = '';
+        this.ruleerrmsg = "";
       }
     }
-    if (!this.rule || this.rule === '') {
+    if (!this.rule || this.rule === "") {
     } else {
-      if (this.rule instanceof RegExp) this.error = (this.rule as RegExp).test(this.Value) || this.Value === '';
-      else if (typeof this.rule === 'string') { this.error = this.rule === this.Value; }
+      if (this.rule instanceof RegExp)
+        this.error =
+          (this.rule as RegExp).test(this.Value) || this.Value === "";
+      else if (typeof this.rule === "string") {
+        this.error = this.rule === this.Value;
+      }
       if (this.error === false) return false;
     }
 
     if (InsInput.defaultRule[this.type] instanceof RegExp) {
-      this.error = (InsInput.defaultRule[this.type] as RegExp).test(this.Value) || this.Value === '';
+      this.error =
+        (InsInput.defaultRule[this.type] as RegExp).test(this.Value) ||
+        this.Value === "";
       if (this.error === false) return false;
     }
 
     return true;
   }
-  reset () {
-    this.Value = '';
+  reset() {
+    this.Value = "";
+    this.tm = "";
+    this.ruleerrmsg = "";
+    // this.error = false;
+    this.ruleerr = true;
+    this.none = false;
+    this.needValie = false;
   }
 }
 </script>
@@ -300,9 +318,9 @@ this.error =
   .el-date-editor.el-input__inner {
     width: 100% !important;
   }
-   .el-date-editor.el-input__inner {
+  .el-date-editor.el-input__inner {
     padding: 12px;
-    border-radius: 0px!important;
+    border-radius: 0px !important;
   }
 }
 </style>

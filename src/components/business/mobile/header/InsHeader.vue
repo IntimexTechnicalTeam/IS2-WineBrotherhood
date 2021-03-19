@@ -1,6 +1,6 @@
 <template>
   <div id="header">
-    <DefaultHeader />
+    <DefaultHeader :class="{headerTop: $route.name == 'home'}" id="headerTop"/>
 
     <FixedHeader v-if="this.FrontE.fixedHeader" />
   </div>
@@ -39,4 +39,21 @@ export default class InsHeader extends Vue {
   //     }
   //   }
   // }
+  .header-box{
+    box-shadow: 0 0 10px 0 #d4d5d1;
+    background-color: #8B0B04;
+  }
+  .headerTop{
+    background-color: transparent;
+    box-shadow: none;
+    .banner-bg{
+      width: 100%;
+      height: 12rem;
+      background-image: linear-gradient(rgba(138,12,7,0.5), rgba(255,255,255,0));
+      // opacity: 0.3;
+      position: absolute;
+      top: 0;
+    }
+  }
+
 </style>

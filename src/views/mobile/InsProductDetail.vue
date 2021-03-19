@@ -3,7 +3,7 @@
     <div class="productDetail_main" :style="'flex-wrap: wrap;'">
       <ProductSwiper width="100%"  :imgList="ImgList" :ProductTitleName="ProductTitleName"></ProductSwiper>
       <PkProductInfo :panelDetail="PanelDetail"  :ProductSku="ProductSku" :AddPrice="getNewsPrice" width="100%" style="margin-top:2rem;"></PkProductInfo>
-      <div class="ProductRate"><Rate  v-model="Score" disabled  disabled-void-color="#5f6548" disabled-void-icon-class="el-icon-star-off"></Rate></div>
+      <div class="ProductRate"><Rate  v-model="Score" disabled  disabled-void-color="#14234f" disabled-void-icon-class="el-icon-star-off"></Rate></div>
       <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree" width="100%" style="margin-top:2rem;"></PkProductDetailCate>
       <inPanel :panelDetail="PanelDetail" width="100%" :ProductSku="ProductSku"  @getPrice="showPrice" itemscopestyle="margin-top:2rem;"></inPanel>
     </div>
@@ -18,11 +18,11 @@
       <inComments :ProductSku="ProductSku" v-show="!IsDetail"></inComments>
     </div>
     <div class id="tab"></div>
-    <inYouWouldLike
+    <!-- <inYouWouldLike
       :pageNum="2"
       :title="$i18n.t('product.youWouldLike')"
       :ProductSku="ProductSku"
-    ></inYouWouldLike>
+    ></inYouWouldLike> -->
   </div>
 </template>
 <script lang="ts">
@@ -128,6 +128,8 @@ export default class ProductDetail extends Vue {
 .product_detail h3{
   font-size:1.4rem;
   font-weight:100;
+  text-align: center;
+  line-height: 16rem;
 }
 .el-rate__decimal {
     display: inline-block;
@@ -192,11 +194,17 @@ export default class ProductDetail extends Vue {
   width: 90%;
   margin: 0 auto;
   margin-top: .5rem;
+  /deep/ .el-icon-star-on:before{
+    color: #14234f;
+  }
+  /deep/ .el-icon-star-off:before{
+    color: #14234f;
+  }
 }
 .isActive{
   color:#FFF!important;
-  background: #262626 !important;
-  border:1px solid #262626!important;
+  background: #8b0b04 !important;
+  // border:1px solid #262626!important;
 }
 .productDetail_container {
   width: 100%;
@@ -210,21 +218,25 @@ export default class ProductDetail extends Vue {
       width: 95%;
       margin:0 auto;
       .comment_title,.detail_title{
-        width: 48%;
+        width: 41%;
         color:#000000;
         text-align: center;
         font-size: 1.4rem;
         padding-top: 1rem;
         padding-bottom: 1rem;
-        float: left;
-        border-radius: 5px;
+        float: right;
+        border-radius: 10px;
       }
       .detail_title{
         margin-right: calc(4% - 4px);
-         border:1px solid #000;
+        width: 55%;
+        float: left;
+        //  border:1px solid #000;
+        box-shadow: 0 0 5px rgba(193, 193, 193, 1);
       }
       .comment_title{
-        border:1px solid #000;
+        // border:1px solid #000;
+        box-shadow: 0 0 5px rgba(193, 193, 193, 1);
       }
     }
     .product_detail{
@@ -247,6 +259,27 @@ export default class ProductDetail extends Vue {
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
+  /deep/ .prices_warrper{
+    display: flex;
+    .currentPricesMain{
+      margin: 0;
+      height: auto;
+      .huge{
+        color: #8b0b04;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+    }
+    .primePricesMain{
+      line-height: 22px;
+      margin-right: 10px;
+      color: #999999;
+      .huge{
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
+  }
 }
 .productDetail_price_warpper {
   display: flex;

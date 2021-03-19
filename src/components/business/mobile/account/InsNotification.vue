@@ -85,7 +85,7 @@
           :total="TotalRecord"
           :pageNum="pageNumber"
           styla="margin-top:20px;"
-          v-show="TotalRecord > 0"
+          v-show="TotalRecord > pageNumber"
         ></inPage>
       </Card>
       <!-- 信箱列表结束 -->
@@ -252,5 +252,11 @@ export default class InsNotification extends Vue {
   .el-pager
   li:not(.disabled).active {
   background-color: #8dc11f;
+}
+#main-content{
+  .el-table .cell{
+    line-height: 15px;
+    word-break: break-word;
+  }
 }
 </style>

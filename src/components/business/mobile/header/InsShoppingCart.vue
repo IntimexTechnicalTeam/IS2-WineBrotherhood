@@ -42,7 +42,8 @@
       </div>
       <div class="void-cart" v-else>
         <img src="@/assets/Images/void-cart.png" />
-        <p>{{$t('Shoppingcart.None')}}</p>
+        <p class="fix">{{$t('Shoppingcart.None')}}</p>
+        <a href="/product/search/-">{{$t('Shoppingcart.Goshoppingnow')}}</a>
       </div>
     </div>
   </div>
@@ -135,8 +136,8 @@ export default class InsShoppingCart extends Vue {
 /*头部购物车弹框 css*/
 .handle-icon {
     display: block;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     color: #cccccc;
     -webkit-transition-duration: 0.1s;
     transition-duration: 0.1s;
@@ -173,7 +174,7 @@ export default class InsShoppingCart extends Vue {
   padding: 14px 14px 30px 14px;
   background-color: #fff;
   border: 1px solid #e6e6e6;
-  top: 3.5rem;
+  top: 5rem;
 }
 
 .top-cart-detail {
@@ -185,8 +186,8 @@ export default class InsShoppingCart extends Vue {
 .window-top {
   position: absolute;
   // right: 77px;
-  top: 2.9rem;
-  width: 24px;
+  top: 2.5rem;
+  width: 30px;
   height: 18px;
   background: url(../../../../assets/Images/window-top.png) no-repeat center center;
 }
@@ -194,7 +195,7 @@ export default class InsShoppingCart extends Vue {
 .window-detail-title {
     text-align: center;
     border-bottom: 1px solid @base_color;
-    padding-left: 20px;
+    // padding-left: 20px;
     background: @base_color;
 }
 
@@ -226,6 +227,14 @@ export default class InsShoppingCart extends Vue {
 .void-cart {
   text-align: center;
   margin-top: 20px;
+  >a{
+    padding: 1rem 2rem;
+    background: #8b0b04;
+    display: inline-block;
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1.4rem;
+  }
 }
 
 .void-cart img {

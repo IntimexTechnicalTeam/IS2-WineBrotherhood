@@ -15,6 +15,16 @@ import { FrontE } from '@/sdk/common/SysConst';
   }
 })
 export default class App extends Vue {
+  beforeCreate () {
+    // debugger;
+    if (window.location.pathname === '/admin') {
+      this.$router.push('admin');
+    } else if (((FrontE.pcBuilding && this.userAgent === 'pc') || (FrontE.mobileBuilding && this.userAgent === 'mobile')) && this.$route.name !== 'building') {
+      this.$store.dispatch('setOrgPath', this.$route.path);
+      this.$router.push('/building');
+    }
+    if (!window['MemberApi']) window['MemberApi'] = this.$Api.member;
+  }
   mounted() {
     Vue.prototype.$ShowLayer();
     setTimeout(() => {
@@ -39,16 +49,16 @@ export default class App extends Vue {
       });
     }
   }
-  beforeCreate() {
-    if (
-      ((Vue.prototype.userAgent === 'mobile' && FrontE.mobileBuilding) ||
-        (Vue.prototype.userAgent === 'pc' && FrontE.pcBuilding)) &&
-      this.$route.name !== 'building'
-    ) {
-      this.$router.push('/building');
-    }
-    if (!window['MemberApi']) window['MemberApi'] = this.$Api.member;
-  }
+  // beforeCreate() {
+  //   if (
+  //     ((Vue.prototype.userAgent === 'mobile' && FrontE.mobileBuilding) ||
+  //       (Vue.prototype.userAgent === 'pc' && FrontE.pcBuilding)) &&
+  //     this.$route.name !== 'building'
+  //   ) {
+  //     this.$router.push('/building');
+  //   }
+  //   if (!window['MemberApi']) window['MemberApi'] = this.$Api.member;
+  // }
 }
 </script>
 

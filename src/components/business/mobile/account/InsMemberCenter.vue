@@ -3,21 +3,21 @@
     <accountHeader />
     <div class="MemberInfoNav">
       <ul>
-        <div @click="openlink('/account/memberInfo')">
         <li :class="activeClass == 1?'activeInfo':''" >
+          <div @click="openlink('/account/memberInfo')">
           <a>{{ $t("MemberInfo.MemberInfoTitle") }}</a>
+          </div>
         </li>
-        </div>
-        <div @click="openlink('/account/modifyPassword')">
         <li :class="activeClass == 2?'activeInfo':''" >
+          <div @click="openlink('/account/modifyPassword')">
           <a>{{ $t("MemberInfo.ModifyPassword") }}</a>
+          </div>
         </li>
-        </div>
-        <div @click="openlink('/account/deliveryAddress')">
         <li :class="activeClass == 3?'activeInfo':''" >
+          <div @click="openlink('/account/deliveryAddress')">
           <a>{{ $t("Account.DeliveryAddress") }}</a>
+          </div>
         </li>
-        </div>
       </ul>
     </div>
     <router-view></router-view>
@@ -97,28 +97,35 @@ export default class InsMenberCenter extends Vue {
 .MembercenterMobile .MemberInfoNav{
     width: 100%;
     margin-top: 1rem;
-    display: inline-block;
-    background: #e6e6e6;
+    display: flex;
+    background: #14234f;
 }
 .MembercenterMobile .MemberInfoNav ul{
   width:100%;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .MembercenterMobile .MemberInfoNav li{
-  float: left;
+  // float: left;
   list-style: none;
   width:33.3%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .MembercenterMobile .MemberInfoNav li a{
     text-align: center;
     text-decoration: none;
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     padding: 1rem;
     word-break: break-word;
+    color: #ffffff;
 }
 .MembercenterMobile .activeInfo{
-  background: #666666!important;
+  background: #8b0b04 !important;
 }
 .MembercenterMobile .activeInfo a{
   color:#fff!important;

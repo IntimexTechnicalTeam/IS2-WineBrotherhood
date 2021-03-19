@@ -2,16 +2,23 @@
 <div class="header-layout"  v-cloak>
   <!-- 正常菜单 -->
   <div class="headerBg">
-      <div class="headerTop">
+      <div class="headerTop fix">
+        <div class="logoBox">
+            <a href="/"><img src="/images/pc/pcindex_09.png"></a>
+        </div>
           <div class="inner">
               <!-- 搜索框开始 -->
-              <div class="search-box">
+              <!-- <div class="search-box">
                 <input type="text" v-model="key" class="inputBox" />
                 <span class="searchBtn" @click="searchFun(key)"></span>
-              </div>
+              </div> -->
               <!--搜索框结束  -->
               <!-- 会员登陆开始 -->
               <InsLogin class="memberLogin"></InsLogin>
+
+              <!-- 购物车开始 -->
+              <Shopcart class="memberLogin"></Shopcart>
+              <!-- 购物车结束 -->
               <!-- 我的喜爱开始 -->
               <div class="cartTop">
                   <router-link to="/account/MyFavorite">
@@ -19,21 +26,17 @@
                   </router-link>
               </div>
               <!-- 我的喜爱结束 -->
-              <!-- 购物车开始 -->
-              <Shopcart class="memberLogin"></Shopcart>
-              <!-- 购物车结束 -->
               <!-- 切换语言开始 -->
-              <CodeSelect/>
+
               <div class="langBox">
                   <InsLangSwitch></InsLangSwitch>
               </div>
+              <CodeSelect/>
               <!-- 切换语言结束 -->
           </div>
       </div>
       <!-- logo开始 -->
-      <div class="logoBox">
-          <a href="/"><img src="/images/pc/pcindex_09.png"></a>
-      </div>
+
       <!-- logo结束 -->
       <!-- 导航栏开始 -->
       <Menu />
@@ -43,16 +46,26 @@
 
   <!-- 固定菜单 -->
   <div class="header-default">
-      <div class="headerTop">
+      <div class="headerTop fix">
+        <div class="logoBox">
+            <a href="/"><img src="/images/pc/pcindex_09.png"></a>
+        </div>
+        <!-- 导航栏开始 -->
+      <Menu />
+      <!-- 导航栏结束 -->
           <div class="inner">
               <!-- 搜索框开始 -->
-              <div class="search-box">
+              <!-- <div class="search-box">
                 <input type="text" v-model="key" class="inputBox" />
                 <span class="searchBtn" @click="searchFun(key)"></span>
-              </div>
+              </div> -->
               <!--搜索框结束  -->
               <!-- 会员登陆开始 -->
               <InsLogin class="memberLogin"></InsLogin>
+
+              <!-- 购物车开始 -->
+              <Shopcart class="memberLogin"></Shopcart>
+              <!-- 购物车结束 -->
               <!-- 我的喜爱开始 -->
               <div class="cartTop">
                   <router-link to="/account/MyFavorite">
@@ -60,23 +73,18 @@
                   </router-link>
               </div>
               <!-- 我的喜爱结束 -->
-              <!-- 购物车开始 -->
-              <Shopcart class="memberLogin"></Shopcart>
-              <!-- 购物车结束 -->
-
               <!-- 切换语言开始 -->
-              <CodeSelect/>
+
               <div class="langBox">
                   <InsLangSwitch></InsLangSwitch>
               </div>
+              <CodeSelect/>
               <!-- 切换语言结束 -->
           </div>
       </div>
 
       <!-- logo结束 -->
-      <!-- 导航栏开始 -->
-      <Menu />
-      <!-- 导航栏结束 -->
+
   </div>
   <!-- 固定菜单结束 -->
   <div class="clear"></div>
@@ -236,17 +244,48 @@ export default class InsHeader extends Vue {
 .header-default {
   position: relative;
   width: 100%;
-  background-color: #f6f6f6;
+  background-color: #8b0b04;
   position: fixed;
   left: 0;
   top: 0;
   z-index: 9999;
-  border-bottom: 1px solid #000;
+  box-shadow: 0 0 10px 0 #d4d5d1;
   display:none;
    width: 100%;
-   background: #FFF;
    background-size: cover;
    padding-bottom: 10px;
+   .logoBox{
+      float: left;
+      display: inline-block;
+      width: auto;
+   }
+   .headerTop {
+     padding-top: 5px;
+     /deep/.header_menu{
+      width: auto;
+      float: left;
+      margin-top: 40px;
+      margin-left: 20px;
+      >ul>li{
+        a{
+          font-weight: 500;
+          padding: 10px 30px;
+        }
+      }
+    }
+    .inner{
+      float: right;
+      position: initial;
+      margin-top: 40px;
+      .memberLogin{
+        margin-right: 40px;
+      }
+      .cartTop{
+        margin-right: 40px;
+      }
+    }
+   }
+
 }
 .showMenuYes{
   height:151px;
@@ -260,20 +299,24 @@ export default class InsHeader extends Vue {
 }
 .headerBg{
    width: 100%;
-   background:#fff;
-   background-size: cover;
+  //  background:#fff;
    display: inline-block;
-   box-shadow: 0 0 10px 0 #d4d5d1;
+  //  box-shadow: 0 0 10px 0 #d4d5d1;
    min-height: 253px;
+   position: relative;
 }
 .headerTop{
     width: 1200px;
     margin: 0 auto;
-    padding-top: 10px;
-    height: 34px;
+    padding-top: 30px;
+    // height: 34px;
+    position: relative;
 }
 .headerTop .inner{
-    float: right;
+    // float: right;
+    position: absolute;
+    right: 0;
+    top: 36px;
 }
 .search-box {
     border: 1px solid #808080;
@@ -324,14 +367,16 @@ export default class InsHeader extends Vue {
     float: left;
     align-items: center;
     position: relative;
-    margin-right: 10px;
+    margin-right: 65px;
+    padding-top: 5px;
 }
 .cartTop{
     display: flex;
     float: left;
     align-items: center;
     position: relative;
-    margin-right: 10px;
+    margin-right: 65px;
+    padding-top: 5px;
 }
 .langBox{
     display: flex;
@@ -339,7 +384,7 @@ export default class InsHeader extends Vue {
     align-items: center;
     position: relative;
     justify-content: center;
-    margin-left: 20px;
+    // margin-left: 20px;
 }
 .langBox a{
    color:#323232;
@@ -363,13 +408,12 @@ export default class InsHeader extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 40px;
 }
 .logoBox a{
     display: flex;
 }
 .logoBox a img{
-   width: 100%;
+   width: 116px;
 }
 
 .fav-icon {
@@ -387,21 +431,21 @@ export default class InsHeader extends Vue {
    margin: 30px auto 10px;
    > ul {
      > li {
-      float: left;
+      // float: left;
       display: flex;
       align-items: center;
       position: relative;
-      width: 14.28%;
+      width: auto;
 
       > a {
         width: 100%;
-        font-size: 20px;
-        color: #666666;
+        font-size: 16px;
+        color: #fff;
         display: block;
         text-align: center;
-        font-weight: 500;
-        text-transform: uppercase;
-        padding: 10px 5px;
+        font-weight: bold;
+        // text-transform:
+        padding: 10px 38px;
       }
 
       &:hover{

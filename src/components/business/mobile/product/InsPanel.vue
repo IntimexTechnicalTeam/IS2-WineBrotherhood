@@ -10,7 +10,7 @@
         @input="changeAttr"
         @changePrice="AdditionalPrice"
       ></inSelect>
-      <inNum :label="$i18n.t('product.countTitle')" v-model="ProductInfor.Qty" :v="ProductInfor.Qty" :min="panelDetail.MinPurQty" :max="panelDetail.MaxPurQty" styla="text-align:center;"></inNum>
+      <inNum :label="$i18n.t('product.countTitle')" v-model="ProductInfor.Qty" :v="ProductInfor.Qty" :min="panelDetail.MinPurQty" :max="panelDetail.MaxPurQty" disabled  styla="text-align:center;"></inNum>
       <div class="in_panel_iconList">
         <div v-for="item in panelDetail.icons" :key="item.id" class="in_panel_icon_warpper">
           <img :src="item.src" />
@@ -187,6 +187,7 @@ export default class InsPanel extends Vue {
 .in_panel_warpper .el-input-number{
   border:none!important;
   box-sizing: border-box;
+  background-color: #8b0b04;
 }
 .in_panel_warpper .el-input__inner{
   border:none!important;
@@ -194,17 +195,21 @@ export default class InsPanel extends Vue {
   width: 4rem;
 }
 .in_panel_warpper .in_num_main .el-input-number__decrease, .in_panel_warpper .in_num_main .el-input-number__increase{
-    width: 2.5rem!important;
-    border: 1px solid #000;
-    border-radius: 5px;
-    height: 2.5rem;
-    line-height: 2.5rem;
+    width: 3.5rem!important;
+    border: none;
+    background-color: transparent;
+    // height: 38px;
+    line-height: 38px;
+    top: 0;
 }
 .in_panel_warpper .in_num_main .el-input-number__decrease i, .in_panel_warpper .in_num_main .el-input-number__increase i{
-  color:#000;
+  color:#fff;
+  font-size: 1.4rem;
+  line-height: inherit;
 }
-.in_panel_warpper  .el-input-number{
-  width: auto!important;
+.in_panel_warpper .el-input-number{
+  width: 60% !important;
+  border-radius: 10px;
 }
 .in_panel_warpper .el-input-number .el-input__inner{
   padding-left: 0rem;
@@ -213,7 +218,7 @@ export default class InsPanel extends Vue {
   width: 10rem;
   line-height: 2.5rem!important;
   height: 2.5rem!important;
-  color:#000!important;
+  color:#fff!important;
   font-weight: 500;
   font-size: 1.4rem;
 }
@@ -222,21 +227,27 @@ export default class InsPanel extends Vue {
     .in_btn {
       height: 50px;
       font-size:1.8rem;
-      color: @base_color;
+      color: #14234f;
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      border: 1px solid @base_color;
+      border: 1px solid #8b0b04;
       background-color: unset;
-      border-radius: 5px;
-      margin-bottom: 1rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 5px #c7c7c7;
+      &:last-child{
+        margin-bottom: 0;
+      }
       span{
         font-size:1.8rem;
+        font-weight: bold;
+        font-family: 'Microsoft YaHei';
       }
-      &:first-child {
-        background-color: @base_color;
-        color: #fff;
-      }
+      // &:first-child {
+      //   background-color: @base_color;
+      //   color: #fff;
+      // }
     }
   }
 }
@@ -335,4 +346,5 @@ export default class InsPanel extends Vue {
 .in_panel_icon_warpper {
   margin-right: 1rem;
 }
+
 </style>

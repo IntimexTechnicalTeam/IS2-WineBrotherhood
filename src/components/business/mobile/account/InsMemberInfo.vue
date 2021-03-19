@@ -305,7 +305,7 @@ export default class InsMemberInfo extends Vue {
 .MembercenterMobile .MemberInfoMain .el-button{
     width: 100%;
     display: block;
-    background: #333333;
+    background: #8b0b04;
     background-size: 100%;
     height: 4rem;
     border:0px!important;
@@ -337,12 +337,13 @@ export default class InsMemberInfo extends Vue {
 .MembercenterMobile .MemberInfoMain .el-select >.el-input{
   width: 100%!important;
   border: 1px solid #000;
+  box-sizing: border-box;
 }
 .MembercenterMobile .MemberInfoMain .el-select >.el-input .el-input__inner{
   border: 0px!important;
 }
 .MembercenterMobile .MemberInfoMain .el-select .el-input__suffix{
-  background: #333333;
+  background: #14234f;
   color:#fff;
   right: 0px!important;
 }

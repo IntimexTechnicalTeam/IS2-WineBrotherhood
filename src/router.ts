@@ -17,6 +17,12 @@ Router.prototype.push = function push (location) {
 };
 export const pRoutes = [
   {
+    path: '/building',
+    name: 'building',
+    component: () => import('./components/service/InsBuilding.vue'),
+    children: []
+  },
+  {
     path: '/',
     name: 'main',
     component: () => import(/* webpackChunkName: "main" */ './platform/pc/index.vue'),
@@ -321,6 +327,12 @@ export const pRoutes = [
 ];
 
 export const mRoutes = [
+  {
+    path: '/building',
+    name: 'building',
+    component: () => import('./components/service/InsBuilding.vue'),
+    children: []
+  },
   {
     path: '/',
     name: 'main',

@@ -38,7 +38,7 @@
                           </div>
                         </div>
                 </div>
-                <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin-top:20px;" v-show="TotalRecord>0"></inPage>
+                <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin-top:20px;" v-if="TotalRecord>pageNumber"></inPage>
             </div>
         </div>
         <div class="comments_container"  v-if="showItems.length==0">
@@ -166,7 +166,7 @@ export default class InsComments extends Vue {
   margin-right: 0px!important;
 }
 </style>
-<style scoped lang=less>
+<style scoped lang='less'>
 .NocontentTips{
   padding: 2rem;
   padding-top: 0px;
@@ -222,6 +222,11 @@ export default class InsComments extends Vue {
     margin-bottom: 1rem;
     padding:0 1rem;
     box-sizing: border-box;
+    /deep/ .page_warrper{
+      .last, .next{
+        margin: 0 1rem;
+      }
+    }
 }
 .comments_item{
   margin-bottom: 2rem;

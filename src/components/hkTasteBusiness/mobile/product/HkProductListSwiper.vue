@@ -58,22 +58,24 @@ export default class PkProductListSwiper extends Vue {
     width: 100%;
     display: block;
 }
+.swiper-container-hot{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .TitleBg{
-  width: 75%;
-  height: 4.5rem;
-  border:1px solid #ffffff;
+  width: auto;
+  height: auto;
   margin: 0 auto;
-  padding: 0.8rem;
   position: absolute;
-  bottom: 10%;
-  left:50%;
+  top: 50%;
+  // left:50%;
   z-index: 999;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateY(-50%);
   .innerBoxText{
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    color: #333333;
+    background: rgba(139, 11, 4, 0.5);
+    color: #fff;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -84,8 +86,11 @@ export default class PkProductListSwiper extends Vue {
     -ms-flex-pack: center;
     justify-content: center;
     font-size: 2.5rem;
-    font-weight: 700;
-    font-family: 'Arial';
+    font-weight: 500;
+    font-family: 'Century Gothic';
+    padding: 2rem 2rem;
+    width: auto;
+    height: auto;
   }
 }
 </style>

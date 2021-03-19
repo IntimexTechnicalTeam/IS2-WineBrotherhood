@@ -256,6 +256,7 @@ export default class InsLoginN extends Vue {
     }
     span{
       vertical-align: middle;
+      font-size: 1.4rem;
     }
 }
 .insLogin_title .or {

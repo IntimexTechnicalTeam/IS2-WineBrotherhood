@@ -249,6 +249,8 @@ export default class InsAdvancedSearch extends Vue {
 </script>
 <style scoped lang="less">
 .InsAdvancedSearch {
+  background-color: #fff;
+  min-height: 100vh;
   .resetAll{
     background: #333333;
     padding-left: 1rem;

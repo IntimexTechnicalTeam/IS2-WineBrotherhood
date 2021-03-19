@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <div class="drawer-bg" v-if="showProductmenu"  @click="handleClickOutside"/>
     <div class="InsAdvancedSearch">
        <p class="resetTitle">{{$t('product.Screening')}}<span class="el-icon-close" @click="closeSub"></span></p>
        <p class="resetAll" @click="resetAll">{{$t('product.Resetall')}}</p>
@@ -9,6 +11,7 @@
           <ReSearchItem v-for="(cat, index) in catalogs" :key="index" :searchGroup="cat" :defaultSelected="deCatGIds.indexOf(cat.Id) !== -1 ? selectedCats[deCatGIds.indexOf(cat.Id)].Vals : []" :searchType="2"  @changeSelect="changeCatSelect" />
         </ul>
     </div>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
@@ -43,6 +46,14 @@ export default class InsAdvancedSearch extends Vue {
         // this.setDefaultChecked();
       });
     }
+    get showProductmenu () {
+    return this.$store.state.isShowProduct;
+  }
+  handleClickOutside () {
+    // this.showProductmenu = false;
+    this.$store.dispatch('isShowProduct', false);
+  }
+  @Watch('showProductmenu', { deep: true })
     // 关闭搜索列表
     closeSub () {
       this.$emit('closeSub');
@@ -268,8 +279,10 @@ export default class InsAdvancedSearch extends Vue {
 </script>
 <style scoped lang="less">
 .InsAdvancedSearch {
+  background-color: #ffffff;
+  min-height: 100vh;
   .resetAll{
-    background: #333333;
+    background: #c58581;
     padding-left: 1rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -278,7 +291,7 @@ export default class InsAdvancedSearch extends Vue {
     text-decoration: underline;
   }
   .resetTitle{
-    background: #666666;
+    background: #8b0b04;
     padding-left: 1rem;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -317,4 +330,13 @@ export default class InsAdvancedSearch extends Vue {
     //     left: 2.5%;
     //   }
   }
+  .drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
+}
 </style>

@@ -70,7 +70,7 @@
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile"  /> -->
               <InsSelect class="SelectArea" styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
               <InsSelect class="SelectProvince" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/>
-              <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="' '" v-model="editAddress.Address" :needLabel="true"  type="textarea"/>
+              <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="$t('DeliveryAddress.Address')" v-model="editAddress.Address" :needLabel="true"  type="textarea"/>
               <InsButton :nama="$t('Action.Save')" @click="save ('adderform')" class="SaveBtn" />
             </InsForm>
           </div>
@@ -278,7 +278,10 @@ export default class InsExpressWay extends Vue {
         this.Express = result.ExpressAndOutlets;
         this.ChosenExpress = result.ExpressAndOutlets.length > 0 ? result.ExpressAndOutlets[0] : new ExpressAndOutlets();
         this.IsSelfDefineDeliveryDate = this.ChosenExpress.IsSelfDefineDeliveryDate;
-        this.ChosenExpressPoint = this.ChosenExpress.ExpressPointList.length ? this.ChosenExpress.ExpressPointList[0] : new ExpressPoint();
+        if (this.ChosenExpress.ExpressPointList === null) {
+          this.ChosenExpress.ExpressPointList = [];
+        }
+        this.ChosenExpressPoint = this.ChosenExpress.ExpressPointList.length > 0 ? this.ChosenExpress.ExpressPointList[0] : new ExpressPoint();
       });
       if (!this.$store.state.shopCart) this.$store.dispatch('setShopCart', this.$Api.shoppingCart.getShoppingCart());
       let shopcart = this.$store.state.shopCart.then((result) => {
@@ -704,12 +707,15 @@ export default class InsExpressWay extends Vue {
     }
 .fare2_express{
     display: flex;
-    padding: 0 20px;
+    padding: 0 10px;
+    /deep/ .in_select_label{
+      font-size: 1.2rem;
+    }
 }
 .expressWay_Warpper{
-  width: 100vw;
+  // width: 100vw;
   border: 1px solid rgba(0, 0, 0, .1);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   .expressWay_title{
     font-size: 1.5rem;
     background-color:@base_color;
@@ -719,24 +725,49 @@ export default class InsExpressWay extends Vue {
   .expressWay_main{
     .express{
       .none{
-            padding: 1rem;
+        padding: 1rem;
+        /deep/ .input_outer{
+          padding-top: 0;
+          padding-bottom: 2rem;
+        }
+
+        /deep/ .in_btn{
+          span{
+            font-size: 1.2rem;
+          }
+        }
+        /deep/ .SelectArea{
+          margin-top: 0;
+        }
+        /deep/ .SelectProvince{
+          margin-top: 0;
+        }
+        /deep/ .textArea{
+          .input_label{
+            display: none;
+          }
+        }
       }
       .address_item_warpper{
+        padding: 0 0.8rem;
         .address_footer{
           margin: 20px;
           // border: solid 2px rgba(0, 0, 0, .1);
           border-top: none;
           position: relative;
-          min-height: 32px;
+          // min-height: 32px;
           .address_operate{
-                position: absolute;
-                right: 0;
+                // position: absolute;
+                // right: 0;
+                text-align: right;
                 .select_address{
                   padding: 6px 24px;
-                  margin-left: 24px;
+                  // margin-left: 24px;
                   color: white;
                   background-color: @base_color;
                   cursor: pointer;
+                  font-size: 1.2rem;
+                  display: inline-block;
                 }
             }
         }
@@ -747,6 +778,7 @@ export default class InsExpressWay extends Vue {
               color: white;
               background-color: @base_color;
               padding: 6px 24px;
+              font-size: 1.2rem;
             }
           .address_selected_other{
             position: relative;
@@ -756,12 +788,14 @@ export default class InsExpressWay extends Vue {
             .address_operate{
                 position: absolute;
                 right: 0;
+
                 .select_address{
                   padding: 6px 24px;
                   margin-left: 24px;
                   color: white;
                   background-color: rgba(0, 0, 0, .5);
                   cursor: pointer;
+                  font-size: 1.2rem;
                 }
                 .update_address{
                   padding: 6px 24px;
@@ -769,10 +803,19 @@ export default class InsExpressWay extends Vue {
                   color: white;
                   background-color: rgba(0, 0, 0, .5);
                   cursor: pointer;
+                  font-size: 1.2rem;
                 }
                 .heightLine{
                   background-color: @base_color;
+                  font-size: 1.2rem;
                 }
+            }
+            .itemPadding{
+              font-size: 1.2rem;
+              margin-bottom: 0.5rem;
+              &:last-child{
+                margin-bottom: 0;
+              }
             }
           }
         }
@@ -786,6 +829,10 @@ export default class InsExpressWay extends Vue {
           border: solid 2px @base_color;
         }
         }
+    }
+    /deep/ .in_select_main{
+      box-sizing: border-box;
+      font-size: 1.2rem;
     }
   }
   .express_pickup,.store_pickup,.pickup_info{
@@ -801,6 +848,10 @@ export default class InsExpressWay extends Vue {
     .date,.time,.note{
       width: 120px;
       font-size: 16px;
+      padding-top: 10px;
+    }
+    .note{
+      padding-top: 5px;
     }
     .inputMain{
       display: flex;

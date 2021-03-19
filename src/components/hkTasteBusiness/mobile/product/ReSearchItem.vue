@@ -109,7 +109,7 @@ export default class InsAdvancedSearch extends Vue {
       p.category {
         width: 100%;
         font-size:20px;
-        color: #333333;
+        color: #8b0b04;
         background-color: #FFF;
         display: flex;
         justify-self: start;;
@@ -139,25 +139,26 @@ export default class InsAdvancedSearch extends Vue {
                 height: 18px;
                 background-color: #fff;
                 -webkit-appearance:none;
-                border: 1px solid #cccccc;
+                border: 1px solid #8b0b04;
                 outline: none;
             }
 
             input[type="checkbox"]:checked {
-                border: 1px solid #666666;
-                background-image: url('/images/mobile/checked.png'); /*复选框的背景图*/
+                border: 1px solid #8b0b04;
+                // background-image: url('/images/mobile/checked.png'); /*复选框的背景图*/
+                background-color: #8b0b04;
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: auto;
 
                 &+label {
-                    color: #000;
+                    color: #8b0b04;
                 }
             }
 
             label {
             font-size: 18px;
-            color: #666666;
+            color: #8b0b04;
             width: 90%;
             margin-left: 5px;
             }

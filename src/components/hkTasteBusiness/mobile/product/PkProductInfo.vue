@@ -3,11 +3,11 @@
     <div class="in_panel_subTitle">{{panelDetail.Name}}</div>
     <div class="in_panel_subTitle"><inPrices :primePrices="panelDetail.ListPrice+AddPrice" :currentPrices="panelDetail.SalePrice+AddPrice"  :currency="panelDetail.Currency" :DefaultListPrice="panelDetail.DefaultListPrice+AddPrice" :DefaultSalePrice="panelDetail.DefaultSalePrice+AddPrice" :DefaultCurrency="panelDetail.DefaultCurrency" size="huge" :heightLine="true" styla="margin: 1rem 0;" :max="panelDetail.MaxPurQty" :min="panelDetail.MinPurQty"></inPrices></div>
     <div class="in_pannel_addtofav"><img :src="panelDetail.IsFavorite ? '/images/pc/productDetail_01.png': '/images/pc/productDetail_05.png'" @click="addFavorite"/></div>
-    <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div>
+    <!-- <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div> -->
     <div class="in_panel_product">
         <div class="ProductCode">
-            <div class="leftpart">{{$t("product.ProductCode")}}:{{panelDetail.Code}}</div>
-            <div class="rightpart">{{$t("Action.Share")}}:<HkProductShare></HkProductShare></div>
+            <div class="leftpart">{{panelDetail.Code}}</div>
+            <div class="rightpart"><HkProductShare></HkProductShare></div>
         </div>
     </div>
 </div>
@@ -74,9 +74,10 @@ export default class PkProductInfo extends Vue {
   display: block;
 }
 .in_panel_product{
-    width: 100%;
+    width: 94%;
+    margin: 0 auto;
     padding-bottom: 3rem;
-    border-bottom: 1px solid #505050;
+    border-bottom: 1px solid #a84742;
     padding-top: 3rem;
 }
 .in_pannel_addtofav{
@@ -92,9 +93,9 @@ export default class PkProductInfo extends Vue {
     margin: 0 auto;
 }
 .in_panel_product .ProductCode .leftpart{
-    width:50%;
+    // width:50%;
     float: left;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     word-break: break-all;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -103,10 +104,11 @@ export default class PkProductInfo extends Vue {
     -ms-flex-align: center;
     align-items: center;
     padding-top: .5rem;
+    color: #8b0b04;
 }
 .in_panel_product .ProductCode .rightpart{
     width: 50%;
-    float: left;
+    float: right;
     text-align: right;
     display: flex;
     align-items: center;
@@ -122,6 +124,7 @@ export default class PkProductInfo extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #000000;
   >img{
     position: absolute;
     right: 0;

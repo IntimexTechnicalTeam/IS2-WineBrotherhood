@@ -33,7 +33,7 @@ export default class InsPrices extends Vue {
     }
 }
 </script>
-<style scoped lang=less>
+<style scoped lang='less'>
 .small{
     font-size: 1.12rem;
 }
@@ -51,5 +51,9 @@ export default class InsPrices extends Vue {
 }
 .primePrices{
     text-decoration: line-through;
+}
+/deep/ .currentPricesMain{
+    margin-top: 0.5rem;
+    // margin-bottom: 1rem;
 }
 </style>

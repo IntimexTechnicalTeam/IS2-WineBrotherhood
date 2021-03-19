@@ -43,6 +43,7 @@ export default class InsPage extends Vue {
     this.current = currentPage;
   }
   get T () {
+    console.log(Array(Math.ceil(this.total / this.pageNum)), 'Array(Math.ceil(this.total / this.pageNum))');
     return Array(Math.ceil(this.total / this.pageNum));
   }
   // first () {
@@ -61,10 +62,12 @@ export default class InsPage extends Vue {
 </script>
 <style scoped lang=less>
 .page_warrper {
-  margin: 50px auto;
+  margin: 20px auto;
+  margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center
+  align-items: center;
+  justify-content: center;
 }
 .container {
   display: flex;
@@ -129,35 +132,49 @@ input[type="number"]{
   border-left: 1px solid @base_color;
 }
 .last,.next{
-  height: 2.3rem;
-  line-height: 2.3rem;
+  /* padding: 15px 18px !important; */
+  margin: 0 1rem;
   cursor: pointer;
-  display: inline-block;
-  border: 1px solid @base_color;
-  margin:0 .5rem;
-  padding: 0 1rem;
+  border: none;
+  background: #8b0b04;
+  color: #fff;
+  border-radius: 10px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 14px;
+  padding: 0 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(68, 68, 68, 0.5);
 }
 .noClick{
-  color: black;
-  background: white;
   cursor: not-allowed;
-  border: 1px solid @base_color;
-  line-height: 2.3rem;
+  line-height: 45px;
   display: inline-block;
+  color: #2e2e2e ;
+  background: #ead3b1;
+  /* border: 1px solid #ead3b1; */
 }
 .selectPage{
-    border: 1px solid @base_color;
-    height: 2.45rem;
-    padding: 0 0.5rem;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    outline: 0;
-    background: @base_color;
-    color: #fff;
+  height: 45px;
+  border-radius: 10px;
+  outline: 0;
+  font-size: 14px;
+  padding: 0 1rem;
+  padding-right: 2rem;
+  background: transparent url('/images/mobile/selectPage.png') 90% 50% no-repeat;
+  appearance: none;
+  text-transform: capitalize;
+  color: #2b4071;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(68, 68, 68, 0.5);
+  border: none;
 }
 .pageing{
-  letter-spacing: 2px;
-  margin-left: 5px;
-  margin-right: 5px;
+  /* letter-spacing: 2px; */
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 14px;
+  color: #2b4071;
+  font-weight: bold;
 }
 </style>

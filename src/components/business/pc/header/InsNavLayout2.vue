@@ -47,6 +47,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
     > li {
       float: left;
       font-size: 14px;

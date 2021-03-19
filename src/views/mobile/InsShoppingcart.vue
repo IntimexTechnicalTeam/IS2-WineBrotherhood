@@ -72,6 +72,7 @@ export default class InsShoppingCart extends Vue {
     this.Shoppcart.Items.splice(index, 1);
     this.$Api.shoppingCart.removeItem(id).then(result => {
       this.$store.dispatch('setShopCart', this.$Api.shoppingCart.getShoppingCart());
+      if (this.Shoppcart.Items.length === 0) this.$Confirm(this.$t('Message.Message'), this.$t('Shoppingcart.None'), () => { this.$router.push('/product/search/-'); }, () => { this.$router.push('/'); });
     });
   }
   checkout () {

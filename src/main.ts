@@ -14,6 +14,7 @@ import elLoading from 'element-ui/packages/loading/src/directive';
 import 'swiper/dist/css/swiper.css';
 // 引入css
 import 'element-ui/lib/theme-chalk/index.css';
+import './assets/css/font.css';
 // 引进Axios
 import axios from 'axios';
 import vueAxios from 'vue-axios';

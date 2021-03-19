@@ -58,16 +58,16 @@ ul,li{
   float: left;
 }
 .detail-select-attribute .common-select li{
-    display: inline-block;
-    background-color: #262626;
-    color: #FFF;
-    margin-right: 0.5rem;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    padding-top: .7rem;
-    padding-bottom: .7rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 5px;
+  display: inline-block;
+  background-color: #8b0b04;
+  color: #FFF;
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding-top: .7rem;
+  padding-bottom: .7rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 5px;
 }
 </style>

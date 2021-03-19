@@ -16,7 +16,8 @@ export default {
     logopassword: 'Please input passwords',
     confirmpassword: 'Two inconsistent input passwords',
     nomessage: 'No Message',
-    phoneincorrect: 'The phone number format is incorrect'
+    phoneincorrect: 'The phone number format is incorrect',
+    phone: ''
   },
   Message: {
     Logout: 'Timeout ! login now ?',
@@ -122,7 +123,8 @@ export default {
     Total: 'Total',
     Product: 'Products',
     ProductDetail: 'Product Detail',
-    Unit: 'Unit'
+    Unit: 'Unit',
+    HotProducts: 'Hot Products'
   },
   Shoppingcart: {
     ShoppingcartTitle: 'Shopping Cart ',
@@ -137,7 +139,8 @@ export default {
     vat: 'Include VAT',
     None: 'No article in your Shopping Cart!Shopping now.',
     more: 'more',
-    hide: 'hide'
+    hide: 'hide',
+    Goshoppingnow: 'Go shopping now'
   },
   Login: {
     doLogin: 'Login',
@@ -228,8 +231,8 @@ export default {
     SelectCouponStatus: 'Please Slect Coupon Status',
     TotalNum: 'Total',
     Piece: 'Piece',
-    NotUse: 'Valid',
-    Used: 'Invalid',
+    NotUse: 'Invalid',
+    Used: 'Valid',
     Among: 'Among',
     All: 'All'
   },
@@ -238,7 +241,8 @@ export default {
     LearnMore: 'Learn More',
     RemoveProduct: 'Remove Product',
     RemoveSuccess: 'Remove Successfully',
-    AddSuccess: 'Add Successfully'
+    AddSuccess: 'Add Successfully',
+    noFavorite: 'No Favorites Favorites'
   },
   Notification: {
     MyMessages: 'My Messages',
@@ -319,7 +323,8 @@ export default {
     Discount: 'Discount Price',
     Cancel: 'Cancel',
     Paid: 'Paid',
-    Unpaid: 'Unpaid'
+    Unpaid: 'Unpaid',
+    Noorders: 'No orders'
 
   },
   Payment: {
@@ -454,8 +459,8 @@ export default {
     }
   },
   home: {
-    News: 'News',
-    More: 'More',
+    News: 'New & Events',
+    More: 'Read More',
     Category: 'Category',
     Weaccept: 'We Accept',
     Order: 'Order',
@@ -468,7 +473,14 @@ export default {
     Resetall: 'Reset all filters',
     PriceHL: 'Price from high to low',
     PriceLH: 'Price from low  to high',
-    Thatsall: 'That is all'
+    Thatsall: 'That is all',
+    WineBrotherhood: 'Wine Brotherhood',
+    TEL: 'TEL',
+    Fax: 'Fax',
+    Email: 'Email',
+    Detailedaddress: 'Room E, 20/F, COS Centre, 56 Tsun Yip Street, Kwun Tong, Kowloon, Hong Kong',
+    ShopAll: 'Shop All',
+    HongKongLaw: 'Under ths law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business.'
   },
   Action: {
     ReturnHomePage: 'Return Homepage',

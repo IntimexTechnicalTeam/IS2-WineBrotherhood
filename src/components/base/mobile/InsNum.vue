@@ -1,7 +1,7 @@
 <template>
   <div class="in_num_warpper" :style="styla">
     <div class="in_num_main">
-      <div class="in_num_label" v-if="label">{{label}}</div>
+      <!-- <div class="in_num_label" v-if="label">{{label}}</div> -->
       <InputNumber v-model="value" @input="onValueChange" :min="min" :max="max === 0 ? Infinity : max" :size="size" :disabled="lock"></InputNumber>
     </div>
   </div>
@@ -54,7 +54,7 @@ export default class InsNum extends Vue {
 .in_num_main {
   user-select: none;
   font-size: 16px;
-  text-align: left;
+  /* text-align: left; */
   /* display: flex; */
 }
 .in_num_label {

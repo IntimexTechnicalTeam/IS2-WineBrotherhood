@@ -6,6 +6,7 @@
         </div>
         <div class="clear"></div>
          <div class="SearchSlide">
+           <div class="drawer-bg" v-if="showProductmenu"  @click="closeSub"/>
           <div class="leftSide">
             <advancedSearch @advancedChange="advancedChange" v-if="isAdvanced"  @closeSub="closeSub" @resetAll="resetAll" />
           </div>
@@ -124,6 +125,14 @@ export default class InsProductSearch extends Vue {
   resetAll () {
     this.$router.push('/product/search/-');
   }
+  get showProductmenu () {
+    return this.$store.state.isShowProduct;
+  }
+  handleClickOutside () {
+    // this.showProductmenu = false;
+    this.$store.dispatch('isShowProduct', false);
+  }
+  @Watch('showProductmenu', { deep: true })
   handleCurrentChange (val) {
     this.currentPage = val;
     this.productSearch();
@@ -374,17 +383,17 @@ export default class InsProductSearch extends Vue {
 
 <style scoped lang="less">
 .SearchSlide{
-  width: 100%;
+  width: 80%;
   position: fixed;
   left: 0;
   top: 0px;
   bottom: 0px;
-  background: rgba(0,0,0,.6);
+  // background: rgba(0,0,0,.6);
   overflow-x: scroll;
   z-index: 999999;
   display: none;
   .leftSide{
-    width: 80%;
+    width: 100%;
     left:-80%;
     min-height: 100%;
     position: absolute;
@@ -472,5 +481,14 @@ export default class InsProductSearch extends Vue {
   width: 100%;
   height: 29vw;
   background-color: aliceblue;
+}
+.drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
 }
 </style>

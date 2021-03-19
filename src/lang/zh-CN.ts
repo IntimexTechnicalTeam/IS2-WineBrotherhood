@@ -16,7 +16,8 @@ export default {
     logopassword: '請輸入密碼',
     confirmpassword: '兩次輸入密碼不一致',
     nomessage: '暫無數據',
-    phoneincorrect: '電話號碼格式不正確'
+    phoneincorrect: '電話號碼格式不正確',
+    phone: ''
   },
   Message: {
     Logout: '您尚未登陸或已登錄超時，請重新登陸',
@@ -122,7 +123,8 @@ export default {
     Total: '共',
     Product: '個產品',
     ProductDetail: '產品詳情',
-    Unit: '單位'
+    Unit: '單位',
+    HotProducts: '熱門產品'
   },
   Shoppingcart: {
     ShoppingcartTitle: '購物車',
@@ -137,7 +139,8 @@ export default {
     vat: '包含增值稅',
     None: '購物車裏空空如也，現在去購買？',
     more: '更多',
-    hide: '收起'
+    hide: '收起',
+    Goshoppingnow: '立即去購物'
   },
   Login: {
     doLogin: '登入',
@@ -228,8 +231,8 @@ export default {
     SelectCouponStatus: '請選擇優惠券狀態',
     TotalNum: '共有',
     Piece: '張',
-    NotUse: '可用',
-    Used: '已用',
+    NotUse: '不可用',
+    Used: '可用',
     Among: '其中',
     All: '全部'
   },
@@ -238,7 +241,8 @@ export default {
     LearnMore: '瞭解更多',
     RemoveProduct: '移除產品',
     RemoveSuccess: '移除成功',
-    AddSuccess: '加入成功'
+    AddSuccess: '加入成功',
+    noFavorite: '暫無收藏我的最愛'
   },
   Notification: {
     MyMessages: '我的信箱',
@@ -318,7 +322,8 @@ export default {
     Discount: '優惠價格',
     Cancel: '取消',
     Paid: '已付款',
-    Unpaid: '未付款'
+    Unpaid: '未付款',
+    Noorders: '暫無訂單'
   },
   Concessions: {
     Cannot: '優惠券与优惠码不可不可同时使用'
@@ -451,7 +456,7 @@ export default {
     }
   },
   home: {
-    News: '新聞',
+    News: '新聞與活動',
     More: '更多',
     Category: '產品目錄',
     Weaccept: '我們接受',
@@ -465,7 +470,14 @@ export default {
     Resetall: '重置所有篩選條件',
     PriceHL: '價格從高至低',
     PriceLH: '價格從低至高',
-    Thatsall: '以上是全部內容'
+    Thatsall: '以上是全部內容',
+    WineBrotherhood: 'Wine Brotherhood',
+    TEL: '電話',
+    Fax: '傳真',
+    Email: '電郵',
+    Detailedaddress: 'Room E, 20/F, COS Centre, 56 Tsun Yip Street, Kwun Tong, Kowloon, Hong Kong',
+    ShopAll: '選購全部',
+    HongKongLaw: '根據香港法律，在經營過程中不得將醉酒出售或供應給未成年人。'
   },
   Action: {
     ReturnHomePage: '返回首頁',

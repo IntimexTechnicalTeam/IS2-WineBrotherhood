@@ -1,56 +1,34 @@
 <template>
   <div class="PromotionMain">
-          <!-- AD1 -->
-          <div class="InnerSide">
-            <div class="main">
-                <div class="RecommendText">{{Title1}}</div>
-                <div class="swiperBg">
-                <swiper :options="swiperOptionT1">
-                  <!-- slides -->
-                  <swiperSlide v-for="(slide, index1) in banner1" :key="index1">
-                    <router-link :to="slide.Url"><img :src="slide.Image" /></router-link>
-                  </swiperSlide>
-                </swiper>
-                </div>
-                <p class="content">{{content1}}</p>
-            </div>
-           <!-- AD2 -->
-           <div class="main">
-                <div class="RecommendText">{{Title2}}</div>
-                <div class="swiperBg">
-                <swiper :options="swiperOptionT2">
-                  <!-- slides -->
-                  <swiperSlide v-for="(slide, index2) in banner2" :key="index2">
-                    <router-link :to="slide.Url"><img :src="slide.Image" /></router-link>
-                  </swiperSlide>
-                </swiper>
-                </div>
-                <p class="content">{{content2}}</p>
-            </div>
-
-           <!-- AD3 -->
-            <div class="main">
-                  <div class="RecommendText">{{Title3}}</div>
-                  <div class="swiperBg">
-                  <swiper :options="swiperOptionT3" >
-                    <!-- slides -->
-                    <swiperSlide v-for="(slide, index3) in banner3" :key="index3">
-                      <router-link :to="slide.Url"><img :src="slide.Image" /></router-link>
-                    </swiperSlide>
-                  </swiper>
-                  </div>
-                <p class="content">{{content3}}</p>
-            </div>
-          </div>
-    <!-- 限时大平卖 -->
     <div class="SalesMain">
           <HkHotProduct />
+    </div>
+    <div class="Category">
+      <div class="main fix">
+        <div v-for="(item, index) in catalogs" :key="index">
+          <div class="title">{{item.Name}}</div>
+          <div class="Categorylist" v-for="(slide, index1) in item.Children" :key="index1">
+            <div class="Categorybox">
+              <router-link :to="'/product/search/-?catalogs=[' + slide.Id + ',' + slide.Id + ']&type=1'">
+                <img :src="slide.ImgB" alt="">
+                <div class="title">
+                  <h2>{{slide.Name}}</h2>
+                </div>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="more">
+        <router-link to="/product/search/-">{{$t('home.ShopAll')}}</router-link>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Prop, Component } from 'vue-property-decorator';
 import { swiper, swiperSlide } from 'vue-awesome-swiper/src';
+import Catalogs from '@/model/Catalogs';
 @Component({
   components: {
     HkHotProduct: () => import('@/components/hkTasteBusiness/mobile/home/HkHotProduct.vue'),
@@ -69,6 +47,8 @@ export default class HkPromotion extends Vue {
   Title2:string='';
   Title3:string='';
   current:boolean=false;
+  private catalogs: Catalogs[] = [];
+
   swiperOptionT1: object = {
     pagination: {
       el: '.swiper-pagination',
@@ -124,11 +104,18 @@ export default class HkPromotion extends Vue {
       _this.content3 = result.Promotion._BannerList[0].Content;
     });
   }
+  getAttrList() {
+    this.$Api.product.getAttrList2().then(result => {
+      this.catalogs = this.catalogs.concat(result.Catalogs);
+      console.log(this.catalogs, 'result产品根目录');
+    });
+  }
   get lang () {
     return this.$Storage.get('locale');
   }
   created () {
     this.getHeaderBannerLst();
+    this.getAttrList();
   }
 }
 </script>
@@ -146,7 +133,7 @@ export default class HkPromotion extends Vue {
   margin-bottom: 1rem;
 }
 .PromotionMain{
-    background: url(/images/mobile/MobileIndex_02.jpg) no-repeat center center;
+    // background: url(/images/mobile/MobileIndex_02.jpg) no-repeat center center;
     background-size: 100% 100%;
     display: inline-block;
     width: 100%;
@@ -221,6 +208,78 @@ export default class HkPromotion extends Vue {
 .swiper-slide {
   img {
     width: 100%;
+  }
+}
+.Category{
+  width: 90%;
+  margin: 0 auto;
+  .main{
+    div>.title{
+      width: 100%;
+      height: 100%;
+      color: #8b0b04;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: 'Arial';
+      margin-bottom: 2rem;
+    }
+    .Categorylist{
+      float: left;
+      width: 47%;
+      position: relative;
+      margin-bottom: 2rem;
+      &:nth-child(2n){
+        float: right;
+      }
+      .Categorybox{
+        .title{
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color:rgba(20, 35, 79, 0.5);
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          h2{
+            color: #fff;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            width: 100%;
+          }
+        }
+        img{
+          width: 100%;
+          display: block;
+          object-fit: cover;
+          object-position: 50% 50%;
+        }
+      }
+    }
+
+  }
+  .more{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #8b0b04;
+    border-radius: 10px;
+    height: 4rem;
+    text-align: center;
+    a{
+      color: #fff;
+      font-size: 1.2rem;
+      line-height: 4rem;
+      font-weight: bold;
+    }
   }
 }
 </style>

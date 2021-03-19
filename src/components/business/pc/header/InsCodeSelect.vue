@@ -39,16 +39,23 @@ export default class InsCodeSelect extends Vue {
 <style scoped lang="less">
 .main-code {
   display: inline-block;
-
+  width: 90px;
+  height: 32px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  margin-left: 32px;
   select {
     width: 100%;
-    font-size: 15px;
+    font-size: 18px;
     background: none;
-    color: #333;
+    color: #fff;
     border: none;
     outline: none;
-    height: 31px;
-    margin-left: 5px;
+    height: 32px;
+    padding-left: 10px;
+    font-weight: bold;
+    background: transparent url('/images/pc/arrow-down-back.png')  90% 50% no-repeat;
+    appearance:none;
   }
 }
 </style>

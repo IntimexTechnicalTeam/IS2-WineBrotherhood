@@ -3,6 +3,7 @@
         <div class="drawer-bg" v-show="showMenu" @click="handleClickOutside"/>
 
         <div class="sidebar-container" :class="{'hiddenMenu': !showMenu,'left': direction == 'left','top': direction == 'top', 'right': direction == 'right'}" :style="{width: width, height: height}">
+
             <el-scrollbar wrap-class="scrollbar-wrapper">
                 <slot />
 
@@ -124,8 +125,10 @@ export default class InsSlideMenu extends Vue {
   }
 
   &.right {
-    top: 0;
+    top: 0 !important;
     right: 0;
+    height: 100% !important;
+    z-index: 10000;
 
     &.hiddenMenu {
         transform: translate3d(100%, 0, 0);

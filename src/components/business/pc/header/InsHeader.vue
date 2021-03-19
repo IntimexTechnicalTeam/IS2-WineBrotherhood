@@ -22,5 +22,9 @@ export default class InsHeader extends Vue {
 <style scoped lang="less">
 #Header{
   min-height: 253px;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: 100%;
 }
 </style>

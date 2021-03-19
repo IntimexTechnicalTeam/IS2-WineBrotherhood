@@ -88,7 +88,7 @@ export default class InsSelect2 extends Vue {
 }
 .in_select_label {
   width: 100px;
-  font-size: 16px;
+  font-size: 1.2rem;
   text-align: left;
   display: flex;
   align-items: center;
@@ -115,6 +115,7 @@ export default class InsSelect2 extends Vue {
   padding: 0 1rem;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .in_select_main::after {
   content: " ";

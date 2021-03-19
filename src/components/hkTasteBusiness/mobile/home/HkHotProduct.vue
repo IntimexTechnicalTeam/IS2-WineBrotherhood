@@ -1,15 +1,17 @@
 <template>
   <div class="productBox">
-     <div class="TitleBg"><div class="innerBox">{{$t('Cms.BigSales')}}</div></div>
+     <div class="TitleBg"><div class="innerBox">{{$t('product.HotProducts')}}</div></div>
     <div class="swiper-container swiper-container-hot">
-        <swiper :options="swiperOption" ref="mySwiper">
+        <swiper :options="swiperOptionproduc" ref="mySwiper">
         <!-- slides -->
         <swiperSlide v-for="(slide, index) in hotProducts" :key="index">
            <inProductWindow :item="slide"  style="width:100%;" class="insProductHot"></inProductWindow>
         </swiperSlide>
-        <div class="swiper-scrollbar"   slot="scrollbar"></div>
-        </swiper>
+        <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
 
+        </swiper>
+        <div class="swiper-button-next swiperProduct-button-next"></div>
+        <div class="swiper-button-prev swiperProduct-button-prev"></div>
     </div>
   </div>
 </template>
@@ -27,19 +29,15 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper/src';
 export default class PkHotProduct extends Vue {
     hotProducts:any[]=[];
     bannerImg: string = '';
-    swiperOption: object = {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      scrollbar: {
-        el: '.swiper-scrollbar'
-      },
+    swiperOptionproduc: object = {
+      slidesPerView: 2,
+      slidesPerColumn: 2,
+      spaceBetween: 40,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        nextEl: '.swiperProduct-button-next',
+        prevEl: '.swiperProduct-button-prev'
       },
-      slidesPerView: 2
+      observer: true
     };
     loadHotProducts () {
       var page = 'Home';
@@ -68,24 +66,19 @@ export default class PkHotProduct extends Vue {
       height: 8px!important;
 }
 .productBox  .insProductHot img{
-    width: 85%!important;
+    width: 100%!important;
     margin: 0 auto;
     display: block;
 }
 </style>
 <style lang="less" scoped>
 .TitleBg{
-  width: 90%;
-  height: 5rem;
-  border:1px solid #4d4d4d;
-  margin: 0 auto;
-  padding: .5rem;
+  text-align: center;
   margin-bottom: 2rem;
   .innerBox{
     width: 100%;
     height: 100%;
-    background:#4d4d4d;
-    color: #FFF;
+    color: #8b0b04;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,7 +88,7 @@ export default class PkHotProduct extends Vue {
   }
 }
 .productBox {
-  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 .productBox a{
     text-decoration: none;
@@ -125,10 +118,10 @@ export default class PkHotProduct extends Vue {
     }
 }
 .productBox .swiper-container {
-  height: 22rem;
+  // height: 22rem;
 }
 .productBox .swiper-wrapper {
-  height: 22rem;
+  // height: 22rem;
 }
 .productBox_title {
     font-size: 2.4rem;
@@ -151,5 +144,40 @@ export default class PkHotProduct extends Vue {
     display: block;
     border: 1px solid #000;
     border-radius: 10px;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  height: calc((100% - 30px) / 2);
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.swiper-button-prev{
+  background-image: url("/Images/mobile/hotleft.png");
+}
+.swiper-button-next{
+  background-image: url("/Images/mobile/hotright.png");
+}
+.swiper-button-prev, .swiper-button-next{
+  width: 50px;
+  height: 48px;
+  background-size: initial;
+  margin-top: 0;
+  transform: translateY(-50%);
+  outline: none;
+  background-size: cover !important;
 }
 </style>

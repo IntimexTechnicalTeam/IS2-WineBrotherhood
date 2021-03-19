@@ -27,9 +27,9 @@
                 <span>{{AllRecord}}</span>
                 {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.Coupon')}}，&nbsp;{{$t('MyCoupon.Among')}}
                 <span>{{ActiveRecord}}</span>
-                {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.NotUse')}}，
+                {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.Used')}}，
                 <span>{{AllRecord - ActiveRecord}}</span>
-                {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.Used')}}
+                {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.NotUse')}}
               </ElCol>
             </Row>
         </ElForm>
@@ -43,18 +43,20 @@
         class="couponMain"
       >
         <Row class="couponList" v-if="couponsLength" :gutter="10">
-          <ElCol :md="8" :xs="8">
-            <p class="couponTitle">{{item.Title}}</p>
-            <p class="couponRemark">{{item.Remark}}</p>
+          <ElCol :md="24" :xs="24">
+            <p class="couponTitle" :style="{background:(item.IsUsed == false && item.IsExpiry==false?'#8B0B04':'#ccc')}">{{item.Title}}</p>
+            <p class="couponRemark" :style="{color:(item.IsUsed == false && item.IsExpiry==false?'#8B0B04':'#ccc')}">{{item.Remark}}</p>
           </ElCol>
-          <ElCol :md="12" :xs="12">
-            {{$t('MyCoupon.PeriodOfValidity')}}: {{item.EffectiveDate}} - {{item.ExpiryDate}}
+          <ElCol :md="24" :xs="24" :style="{color:(item.IsUsed == false && item.IsExpiry==false?'#8B0B04':'#ccc')}">
+            <div class="coupontime">
+              {{$t('MyCoupon.PeriodOfValidity')}}: {{item.EffectiveDate.slice(0,10)}} - {{item.ExpiryDate.slice(0,10)}}
+            </div>
             <span
               class="coupon-status"
-              :style="{background:(item.IsUsed == false && item.IsExpiry==false?'#000':'#ccc')}"
-            >{{item.IsUsed == false && item.IsExpiry==false ?$t('MyCoupon.NotUse') : $t('MyCoupon.Used')}}</span>
+              :style="{background:(item.IsUsed == false && item.IsExpiry==false?'#8B0B04':'#ccc')}"
+            >{{item.IsUsed == false && item.IsExpiry==false ?$t('MyCoupon.Used') : $t('MyCoupon.NotUse')}}</span>
           </ElCol>
-          <ElCol :offset="4"></ElCol>
+          <!-- <ElCol :offset="4"></ElCol> -->
         </Row>
         <Row class="couponList" v-else>
           <ElCol :span="24">
@@ -62,7 +64,7 @@
           </ElCol>
         </Row>
       </Card>
-        <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin:0;" v-show="TotalRecord>0"></inPage>
+        <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin:0;" v-show="TotalRecord>pageNumber"></inPage>
     </div>
     <!--main-content-->
   </div>
@@ -114,6 +116,7 @@ export default class InsMyCoupon extends Vue {
   getAllCoupon () {
     let that = this;
     return this.$Api.promotion.getAllCoupon({ status: this.status, Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
+      console.log(result, '优惠券');
       if (result) {
         this.NewArarry = result.ReturnValue.Data;
         this.TotalRecord = result.ReturnValue.TotalRecord;
@@ -152,12 +155,14 @@ export default class InsMyCoupon extends Vue {
 .couponHeader {
   margin-bottom: 20px;
 }
-.couponHeader .el-card__body {
-  padding: 10px;
-  padding-bottom: 0px !important;
+.couponHeader{
+  /deep/ .el-card__body {
+    padding: 10px;
+  }
 }
+
 .couponList {
-  padding-top: 25px;
+  padding-top: 10px;
 }
 .couponTitle {
   font-size: 25px;
@@ -165,9 +170,15 @@ export default class InsMyCoupon extends Vue {
   text-align: left;
   margin-bottom: 15px;
   word-break: break-all;
+  padding: 5px 15px;
+  background-color: #8B0B04;
+  color: #fff !important;
+  display: inline-block;
 }
 .couponRemark {
   text-align: left;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 .couponMain {
   margin-bottom: 30px;
@@ -188,7 +199,7 @@ export default class InsMyCoupon extends Vue {
     background-color: #4c8eff;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 .couponTips {
     text-align: left;
@@ -206,5 +217,8 @@ export default class InsMyCoupon extends Vue {
   .el-pager
   li:not(.disabled).active {
   background-color: #8dc11f;
+}
+.coupontime{
+  font-size: 1.2rem;
 }
 </style>

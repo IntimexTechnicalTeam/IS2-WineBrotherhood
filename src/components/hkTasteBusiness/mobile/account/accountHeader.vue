@@ -83,19 +83,19 @@ ul,li{
       width: 90%;
       margin: 0 auto;
       p{
-        border:1px solid #fff;
-        padding: .5rem;
+        // border:1px solid #fff;
+        // padding: .5rem;
         display: block;
         height: 3.5rem;
         margin-bottom: 1rem;
         a{
-          background: #fff;
+          background: #8b0b04;
           display: flex;
           width: 100%;
           align-items: center;
           justify-content: center;
-          color:#333333;
-          font-size: 1.6rem;
+          color:#fff;
+          font-size: 1.4rem;
           height: 100%;
           text-transform:uppercase;
         }
