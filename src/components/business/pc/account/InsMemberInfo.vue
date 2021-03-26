@@ -277,8 +277,11 @@ export default class InsMemberInfo extends Vue {
     width: 100%!important;
 }
 .MemberPc .el-form .el-radio__input.is-checked .el-radio__inner{
-    border-color: #333333;
-    background: #333333;
+    border-color: #14234f;
+    background: #14234f;
+}
+.MemberPc .el-form .el-radio__input.is-checked+.el-radio__label{
+  color: #14234f;
 }
 .MemberPc .el-form .el-form-item__label{
     width: 25%;
@@ -294,7 +297,7 @@ export default class InsMemberInfo extends Vue {
     padding-right: 10px;
 }
 .MemberPc .el-select .el-input__suffix{
-  background: #333333;
+  background: #14234f;
   color:#fff;
   right: 0px!important;
 }
@@ -330,7 +333,7 @@ export default class InsMemberInfo extends Vue {
   margin-left: 0px!important;
 }
 .MemberInfoMain .el-button{
-    background: #333333;
+    background: #8b0b04;
     border: none;
     display: block;
     border-radius: 20px;

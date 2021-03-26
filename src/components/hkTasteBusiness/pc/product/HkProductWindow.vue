@@ -91,17 +91,22 @@ export default class InsProductWindow extends Vue {
   display: inline-block;
   text-align: center;
 }
+.PcVersion .in_pdWindow_item_price .primePricesMain{
+  margin-bottom: 10px;
+}
 .PcVersion .in_pdWindow_item_price .currentPricesMain  .small:nth-child(1) {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   word-break: break-all;
   text-align: center;
-  color: #0b0b0b;
+  color: #8b0b04;
   display: inline-block;
+  font-weight: bold;
 }
 .PcVersion .in_pdWindow_item_price .currentPricesMain .small:nth-child(2) {
     font-size: 1.4rem;
-    color: #cd0909;
+    color: #8b0b04;
     display: inline-block;
+    font-weight: bold;
 }
 .PcVersion .in_pdWindow_item_price .primePricesMain  .small:nth-child(1) {
   font-size: 1rem;

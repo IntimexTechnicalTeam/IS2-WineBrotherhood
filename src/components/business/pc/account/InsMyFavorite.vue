@@ -58,7 +58,7 @@
                 :current-page="currentPage"
                 :total="FavoriteLength"
                 :pager-count="5"
-                v-if="FavoriteLength>1"
+                v-if="FavoriteLength>pagesize"
                 background
               ></Pagination>
               <!-- 分页结束 -->
@@ -173,13 +173,12 @@ export default class InsMyFavorite extends Vue {
   /*border-top:1px solid #88bd43;*/
 }
 .Favormain {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   margin-bottom: 20px;
   padding-top: 20px;
   cursor: pointer;
   transition: 1s ease;
-  -webkit-transition: 1s ease;
-  -moz-transition: 1s ease;
-  -ms-transition: 1s ease;
 }
 .FavorCard {
   padding-bottom: 10px;

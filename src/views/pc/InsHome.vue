@@ -1,45 +1,60 @@
 <template>
   <div class="home" v-cloak>
-    <HomeBanner :initOptions="swiperOption" :page="'Home'" :initSwiper="true" class="banner" />
+    <HomeBanner :page="'Home'" :initSwiper="true" class="banner" />
     <HkPromotion />
-    <HkBranch />
-    <HkLiveBox />
+    <!-- <HkBranch /> -->
+    <div class="homeback fix">
+      <div class="fix">
+        <HkNews />
+      </div>
+      <div class="homelivebox">
+        <div class="left">
+          <HkMap />
+        </div>
+        <div class="right">
+          <HkLiveBox />
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import api from '@/sdk/api/Api.ts';
 @Component({
   components: {
     HomeBanner: () => import(/* webpackChunkName: "home" */ '@/components/base/pc/InsBanner.vue'),
     HkPromotion: () => import(/* webpackChunkName: "home" */ '@/components/hkTasteBusiness/pc/home/HkPromotion.vue'),
     HkBranch: () => import(/* webpackChunkName: "home" */ '@/components/hkTasteBusiness/pc/home/HkBranch.vue'),
-    HkLiveBox: () => import(/* webpackChunkName: "home" */ '@/components/hkTasteBusiness/pc/home/HkLiveBox.vue')
+    HkLiveBox: () => import(/* webpackChunkName: "home" */ '@/components/hkTasteBusiness/pc/home/HkLiveBox.vue'),
+    HkNews: () => import('@/components/hkTasteBusiness/pc/home/PkNews.vue'),
+    HkMap: () => import('@/components/hkTasteBusiness/pc/home/PkMap.vue')
   }
 })
 export default class InsHome extends Vue {
-  swiperOption: object = {
-    autoplay: {
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    }
-  };
-  mounted () {
-    api
-      .getData(1, 1)
-      .then((res: any) => {
-        var _this = this;
-        this.$HiddenLayer();
-      })
-      .catch((err: any) => {
-        // 请求失败后的处理函数
-        console.log(err);
-      });
-  }
+  // swiperOption: object = {
+  //   autoplay: {
+  //     disableOnInteraction: false
+  //   },
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //     clickable: true
+  //   }
+  // };
+  // mounted () {
+  //   api
+  //     .getData(1, 1)
+  //     .then((res: any) => {
+  //       var _this = this;
+  //       this.$HiddenLayer();
+  //     })
+  //     .catch((err: any) => {
+  //       // 请求失败后的处理函数
+  //       console.log(err);
+  //     });
+  // }
   created () {
     // let keywords = document.createElement('meta');
     // keywords.setAttribute('name', 'keywords');
@@ -379,6 +394,25 @@ v-cloak{
         font-size: 15px;
         line-height: 28px;
       }
+    }
+  }
+}
+.homeback{
+  background: url('/images/pc/pcindex_25.png') no-repeat center center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  padding-bottom: 68px;
+  .homelivebox{
+    width: 1200px;
+    margin: 0 auto;
+    .left{
+      float: left;
+      width: 600px;
+    }
+    .right{
+      float: right;
+      width: 550px;
     }
   }
 }

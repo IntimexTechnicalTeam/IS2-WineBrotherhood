@@ -139,11 +139,8 @@ export default class InsShoppingCart extends Vue {
     width: 2rem;
     height: 2rem;
     color: #cccccc;
-    -webkit-transition-duration: 0.1s;
     transition-duration: 0.1s;
-    -webkit-transition-property: transform;
     transition-property: transform;
-    -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
 .cart-icon {
@@ -156,7 +153,7 @@ export default class InsShoppingCart extends Vue {
     position: absolute;
     right: -6px;
     top: -2px;
-    background-color: #000;
+    background-color: #14234f;
     min-width: 18px;
     height: 18px;
     border-radius: 50%;

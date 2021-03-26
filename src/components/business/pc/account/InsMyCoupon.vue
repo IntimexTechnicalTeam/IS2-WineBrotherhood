@@ -16,7 +16,7 @@
                   filterable
                   v-model="status"
                 >
-                  <Option :label="$t('MyCoupon.NotUse')" :value="2"></Option>
+                  <Option :label="$t('MyCoupon.Used')" :value="2"></Option>
                   <Option :label="$t('MyCoupon.All')" :value="3"></Option>
                 </Select>
               </FormItem>
@@ -26,9 +26,9 @@
               <span>{{AllRecord}}</span>
               {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.Coupon')}}，&nbsp;{{$t('MyCoupon.Among')}}
               <span>{{ActiveRecord}}</span>
-              {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.NotUse')}}，
+              {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.Used')}}，
               <span>{{AllRecord - ActiveRecord}}</span>
-              {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.Used')}}
+              {{$t('MyCoupon.Piece')}}&nbsp;{{$t('MyCoupon.NotUse')}}
             </ElCol>
           </Row>
         </ElForm>
@@ -43,15 +43,17 @@
       >
         <Row class="couponList" v-if="couponsLength">
           <ElCol :md="6" :xs="6">
-            <p class="couponTitle">{{item.Title}}</p>
-            <p class="couponRemark">{{item.Remark}}</p>
+            <p class="couponTitle" :style="{color:(item.IsUsed == false && item.IsExpiry==false?'#8b0b04':'#ccc')}">{{item.Title}}</p>
+            <p class="couponRemark" :style="{color:(item.IsUsed == false && item.IsExpiry==false?'#8b0b04':'#ccc')}">{{item.Remark}}</p>
           </ElCol>
           <ElCol :span="18">
-            {{$t('MyCoupon.PeriodOfValidity')}}: {{item.EffectiveDate}} - {{item.ExpiryDate}}
+            <div class="ctiveDate" :style="{color:(item.IsUsed == false && item.IsExpiry==false?'#8b0b04':'#ccc')}">
+              {{$t('MyCoupon.PeriodOfValidity')}}: {{item.EffectiveDate.slice(0,10)}} - {{item.ExpiryDate.slice(0,10)}}
+            </div>
             <span
               class="coupon-status"
-              :style="{background:(item.IsUsed == false && item.IsExpiry==false?'#000':'#ccc')}"
-            >{{item.IsUsed == false && item.IsExpiry==false ?$t('MyCoupon.NotUse') : $t('MyCoupon.Used')}}</span>
+              :style="{background:(item.IsUsed == false && item.IsExpiry==false?'#8b0b04':'#ccc')}"
+            >{{item.IsUsed == false && item.IsExpiry==false ? $t('MyCoupon.Used') : $t('MyCoupon.NotUse')}}</span>
           </ElCol>
         </Row>
         <Row class="couponList" v-else>
@@ -60,7 +62,7 @@
           </ElCol>
         </Row>
       </Card>
-      <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin:0;" v-show="TotalRecord>0"></inPage>
+      <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin:0;" v-show="TotalRecord>pageNumber"></inPage>
     </div>
     <!--main-content-->
   </div>
@@ -95,16 +97,6 @@ export default class InsMyCoupon extends Vue {
   private TotalPage: number = 0;
   private AllRecord: number = 0;
   private ActiveRecord: number = 0;
-  // 页面加载完成后，把数组的值付给新的数组
-  created () {
-    var that = this;
-    this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
-      this.ActiveRecord = result.TotalRecord;
-    });
-    this.getAllCoupon().then(() => {
-      this.$HiddenLayer();
-    });
-  }
 
   // 计算数组的长度，用于分页和显示总数
   get couponsLength () {
@@ -124,6 +116,17 @@ export default class InsMyCoupon extends Vue {
       console.log(error);
     });
   }
+  // 页面加载完成后，把数组的值付给新的数组
+  created () {
+    var that = this;
+    console.log(new Date(), 'new Date()');
+    this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
+      this.ActiveRecord = result.TotalRecord;
+    });
+    this.getAllCoupon().then(() => {
+      this.$HiddenLayer();
+    });
+  }
   form: any = {
     region: ''
   };
@@ -131,18 +134,32 @@ export default class InsMyCoupon extends Vue {
   onStatusChange () {
     this.$ShowLayer();
     this.CurrentPage = 1;
+    console.log(this.status, '状态status');
+    console.log(document.body.style.overflowY, 'document.body.style.overflowY');
     if (this.status === 2) {
       this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
         this.NewArarry = result.Coupon;
         this.TotalRecord = result.TotalRecord;
         this.TotalPage = result.TotalPage;
         this.$HiddenLayer();
+        document.body.style.overflow = '';
       });
     } else if (this.status === 3) { this.getAllCoupon().then(() => { this.$HiddenLayer(); }); }
   }
 @Watch('CurrentPage')
   onPageChange (o, n) {
-    this.getAllCoupon();
+    this.$ShowLayer();
+    console.log(this.status, '状态CurrentPage');
+    if (this.status === 2) {
+      this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
+        this.NewArarry = result.Coupon;
+        this.TotalRecord = result.TotalRecord;
+        this.TotalPage = result.TotalPage;
+        this.$HiddenLayer();
+        document.body.style.overflow = '';
+      });
+    } else if (this.status === 3) { this.getAllCoupon().then(() => { this.$HiddenLayer(); }); }
+    // this.getAllCoupon();
   }
 }
 </script>
@@ -188,6 +205,7 @@ export default class InsMyCoupon extends Vue {
     background-color: #4c8eff;
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+    font-size: 18px;
 }
 .couponTips {
   text-align: right;

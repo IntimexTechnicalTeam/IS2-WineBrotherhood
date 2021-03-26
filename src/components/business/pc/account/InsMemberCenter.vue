@@ -74,7 +74,7 @@ export default class InsMenberCenter extends Vue {
 .MemberPc .MemberInfoNavPC {
   width: 100%;
   display: inline-block;
-  background: #e6e6e6;
+  background: #14234f;
   margin-top: 20px;
   ul {
     width: 1200px;
@@ -92,11 +92,11 @@ export default class InsMenberCenter extends Vue {
   text-decoration: none;
   display: block;
   line-height: 3.5rem;
-  color: #333333;
+  color: #fff;
   font-size: 22px;
 }
 .MemberPc .activeInfo a {
   color: #fff !important;
-  background: #666666 !important;
+  background: #8b0b04 !important;
 }
 </style>

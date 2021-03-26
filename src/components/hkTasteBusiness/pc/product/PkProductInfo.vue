@@ -1,11 +1,11 @@
 <template>
 <div class="in_panel_header">
     <div class="p-name-box">
-      <p style="width: 88%;">{{panelDetail.Name}}</p>
+      <p style="width: 88%;" :title="panelDetail.Name">{{panelDetail.Name}}</p>
       <div class="in_pannel_addtofav"><img :src="panelDetail.IsFavorite ? '/images/pc/productDetail_01.png': '/images/pc/productDetail_05.png'" @click="addFavorite"/></div>
     </div>
     <div class="in_panel_subTitle"><inPrices :primePrices="panelDetail.ListPrice+AddPrice" :currentPrices="panelDetail.SalePrice+AddPrice"  :currency="panelDetail.Currency" :DefaultListPrice="panelDetail.DefaultListPrice+AddPrice" :DefaultSalePrice="panelDetail.DefaultSalePrice+AddPrice" :DefaultCurrency="panelDetail.DefaultCurrency" size="huge" :heightLine="true" styla="margin: 1rem 0;" :max="panelDetail.MaxPurQty" :min="panelDetail.MinPurQty"></inPrices></div>
-    <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div>
+    <!-- <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div> -->
     <div class="in_panel_product">
         <div class="ProductCode">
             <div class="leftpart">{{$t("product.ProductCode")}}:{{panelDetail.Code}}</div>
@@ -88,9 +88,12 @@ export default class PkProductInfo extends Vue {
     font-size: 26px;
     line-height: 26px;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     word-wrap: break-word;
-    text-align: center;
+    text-align: left;
+
 }
 .p-name-box .in_pannel_addtofav{
     position: absolute;
@@ -111,7 +114,7 @@ export default class PkProductInfo extends Vue {
 .in_panel_product{
     width: 100%;
     padding-bottom: 40px;
-    border-bottom: 1px solid #505050;
+    border-bottom: 3px solid #c88c89;
     padding-top: 30px;
     margin-bottom: 10px;
 }
@@ -121,7 +124,7 @@ export default class PkProductInfo extends Vue {
     display: block;
 }
 .in_panel_product .ProductCode .leftpart{
-    width: 60%;
+    // width: 60%;
     float: left;
     font-size: 14px;
     word-break: break-all;
@@ -131,11 +134,12 @@ export default class PkProductInfo extends Vue {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding-top: 0.5rem;
+    padding-top: 14px;
+    color: #8b0b04;
 }
 .in_panel_product .ProductCode .rightpart{
-    width: 40%;
-    float:left;
+    // width: 40%;
+    float:right;
 }
 .in_panel_subTitle{
     font-size: 16px!important;
@@ -144,12 +148,15 @@ export default class PkProductInfo extends Vue {
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
   >img{
     position: absolute;
     right: 0;
     top: 50%;
     transform: translate(0,-50%);
+  }
+  /deep/ .primePricesMain{
+    text-align: left;
   }
 }
 </style>

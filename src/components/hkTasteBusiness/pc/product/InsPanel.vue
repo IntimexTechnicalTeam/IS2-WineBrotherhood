@@ -204,28 +204,34 @@ export default class Panel extends Vue {
   width: 4rem;
 }
 .PcVersion  .el-input-number__decrease,.PcVersion .el-input-number__increase{
-    width: 2rem !important;
-    border: 1px solid #000;
-    border-radius: 5px;
-    height: 2rem;
-    line-height: 2rem;
+    width: auto !important;
+    border: none;
+    height: 46px;
+    line-height: 46px;
+    background-color: transparent;
 }
 .PcVersion .el-input-number__decrease i, .el-input-number__increase i{
-  color:#000;
+  color:#fff;
+  font-size: 16px;
+  padding: 0 20px;
+  font-weight: bold;
 }
-.PcVersion  .el-input-number{
-  width: auto!important;
+.PcVersion .el-input-number{
+  width: 210px!important;
+  background-color: @base_color;
+  border-radius: 10px;
+  box-shadow: 0 0 3px #c9c9c9;
 }
 .PcVersion .el-input-number .el-input__inner{
-  padding-left: 0rem;
-  padding-right: 0rem;
+  padding-left: 0;
+  padding-right: 0;
   background: transparent!important;
-  width: 10rem;
-  line-height: 2rem!important;
-  height: 2rem!important;
-  color:#000!important;
+  width: 210px;
+  line-height: 46px!important;
+  height: 46px!important;
+  color:#fff!important;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 16px;
 }
 </style>
 <style lang="less" scoped>
@@ -318,20 +324,20 @@ export default class Panel extends Vue {
       .in_btn {
         height: 60px;
         font-size: 24px;
-        color: @base_color;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         border: 1px solid @base_color;
         background-color: unset;
-        border-radius: 5px;
-        transition: .1s;
+        border-radius: 14px;
+        transition: all .3s;
+        color: #14234f;
         &:hover{
-          transform: translateY(-3px);
-        }
-        &:first-child {
+          // transform: translateY(-3px);
           background-color: @base_color;
           color: #fff;
+        }
+        &:first-child {
           margin-right: 4%;
         }
       }

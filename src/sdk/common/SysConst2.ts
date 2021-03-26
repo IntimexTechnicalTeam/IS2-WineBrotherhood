@@ -34,9 +34,6 @@ module.exports = {
       name: '繁',
       value: 'C'
     }, {
-      name: '简',
-      value: 'S'
-    }, {
       name: 'Eng',
       value: 'E'
     }],

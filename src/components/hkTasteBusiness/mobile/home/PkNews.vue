@@ -87,6 +87,7 @@ export default class PkNews extends Vue {
   display: block;
   object-fit: cover;
   object-position: center;
+  height: 22rem;
 }
 .news li .news-date {
   display: inline-block;

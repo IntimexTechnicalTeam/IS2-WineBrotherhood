@@ -126,7 +126,7 @@ export default class insNews extends Vue {
     let catId = this.catId || this.id;
     var _this = this;
     this.$Api.cms
-      .getFromContentByCatId(catId, this.currentPage, this.pageSize, this.SortName, this.SortOrder)
+      .getFromContentByCatId(catId, this.currentPage, this.pageSize, this.isMobile, this.SortName, this.SortOrder)
       .then(result => {
         this.contentList = result.Data;
         this.TotalRecord = result.TotalRecord;

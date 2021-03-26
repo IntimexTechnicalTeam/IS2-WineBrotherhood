@@ -90,7 +90,7 @@
             :total="TotalRecord"
             :pageNum="pageNumber"
             styla="margin-top:20px;"
-            v-show="TotalRecord > 0"
+            v-show="TotalRecord > pageNumber"
           ></inPage>
         </Card>
         <!-- 信箱列表结束 -->

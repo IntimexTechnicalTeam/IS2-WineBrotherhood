@@ -90,6 +90,14 @@ export default class PickupAddress {
     this._PickupAddress = v;
   }
 
+  private _SFPickupAddress : string;
+  public get SFPickupAddress () : string {
+    return this._SFPickupAddress;
+  }
+  public set SFPickupAddress (v : string) {
+    this._SFPickupAddress = v;
+  }
+
   private _PickupAddressPhone : string;
   public get PickupAddressPhone () : string {
     return this._PickupAddressPhone;
@@ -106,7 +114,7 @@ export default class PickupAddress {
     this._PickupCompanyName = v;
   }
 
-  constructor (_Address:string = '', _Id:string = '', _Name:string = '', _Phone:string = '', _Seq:string = '', _PickupDate:string = '', _PickupTime:number = 1, _ExpressPointId:string = '', _PickupAddress:string = '', _PickupAddressPhone:string = '', _PickupCompanyName:string = '') {
+  constructor (_Address:string = '', _Id:string = '', _Name:string = '', _Phone:string = '', _Seq:string = '', _PickupDate:string = '', _PickupTime:number = 1, _ExpressPointId:string = '', _PickupAddress:string = '', _PickupAddressPhone:string = '', _PickupCompanyName:string = '', _SFPickupAddress:string = '') {
     this._Address = _Address;
     this._Id = _Id;
     this._Name = _Name;
@@ -121,5 +129,6 @@ export default class PickupAddress {
     this._PickupAddressPhone = _PickupAddressPhone;
     this._PickupAddress = _PickupAddress;
     this._PickupCompanyName = _PickupCompanyName;
+    this._SFPickupAddress = _SFPickupAddress;
   }
 }

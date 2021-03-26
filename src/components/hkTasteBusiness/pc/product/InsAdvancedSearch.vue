@@ -270,20 +270,20 @@ export default class InsAdvancedSearch extends Vue {
 <style scoped lang="less">
 .InsAdvancedSearch {
   .resetAll{
-    background: #333333;
-    padding-left: 1rem;
-    padding-top: 30px;
-    padding-bottom: 20px;
+    background: #c58581;
+    padding-left: 15px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     color: #FFF;
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: underline;
     cursor: pointer;
   }
   .resetTitle{
-    background: #666666;
-    padding-left: 1rem;
-    padding-top: 40px;
-    padding-bottom: 20px;
+    background: @base_color;
+    padding-left: 15px;
+    padding-top: 28px;
+    padding-bottom: 28px;
     color:#FFF;
     font-size: 20px;
     span{

@@ -6,12 +6,13 @@
         <router-link :to="'/cms/content/'+n.Id">
           <img :src="n.Cover" class="NewsPart" />
         </router-link>
-        <p class="news-date">{{n.CreateDate}}</p>
+        <!-- <p class="news-date">{{n.CreateDate}}</p> -->
         <p class="news-title">{{n.Title}}</p>
+        <p class="news-Desc">{{n.Desc}}</p>
       </li>
     </ul>
     <p class="more">
-      <a href="#">{{$t('home.More')}}></a>
+      <router-link to="/cms/catDetail/40113">{{$t('home.More')}}</router-link>
     </p>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default class PkNews extends Vue {
     var cond = {
       Page: 1,
       PageSize: 3,
-      catId: 10029
+      catId: 40113
     };
     this.$Api.cms.getLastestContents(cond).then(result => {
       result.Data.forEach(function (item) {
@@ -46,24 +47,25 @@ export default class PkNews extends Vue {
 .news {
   width: 100%;
   /*height:800px;*/
-  padding-bottom: 150px;
-  padding-top: 160px;
+  padding-bottom: 68px;
+  padding-top: 34px;
   box-sizing: border-box;
 }
 .news h2 {
-  font-size: 28px;
-  color: #383838;
+  font-size: 40px;
+  color: #fff;
   text-align: center;
   margin-bottom: 65px;
+  font-weight: bold;
 }
 .news ul {
-  width: 1120px;
+  width: 1200px;
   margin: 0 auto;
   overflow: hidden;
 }
 .news li {
-  width: 326px;
-  margin-right: 71px;
+  width: 348px;
+  margin-right: 78px;
   float: left;
   box-sizing: border-box;
 }
@@ -73,15 +75,18 @@ export default class PkNews extends Vue {
 .news li a {
   display: block;
   width: 100%;
-  height: 210px;
+  height: 348px;
   background-color: #ededed;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .news li a img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-position: 50% 50%;
+  object-fit: cover;
 }
 .news li .news-date {
   display: inline-block;
@@ -95,12 +100,12 @@ export default class PkNews extends Vue {
 }
 .news li .news-title {
   width: 100%;
-  font-size: 16px;
-  color: #424242;
+  font-size: 18px;
+  color: #ffffff;
   text-align: left;
   height: 40px;
   line-height: 20px;
-  margin-top: 10px;
+  margin-top: 26px;
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -109,17 +114,28 @@ export default class PkNews extends Vue {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
+  font-weight: bold;
+}
+.news li .news-Desc{
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: left;
+  line-height: 32px;
 }
 .news .more {
   display: block;
-  width: 1120px;
+  width: 1200px;
   margin: 0 auto;
   overflow: hidden;
   margin-top: 75px;
 }
 .news .more a {
-  color: #7e7e7e;
+  color: #fff;
   font-size: 16px;
   float: right;
+  text-decoration: underline;
+  font-weight: bold;
 }
 </style>

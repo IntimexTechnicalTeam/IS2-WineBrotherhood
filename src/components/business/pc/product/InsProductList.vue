@@ -19,7 +19,7 @@ export default class InsProductList extends Vue {
     flex-wrap: wrap;
     width: 100%;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 80px;
 }
 .product_item{
     box-sizing: border-box;

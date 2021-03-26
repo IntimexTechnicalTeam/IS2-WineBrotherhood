@@ -44,6 +44,16 @@ export default class InsCodeSelect extends Vue {
   border: 1px solid #fff;
   border-radius: 8px;
   margin-left: 32px;
+  position: relative;
+  &::before{
+    content: '';
+    width: 1px;
+    height: 24px;
+    background-color: #fff;
+    position: absolute;
+    right: 30px;
+    top: 4px;
+  }
   select {
     width: 100%;
     font-size: 18px;

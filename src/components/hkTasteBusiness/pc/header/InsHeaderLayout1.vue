@@ -1,7 +1,7 @@
 <template>
 <div class="header-layout"  v-cloak>
   <!-- 正常菜单 -->
-  <div class="headerBg">
+  <div class="headerBg" v-if="$route.path == '/'">
       <div class="headerTop fix">
         <div class="logoBox">
             <a href="/"><img src="/images/pc/pcindex_09.png"></a>
@@ -41,6 +41,47 @@
       <!-- 导航栏开始 -->
       <Menu />
       <!-- 导航栏结束 -->
+  </div>
+  <div class="headernohome" v-else>
+      <div class="headerTop fix">
+        <div class="logoBox">
+            <a href="/"><img src="/images/pc/pcindex_09.png"></a>
+        </div>
+        <!-- 导航栏开始 -->
+      <Menu />
+      <!-- 导航栏结束 -->
+          <div class="inner">
+              <!-- 搜索框开始 -->
+              <!-- <div class="search-box">
+                <input type="text" v-model="key" class="inputBox" />
+                <span class="searchBtn" @click="searchFun(key)"></span>
+              </div> -->
+              <!--搜索框结束  -->
+              <!-- 会员登陆开始 -->
+              <InsLogin class="memberLogin"></InsLogin>
+
+              <!-- 购物车开始 -->
+              <Shopcart class="memberLogin"></Shopcart>
+              <!-- 购物车结束 -->
+              <!-- 我的喜爱开始 -->
+              <div class="cartTop">
+                  <router-link to="/account/MyFavorite">
+                          <i class="handle-icon fav-icon"></i>
+                  </router-link>
+              </div>
+              <!-- 我的喜爱结束 -->
+              <!-- 切换语言开始 -->
+
+              <div class="langBox">
+                  <InsLangSwitch></InsLangSwitch>
+              </div>
+              <CodeSelect/>
+              <!-- 切换语言结束 -->
+          </div>
+      </div>
+
+      <!-- logo结束 -->
+
   </div>
   <!-- 正常菜单结束 -->
 
@@ -216,7 +257,7 @@ export default class InsHeader extends Vue {
     addEventListener('scroll', () => {
       var _this = this;
       let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-      if (scrollTop >= 294) {
+      if (scrollTop >= 100) {
         $('.header-default').slideDown(300);
       } else {
         $('.header-default').fadeOut(300);
@@ -264,7 +305,7 @@ export default class InsHeader extends Vue {
      /deep/.header_menu{
       width: auto;
       float: left;
-      margin-top: 40px;
+      margin-top: 20px;
       margin-left: 20px;
       >ul>li{
         a{
@@ -276,7 +317,7 @@ export default class InsHeader extends Vue {
     .inner{
       float: right;
       position: initial;
-      margin-top: 40px;
+      margin-top: 20px;
       .memberLogin{
         margin-right: 40px;
       }
@@ -286,6 +327,47 @@ export default class InsHeader extends Vue {
     }
    }
 
+}
+.headernohome{
+  position: relative;
+  width: 100%;
+  background-color: #8b0b04;
+  z-index: 9999;
+  box-shadow: 0 0 10px 0 #d4d5d1;
+   width: 100%;
+   background-size: cover;
+   padding-bottom: 10px;
+   .logoBox{
+      float: left;
+      display: inline-block;
+      width: auto;
+   }
+   .headerTop {
+     padding-top: 5px;
+     /deep/.header_menu{
+      width: auto;
+      float: left;
+      margin-top: 20px;
+      margin-left: 20px;
+      >ul>li{
+        a{
+          font-weight: 500;
+          padding: 10px 30px;
+        }
+      }
+    }
+    .inner{
+      float: right;
+      position: initial;
+      margin-top: 20px;
+      .memberLogin{
+        margin-right: 40px;
+      }
+      .cartTop{
+        margin-right: 40px;
+      }
+    }
+   }
 }
 .showMenuYes{
   height:151px;
@@ -415,7 +497,11 @@ export default class InsHeader extends Vue {
 .logoBox a img{
    width: 116px;
 }
-
+.header-default, .headernohome{
+  .logoBox a img{
+    width: 78px;
+  }
+}
 .fav-icon {
     background: url('/images/pc/pcindex_08.png') no-repeat center center;
     display: inline-block;

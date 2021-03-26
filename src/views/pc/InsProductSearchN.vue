@@ -23,11 +23,13 @@
             <span class="el-icon-s-operation"></span
             ><b>{{ $t("product.Screening") }}</b>
           </li>
-          <li style="width: 810px;border: none;">
-            {{ $t("product.Total") }} {{ totalRecord }}
-            {{ $t("product.Product") }}
+          <li style="width: 748px;">
+            <div class="searchBox">
+              <span class="search_btn"  @click="searchFun(searchKey)"><img src="/images/mobile/searchbtn.png"></span>
+              <input type="text" v-model="searchKey" />
+            </div>
           </li>
-          <li style="width: 140px;">
+          <li>
             <select v-model="PriceItem" @change="getselect(PriceItem)">
               <option value="">{{ $t("product.Paixu") }}</option>
               <option value="desc">{{ $t("product.PriceHL") }}</option>
@@ -87,7 +89,7 @@ import $ from 'jquery';
 export default class InsProductSearch extends Vue {
   proList: YouWouldLike[] = []; // 产品数据
   currentPage: number = 1; // 当前页
-  pageSize: number = 16; // 每页显示条目个数
+  pageSize: number = 12; // 每页显示条目个数
   totalRecord: number = 0; // 总条目数
   private tips: boolean = true;
   private LoadingInstance!: any;
@@ -98,15 +100,35 @@ export default class InsProductSearch extends Vue {
   isAdvanced: boolean = true;
   PriceItem: string = '';
   private waiting: boolean = true;
-  // 搜索关键词
-  get searchKey() {
-    let a = this.$route.params.key;
-    if (a === '-') {
-      return '';
+  searchKey: string = '';
+
+  searchFun (key) {
+    this.$store.dispatch('setSearchKey', key);
+    if (key !== '') {
+      this.$router.push({
+        path: '/product/search',
+        name: 'productSearch',
+        params: {
+          key: key
+        }
+      });
+      // this.$store.dispatch('isShowMenu', !this.$store.state.isShowMenu);
     } else {
-      return a;
+      this.$router.push({
+        path: '/product/search/-'
+      });
+      // this.$store.dispatch('isShowMenu', !this.$store.state.isShowMenu);
     }
   }
+  // 搜索关键词
+  // get searchKey() {
+  //   let a = this.$route.params.key;
+  //   if (a === '-') {
+  //     return '';
+  //   } else {
+  //     return a;
+  //   }
+  // }
   // 重置搜索
   resetAll() {
     // this.$router.push('/product/search/-');
@@ -193,7 +215,8 @@ export default class InsProductSearch extends Vue {
 .prolist-box {
   .pager {
     text-align: center;
-    margin: 60px 0;
+    margin: 0;
+    display: flex;
     button,
     li {
       margin: 0 6px !important;
@@ -262,11 +285,13 @@ export default class InsProductSearch extends Vue {
 }
 .ProducBanner {
   width: 100%;
+  height: 502px;
   background-size: 100% 100%;
   display: inline-block;
   box-sizing: border-box;
   .innerBanner {
     width: 100%;
+    height: 502px;
     margin: 0 auto;
     img {
       width: 100%;
@@ -343,8 +368,6 @@ export default class InsProductSearch extends Vue {
   }
   li {
     float: left;
-    margin-right: 4%;
-    border: 1px solid #eee;
     height: 40px;
     line-height: 40px;
     list-style: none;
@@ -352,35 +375,37 @@ export default class InsProductSearch extends Vue {
     justify-items: center;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
     span {
       width: 20%;
       display: inline-block;
-      font-size: 20px;
+      font-size: 30px;
       text-align: center;
-      color: #909399;
+      color: #fff;
     }
     b {
       width: 60%;
       display: inline-block;
       text-align: center;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
-      color: #333333;
+      color: #fff;
     }
     select {
       width: 100%;
       border: none;
-      padding-left: 0.5rem;
+      padding-left: 18px;
       height: 40px;
       line-height: 40px;
-      font-size: 14px;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      background: url(/images/mobile/arrow-down-back.png) 90% 17px no-repeat;
+      background: url(/images/mobile/Pricedownicon.png) 95% 14px no-repeat;
       background-size: auto;
       outline: none;
       cursor: pointer;
+      font-size: 18px;
+      color: #8b0b04;
     }
     &:last-child {
       margin-right: 0px !important;
@@ -389,8 +414,51 @@ export default class InsProductSearch extends Vue {
       cursor: pointer;
     }
     &:first-child {
-      width: 140px;
+      width: 220px;
       cursor: pointer;
+      background-color: #8b0b04;
+      box-shadow: 0 0 5px rgba(94, 94, 94, 0.5);
+    }
+    &:last-child{
+      box-shadow: 0 0 5px rgba(94, 94, 94, 0.5);
+      float: right;
+      width: 232px;
+    }
+  }
+}
+.searchBox{
+  margin-top: 0;
+  position: relative;
+  border: none;
+  height: 40px;
+  overflow: inherit;
+  width: 344px;
+  box-sizing: border-box;
+  input{
+    width: 100%;
+    border: none;
+    box-shadow: 0 0 5px rgba(94, 94, 94, 0.5);
+    border-radius: 10px;
+    outline: none;
+    text-indent: 45px;
+    font-size: 16px;
+    height: 40px;
+    box-sizing: border-box;
+  }
+  .search_btn{
+    left: 0;
+    background-color: transparent;
+    border-right: 1px solid  #14234f;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    width: 38px;
+    img{
+      width: 26px;
+      display: inline-block;
+      margin-top: 6px;
     }
   }
 }

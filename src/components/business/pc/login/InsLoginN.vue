@@ -282,7 +282,7 @@ export default class InsLoginN extends Vue {
             justify-content: space-between;
             flex-direction: column;
             width: 489px;
-            height: 350px;
+            // height: 350px;
             padding: 0 20px 0 0;
             box-sizing: border-box;
             vertical-align: top;
@@ -300,7 +300,7 @@ export default class InsLoginN extends Vue {
             justify-content: space-between;
             flex-direction: column;
             width: 489px;
-            height: 350px;
+            // height: 350px;
             border-left: solid 1px rgba(0, 0, 0, .2);
             vertical-align: top;
             .register_half{

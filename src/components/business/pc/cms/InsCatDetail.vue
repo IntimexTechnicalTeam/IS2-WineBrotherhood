@@ -1,20 +1,20 @@
 <template>
   <div id="container" class="catDetail pcCatDetail">
     <div class="DetailTitle"><img :src="ImgList"><div class="TitleBg"><div class="innerBoxText">{{CatName}}</div></div></div>
-    <div class="catContent">
+    <div class="catContent fix">
         <ul>
             <li v-for="(cms,index) in contentList" :key="index">
                 <router-link :to="'/cms/content/'+cms.Id">
                     <div class="cover">
                         <img :src="cms.Cover" alt=""/>
                     </div>
-                    <div class="introduce">
-                        <p class="title">{{cms.Title}}</p>
-                        <p class="createDate">{{cms.CreateDate}}</p>
-                        <p class="desc">{{cms.Desc}}</p>
-                        <p class="viewMore"><span>{{$t('Message.ViewDetail')}}</span></p>
-                    </div>
                 </router-link>
+                <div class="introduce">
+                    <p class="title">{{cms.Title}}</p>
+                    <!-- <p class="createDate">{{cms.CreateDate}}</p> -->
+                    <p class="desc">{{cms.Desc}}</p>
+                    <p class="viewMore"><router-link :to="'/cms/content/'+cms.Id">{{$t('home.More')}}</router-link></p>
+                </div>
             </li>
         </ul>
     </div>
@@ -37,15 +37,18 @@ export default class insNews extends Vue {
     catId: number = 0; // Tree点击获取内容列表的目录id
     cateName:string='';
     currentPage: number = 1; // 当前页
-    pageSize: number = 12; // 每页显示条目个数
+    pageSize: number = 3; // 每页显示条目个数
     totalRecord: number = 0;// 总条目数
     private ImgList: string = '';
-    CatName:string=''
+    CatName:string='';
+    private SortOrder: string = 'desc';
+    private SortName: string = 'Key';
+
     // 获取cms该id下所有的cms
-    getContentsByCatId () {
+    getFromContentByCatId () {
       let catId = this.catId || this.id;
       var _this = this;
-      this.$Api.cms.getContentsByCatId(catId, this.currentPage, this.pageSize).then((result) => {
+      this.$Api.cms.getFromContentByCatId(catId, this.currentPage, this.pageSize, this.isMobile, this.SortOrder, this.SortName).then((result) => {
         this.contentList = result.Data;
         result.Data.forEach(function (i) {
           var newDate = new Date(i.CreateDate.replace(/-/g, '/'));
@@ -74,51 +77,52 @@ export default class insNews extends Vue {
       return this.$store.state.isMobile;
     }
     mounted () {
-      this.getContentsByCatId();
+      this.getFromContentByCatId();
       this.getCategoryByDevice();
     }
     @Watch('id', { deep: true })
     onIdChange () {
-      this.getContentsByCatId();
+      this.getFromContentByCatId();
     }
 
   @Watch('isMobile', { deep: true })
     onMediaChange () {
-      this.getContentsByCatId();
+      this.getFromContentByCatId();
     }
   @Watch('currentPage', { deep: true })
   onCurrentPage () {
-    this.getContentsByCatId();
+    this.getFromContentByCatId();
   }
 }
 </script>
 <style  lang="less">
 .pcCatDetail{
-  .noClick{
-    color: #2e2e2e!important;
-    background: #ead3b1!important;
-    border: 1px solid #ead3b1!important;
-  }
-  .last, .next{
-    padding: 15px 18px!important;
-    margin: 0 12px;
-    border-radius: 0px!important;
-    cursor: pointer;
-    border: 1px solid #ead3b1!important;
-    background: #ead3b1!important;
-    color: #2e2e2e!important;
-  }
-  .selectPage{
-    height: 49px!important;
-    border-radius: 0px!important;
-    outline: 0;
-    font-size: 16px;
-  }
+  // .noClick{
+  //   color: #2e2e2e!important;
+  //   background: #ead3b1!important;
+  //   border: 1px solid #ead3b1!important;
+  // }
+  // .last, .next{
+  //   padding: 15px 18px!important;
+  //   margin: 0 12px;
+  //   border-radius: 0px!important;
+  //   cursor: pointer;
+  //   border: 1px solid #ead3b1!important;
+  //   background: #ead3b1!important;
+  //   color: #2e2e2e!important;
+  // }
+  // .selectPage{
+  //   height: 49px!important;
+  //   border-radius: 0px!important;
+  //   outline: 0;
+  //   font-size: 16px;
+  // }
 }
 </style>
 <style scoped lang="less">
 .DetailTitle{
   width: 100%;
+  height: 502px;
   display: flex;
   flex-wrap:wrap;
   position: relative;
@@ -126,27 +130,25 @@ export default class insNews extends Vue {
   justify-content: center;
   img{
     width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: 50% 50%;
   }
   .TitleBg{
-    width: 500px;
-    border: 1px solid #ffffff;
-    height: 70px;
-    line-height: 70px;
     margin: 0 auto;
-    padding: 10px;
-    margin-bottom: 20px;
     top: 50%;
     position: absolute;
     transform: translateY(-50%);
     .innerBoxText{
-      background:#ffffff;
-      color: #333333;
+      background:rgba(139, 11, 4, 0.5);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 40px;
-      font-weight: 700;
-      font-family: 'Arial';
+      font-family: 'Century Gothic';
+      padding: 45px;
     }
   }
 }
@@ -179,27 +181,21 @@ export default class insNews extends Vue {
         .catContent {
             width: 1200px;
             margin: 0px auto;
-            margin-top: 30px;
-            margin-bottom: 30px;
+            margin-top: 56px;
+            margin-bottom: 56px;
             >ul{
               width: 100%;
              >li{
-               width: 23%;
-               float: left;
-               margin-right: 2.66%;
-               margin-bottom: 2.66%;
-               &:nth-child(4n){
-                 margin-right: 0%!important;
+               width: 100%;
+               margin-bottom: 52px;
+               display:flex;
+               &:last-child{
+                 margin-bottom: 0;
                }
                a{
                  display:block;
-                 border:1px solid #eee;
                  transition: all .3s ease;
-                -o-transition: all .3s ease;
-                -webkit-transition: all .3s ease;
-                -moz-transition: all .3s ease;
                  &:hover{
-                   border:1px solid  @base_color;
                    .introduce{
                      .title{
                        color: @base_color;
@@ -208,14 +204,14 @@ export default class insNews extends Vue {
                  }
                }
                .introduce{
-                 width: 90%;
-                 margin: 0 auto;
-                 padding-bottom: 20px;
+                  width: 572px;
+                  margin: 0 auto;
+                  padding-bottom: 20px;
+                  margin-left: 26px;
                  .title{
-                   font-size:18px;
+                   font-size:36px;
                    padding-bottom: 10px;
-                   border-bottom: 1px solid #eee;
-                   color:#484848;
+                   color:#000000;
                    margin-bottom: 10px;
                    text-overflow: -o-ellipsis-lastline;
                     overflow: hidden;
@@ -225,7 +221,7 @@ export default class insNews extends Vue {
                     line-clamp: 2;
                     -webkit-box-orient: vertical;
                     max-height: 40px;
-                    margin-top: 20px;
+                    margin-top: 86px;
                  }
                  .createDate{
                    font-size: 16px;
@@ -233,34 +229,41 @@ export default class insNews extends Vue {
                    padding-bottom: 10px;
                  }
                  .desc{
-                   font-size: 14px;
+                   font-size: 20px;
                    color:#000000;
                    margin-bottom: 40px;
                    text-overflow: -o-ellipsis-lastline;
                    overflow: hidden;
                    text-overflow: ellipsis;
                    display: -webkit-box;
-                    -webkit-line-clamp: 2;
-                    line-clamp: 2;
-                    -webkit-box-orient: vertical;
-                    max-height: 36px;
+                    // -webkit-line-clamp: 2;
+                    // line-clamp: 2;
+                    // -webkit-box-orient: vertical;
+                    line-height: 40px;
+                    min-height: 120px;
                  }
                  .viewMore{
-                   text-align: center;
+                   text-align: right;
                    display: inline-block;
                    width: 100%;
-                   span{
-                     padding: 5px 20px;
-                     background: @base_color;
+                   a{
                      display: inline-block;
-                     color:#fff;
+                     color:#14234f;
+                     text-decoration: underline;
+                     font-weight: bold;
                    }
                  }
                }
                .cover{
-                 width: 100%;
+                  width: 600px;
+                  height: 412px;
+                  overflow: hidden;
                  img{
                    width: 100%;
+                   height: 100%;
+                   display: block;
+                   object-fit: cover;
+                   object-position: 50% 50%;
                  }
                }
              }

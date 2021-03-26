@@ -35,7 +35,7 @@
                     </div>
                 </InsForm>
               </div>
-              <InsButton :nama="$t('Login.doLogin')" @click="login"  style="margin-top: 8rem;"/>
+              <InsButton :nama="$t('Login.doLogin')" @click="login"  style="margin-top: 124px;"/>
           </div>
           <div class="register">
               <div>
@@ -280,12 +280,12 @@ export default class InsLoginN extends Vue {
             justify-content: space-between;
             flex-direction: column;
             width: 489px;
-            height: 350px;
+            // height: 350px;
             padding: 0 20px 0 0;
             box-sizing: border-box;
             vertical-align: top;
             .remember_warpper{
-                padding: 0 0 0 20px;
+                padding: 0 10px;
                 margin: 30px 0 0 0;
                 display: flex;
                 justify-content: space-between;
@@ -298,7 +298,7 @@ export default class InsLoginN extends Vue {
             justify-content: space-between;
             flex-direction: column;
             width: 489px;
-            height: 350px;
+            // height: 350px;
             border-left: solid 1px rgba(0, 0, 0, .2);
             vertical-align: top;
             .register_half{

@@ -216,21 +216,21 @@ export default class InsDeliveryAddress extends Vue {
         {
           required: true,
           message: this.$t('MemberInfo.EnterUserName'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         }
       ],
       LastName: [
         {
           required: true,
           message: this.$t('MemberInfo.EnterUserLastName'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         }
       ],
       Mobile: [
         {
           required: true,
           message: this.$t('MemberInfo.EnterUserPhone'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         },
         { validator: function (rule, value, callback) {
              /* eslint-disable */
@@ -242,7 +242,8 @@ export default class InsDeliveryAddress extends Vue {
                 callback();
             }
         },
-        trigger: 'blur' }
+        trigger: ['blur', 'change'] 
+        }
       ],
       CountryId: [
         {
@@ -255,7 +256,7 @@ export default class InsDeliveryAddress extends Vue {
         {
           required: true,
           message: this.$t('Address.Address'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         }
       ]
     };
@@ -351,17 +352,7 @@ export default class InsDeliveryAddress extends Vue {
       if (valid) {
         this.$Api.delivery.saveAddress(this.AddForm).then((result) => {
           this.getAddress();
-          this.AddForm = {
-            FirstName: '',
-            LastName: '',
-            Mobile: '',
-            Phone: '',
-            PostalCode: '',
-            CountryId: '',
-            Province: '',
-            Address: '',
-            Default: ''
-          };
+          (this.$refs.AddForm as Form).resetFields();
           _this.$message({
             message: this.$t('Message.SavedSuccessfully') as string,
             type: 'success',
@@ -391,7 +382,7 @@ export default class InsDeliveryAddress extends Vue {
 #container .el-form-item__content{
   text-align: left!important;
 }
-.MemberPc .input_outer{
+.MemberPc /deep/ .input_outer{
   padding-top: 0px!important;
 }
 .MemberPc .MemberInfoMain .el-button--primary span{
@@ -422,8 +413,8 @@ export default class InsDeliveryAddress extends Vue {
     width: 100%!important;
 }
 .MemberPc .el-form .el-radio__input.is-checked .el-radio__inner{
-    border-color: #333333;
-    background: #333333;
+    border-color: #8b0b04;
+    background: #8b0b04;
 }
 .MemberPc .el-form .el-form-item__label{
     width: 25%;
@@ -439,7 +430,7 @@ export default class InsDeliveryAddress extends Vue {
     padding-right: 10px;
 }
 .MemberPc .el-select .el-input__suffix{
-  background: #333333;
+  background: #14234f;
   color:#fff;
   right: 0px!important;
 }
@@ -620,7 +611,7 @@ export default class InsDeliveryAddress extends Vue {
   margin-left: 0px!important;
 }
 .MemberInfoMain .el-button{
-    background: #333333;
+    background: @base_color;
     border: none;
     display: block;
     border-radius: 20px;

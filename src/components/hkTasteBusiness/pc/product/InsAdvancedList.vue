@@ -258,10 +258,10 @@ export default class InsAdvancedSearch extends Vue {
     cursor: pointer;
   }
   .resetTitle{
-    background: #666666;
-    padding-left: 1rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    background: @base_color;
+    padding-left: 38px;
+    padding-top: 28px;
+    padding-bottom: 28px;
     color:#FFF;
     font-size: 22px;
     span{

@@ -223,21 +223,21 @@ export default class InsDeliveryAddress extends Vue {
         {
           required: true,
           message: this.$t('MemberInfo.EnterUserName'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         }
       ],
       LastName: [
         {
           required: true,
           message: this.$t('MemberInfo.EnterUserLastName'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         }
       ],
       Mobile: [
         {
           required: true,
           message: this.$t('MemberInfo.EnterUserPhone'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         },
         { validator: function(rule, value, callback) {
           /* eslint-disable */
@@ -249,7 +249,7 @@ export default class InsDeliveryAddress extends Vue {
                 callback();
             }
         },
-        trigger: 'blur' }
+        trigger: ['blur', 'change'] }
       ],
       CountryId: [
         {
@@ -262,7 +262,7 @@ export default class InsDeliveryAddress extends Vue {
         {
           required: true,
           message: this.$t('Address.Address'),
-          trigger: 'blur'
+          trigger: ['blur', 'change']
         }
       ]
     };

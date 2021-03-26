@@ -55,28 +55,33 @@ export default class PkProductListSwiper extends Vue {
     left: 50%;
 }
 .TitleBg{
-  width: 500px;
-  height: 70px;
-  border:1px solid #ffffff;
-  margin: 0 auto;
-  padding: 10px;
-  margin-bottom: 20px;
+  top: 50%;
+  left: 50%;
   position: absolute;
-  bottom: 10%;
-  left:50%;
-  z-index: 999;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
   .innerBoxText{
-    width: 100%;
-    height: 100%;
-    background:#ffffff;
-    color: #333333;
+    background:rgba(139, 11, 4, 0.5);
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 40px;
-    font-weight: 700;
-    font-family: 'Arial';
+    font-family: 'Century Gothic';
+    padding: 45px;
   }
 }
+.swiper-container-hot{
+  .swiper-slide{
+    height: 502px;
+    .BannerImg{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+  }
+}
+
 </style>

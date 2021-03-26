@@ -57,6 +57,9 @@ export default class InsRegAndPay extends Vue {
         Version: '2.0',
         HasRNPConfirm: false
       };
+      // 引入外部js
+      // this.$LoadScript('http://pm.dev.in-store.hk:84/scripts/store/regnpay-2.0.js'); // 本地测试
+      // this.$LoadScript('/ClientResources/Script/regnpay-2.0.js'); // dev || uat
       this.$LoadScript('/static/js/CanvasSigner.js');
       this.$LoadScript('/static/js/ajaxFileUpload.js');
 

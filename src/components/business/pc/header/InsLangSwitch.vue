@@ -40,6 +40,16 @@ export default class InsLangSwitch extends Vue {
   height: 32px;
   border: 1px solid #fff;
   border-radius: 8px;
+  position: relative;
+  &::before{
+    content: '';
+    width: 1px;
+    height: 24px;
+    background-color: #fff;
+    position: absolute;
+    right: 30px;
+    top: 4px;
+  }
   // margin-left: 32px;
     p {
       display: inline-block;

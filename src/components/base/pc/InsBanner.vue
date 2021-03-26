@@ -15,17 +15,17 @@
             </a>
             </swiperSlide>
             <!-- Optional controls -->
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div
-              class="swiper-button-prev"
+            <!-- <div class="swiper-pagination swiper-pagination-banner" slot="pagination"></div> -->
+            <!-- <div
+              class="swiper-button-prev swiper-button-prev-banner"
               slot="button-prev"
               v-if="swiperOption.navigation && swiperOption.navigation.nextEl"
-            ></div>
-            <div
-              class="swiper-button-next"
+            ></div> -->
+            <!-- <div
+              class="swiper-button-next swiper-button-next-banner"
               slot="button-next"
               v-if="swiperOption.navigation && swiperOption.navigation.prevEl"
-            ></div>
+            ></div> -->
           </swiper>
         </div>
       </div>
@@ -63,12 +63,12 @@ export default class InsBanner extends Vue {
       disableOnInteraction: false
     },
     pagination: {
-      el: '.swiper-pagination',
+      el: '.swiper-pagination-banner',
       clickable: true
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      nextEl: '.swiper-button-next-banner',
+      prevEl: '.swiper-button-prev-banner'
     }
   };
 
@@ -150,6 +150,9 @@ export default class InsBanner extends Vue {
 .swiper-container-indexMain img {
   width: 100%;
   min-height: 28.7vw;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 .faker{
   width: 100vw;

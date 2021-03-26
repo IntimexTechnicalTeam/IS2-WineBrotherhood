@@ -282,7 +282,7 @@ SwiperOption: object = {
     border: solid 1px#f0f0f0;
     padding: 0;
     &:hover{
-      border:1px solid #333333;
+      border:1px solid #8b0b04;
     }
   }
 }

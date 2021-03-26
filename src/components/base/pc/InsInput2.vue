@@ -298,7 +298,7 @@ export default class InsInput extends Vue {
     height: inherit;
     box-sizing: border-box;
     line-height: 16px;
-    font-size: 16px;
+    font-size: 14px;
     width: 100%;
     padding: 12px;
     outline: none;
@@ -308,6 +308,7 @@ export default class InsInput extends Vue {
     border-bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 0px;
+    color: #000;
   }
   .el-input--prefix {
     i {
@@ -347,8 +348,9 @@ export default class InsInput extends Vue {
     input {
       box-sizing: border-box;
       line-height: 16px;
-      font-size: 16px;
+      font-size: 14px;
       width: 100%;
+      height: 40px;
       padding: 12px;
       outline: none;
       border-top: 0;
@@ -356,6 +358,7 @@ export default class InsInput extends Vue {
       border-right: 0;
       border-bottom: 0;
       background-color: rgba(0, 0, 0, 0.1);
+      color: #000;
     }
     .my_textarea {
       border-top: 0;
@@ -368,8 +371,9 @@ export default class InsInput extends Vue {
       outline: none;
       width: 100%;
       line-height: 16px;
-      font-size: 16px;
+      font-size: 14px;
       padding: 12px;
+      color: #000;
     }
   }
 }

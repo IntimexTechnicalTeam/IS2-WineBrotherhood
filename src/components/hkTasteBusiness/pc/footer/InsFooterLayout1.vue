@@ -3,36 +3,70 @@
   <div class="footbg">
     <div class="footerMain">
         <div class="footerTop">
-            <p><span>whatsapp&nbsp;{{$t('home.Order')}}</span><b>6289 1789</b></p>
-            <p><span>{{$t('home.TelSearch')}}</span><b>6289 1789</b></p>
+            <p>{{$t('home.HongKongLaw')}}</p>
         </div>
         <div class="footerBotttom">
           <div class="footerLeft">
-              <ul v-for="(n,index) in footerMenus" :key="index">
-                <li>
-                  <router-link
-                    :to="n.Type === 0 ? n.Url : n.Type === 1 ? '/cms/catDetail/' + n.Value.Id : n.Type === 2 ? '/CMS/content/' + n.Value.Id : n.Type === 3 ? '/RegNPay/Form/' + n.Value.Id : n.Type === 4 ? '/product/CatProduct?catId=' + n.Value.Id : n.Type === 5 ? '/product/list?key=&attr=' + n.Value.Id : '/product/list?key=&attr=' + n.ParentId + '&attrId=' + n.Value.Id"
-                  ></router-link>
-                  <ul>
-                    <li v-for="(c,index2) in n.Childs" :key="index2">
-                       <router-link :to="To(c)">{{c.Name}}</router-link>
-                    </li>
-                  </ul>
+            <img src="/images/pc/pcindex_09.png" alt="">
+              <ul>
+          <li
+            v-for="(item, index) in footerMenus"
+            :key="index"
+            class="indexMeun"
+          >
+            <a
+              href="javascript:;"
+              v-if="item.Type === -1"
+              @click="toUrl(item.Url)"
+            >
+              {{ item.Name }}
+            </a>
+            <router-link v-else :to="To(item)" slot="title">
+              {{ item.Name }}
+            </router-link>
+            <i
+              :class="{ downIcon: item.showSub, upIcon: !item.showSub }"
+              class="downIcon"
+              @click="showMeun(item, index)"
+              v-if="item.Childs && item.Childs.length > 0"
+            ></i>
+            <transition name="sub-comments">
+              <ul
+                v-show="item.showSub"
+                v-if="item.Childs && item.Childs.length"
+                :class="'SubMeun' + index"
+              >
+                <li v-for="(child, index2) in item.Childs" :key="index2">
+                  <router-link :to="To(child)">{{ child.Name }}</router-link>
+                  <!-- <router-link  @click.native="closeSlideMenu(item.Childs)" :to="To(item.Childs)" slot="title">
+                                        <b>{{child.Name}}</b>
+                                    </router-link> -->
                 </li>
-             </ul>
+              </ul>
+            </transition>
+          </li>
+        </ul>
           </div>
           <div class="footerRight">
-            <p><img src="/images/pc/pcindex_14.png" /></p>
+            <div class="title">Follow Us</div>
+            <div class="Follow">
+              <p><img src="/images/pc/index_60.png" /></p>
+              <p><img src="/images/pc/index_62.png" /></p>
+              <p><img src="/images/pc/index_64.png" /></p>
+            </div>
+            <div class="title">We Accept</div>
+            <div class="Follow">
+              <p><img src="/images/pc/index_66.png" /></p>
+              <p><img src="/images/pc/index_68.png" /></p>
+              <p><img src="/images/pc/index_70.png" /></p>
+            </div>
           </div>
           <div class="clear"></div>
            <p class="footercopy">
-             <span>Copyright {{currentYear}} © Style3  powered by intimex
+             <span>Copyright {{currentYear}} © Wine Brotherhood Company Limited. powered by intimex
                <a href="https://www.intimex.hk/" target="_blank">
                <img src="/images/pc/footerlogo.png">
                </a>
-              </span>
-             <span>{{$t('home.Weaccept')}}
-               <img src="/images/pc/pcindex_15.png" />
               </span>
             </p>
         </div>
@@ -80,12 +114,11 @@ export default class InsFooterLayout1 extends Vue {
 <style scoped lang="less">
 /* 底部文件 */
 .footbg{
-    background: #9f2f34 url('/images/pc/pcindex_05.jpg') no-repeat center bottom;
-    background-size: cover;
-    width: 100%;
-    display: inline-block;
-    padding-bottom: 10px;
-    min-height: 278px;
+  background-color: #fff;
+  background-size: cover;
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 .footerMain{
     width: 1200px;
@@ -93,52 +126,51 @@ export default class InsFooterLayout1 extends Vue {
 }
 .footerTop{
     text-align: center;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     width: 100%;
 }
 .footerTop p{
     text-align: center;
     display: inline-block;
-    margin-right: 50px;
+    color: #fff;
+    width: 1200px;
+    margin: 0 auto;
+    line-height: 26px;
+    background-color: #8b0b04;
 }
-.footerTop p span{
-    font-size: 14px;
-    color: #FFF;
-    line-height: 35px;
-    margin-right: 15px;
-}
-.footerTop p b{
-    font-weight: 100;
-    font-size: 35px;
-    color: #FFF;
-    line-height: 35px;
-}
+
 .footerBotttom{
     width: 100%;
 }
 .footerLeft{
     float: left;
-    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      float: left;
+      vertical-align: middle;
+      margin-right: 76px;
+    }
 }
 .footerLeft > ul{
     float: left;
-    margin-right: 10%;
 }
 .footerLeft > ul >li{
     width: 100%;
-    line-height: 30px;
+    padding: 10px 0;
 }
 .footerLeft > ul >li >a{
     font-size:20px;
-    color:#FFF;
+    color:#000000;
 }
 .footerLeft > ul >li >ul{
   width: 100%;
 }
 .footerLeft > ul >li >ul a{
     font-size: 16px;
-    color:#FFF;
+    color:#000000;
     display: inline-block;
     text-transform: uppercase;
 }
@@ -159,21 +191,53 @@ export default class InsFooterLayout1 extends Vue {
 }
 .footerRight{
     float: right;
-    width: 40%;
+    width: 384px;
     text-align: center;
-}
-.footerRight img{
-  width: 60%;
-  display: block;
+    .title{
+      color: #8b0b04;
+      font-size: 24px;
+      position: relative;
+      margin-bottom: 35px;
+      &::after{
+        content: '';
+        width: 98px;
+        height: 2px;
+        background-color: #c68784;
+        position: absolute;
+        top: 12px;
+        left: 0;
+      }
+      &::before{
+        content: '';
+        width: 98px;
+        height: 2px;
+        background-color: #c68784;
+        position: absolute;
+        top: 12px;
+        right: 0;
+      }
+    }
+    .Follow{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 35px;
+      img{
+        margin: 0 29px;
+        display: block;
+      }
+    }
 }
 .footercopy{
   width: 100%;
   display: inline-block;
   margin-top: 20px;
+  text-align: center;
+  border-top: 2px solid #14234f;
+  padding-top: 20px;
 }
 .footercopy span:nth-child(1){
-  float: left;
-  color:#FFF;
+  color:#14234f;
   font-size: 14px;
 }
 .footercopy span:nth-child(1) img{

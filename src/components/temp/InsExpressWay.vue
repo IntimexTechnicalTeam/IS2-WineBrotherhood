@@ -8,14 +8,14 @@
         <InsSelect @input="ExpressSelect" :disabled="lockFare" styla="width:100%" name="ExpressCompanyName" :Placeholder="$t('CheckOut.ShippingMethod')" :items="Express" :label="$t('CheckOut.ShippingMethod')" v-model="ChosenExpress" labelWidth="300px"/>
       </div>
       <!-- （新）順豐自提 -->
-      <div style="padding: 0 20px;" v-if="newSF">
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;margin-right:68px;"  :Placeholder="$t('CheckOut.CountryName')" :items="SFCountry" :label="$t('CheckOut.CountryName')" v-model="SFScreen.Country" labelWidth="130px"/>
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;" :Placeholder="$t('CheckOut.ProvinceName')" :items="SFProvince" :label="$t('CheckOut.ProvinceName')" v-model="SFScreen.Province" labelWidth="130px"/>
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;margin-right:68px;"  :Placeholder="$t('CheckOut.CityName')" :items="SFCity" :label="$t('CheckOut.CityName')" v-model="SFScreen.City" labelWidth="130px"/>
-        <InsSelect styla="display:inline-flex;vertical-align:middle;width:350px;" :Placeholder="$t('CheckOut.SFPointType')" name="Text" :items="SFPointType" :label="$t('CheckOut.SFPointType')" v-model="SFScreen.PointType" labelWidth="130px"/>
+      <div style="padding: 0 20px;" v-if="newSF" class="newSF fix">
+        <InsSelect class="SF_Select" :Placeholder="$t('CheckOut.CountryName')" :items="SFCountry" :label="$t('CheckOut.CountryName')" v-model="SFScreen.Country" labelWidth="130px"/>
+        <InsSelect class="SF_Select" :Placeholder="$t('CheckOut.ProvinceName')" :items="SFProvince" :label="$t('CheckOut.ProvinceName')" v-model="SFScreen.Province" labelWidth="130px"/>
+        <InsSelect class="SF_Select" :Placeholder="$t('CheckOut.CityName')" :items="SFCity" :label="$t('CheckOut.CityName')" v-model="SFScreen.City" labelWidth="130px"/>
+        <InsSelect class="SF_Select" :Placeholder="$t('CheckOut.SFPointType')" name="Text" :items="SFPointType" :label="$t('CheckOut.SFPointType')" v-model="SFScreen.PointType" labelWidth="130px"/>
       </div>
 
-      <div class="searchSF" v-if="newSF">
+      <div class="searchSF fix" v-if="newSF">
         <el-button type="primary" icon="el-icon-search" @click="GetPickUpPointCharge">{{$t('Action.SearchPiUpAddr')}}</el-button>
       </div>
 
@@ -70,7 +70,7 @@
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile" labelWidth="300px" /> -->
               <InsSelect styla="display:inline-flex;vertical-align:middle;width:535px;" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" labelWidth="300px"/>
               <InsSelect styla="display:inline-flex;vertical-align:middle;width:235px;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo" labelWidth="20px"/>
-              <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="' '" v-model="editAddress.Address" :needLabel="true"  labelWidth="300px" type="textarea" :must="true"/>
+              <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="$t('DeliveryAddress.Detail')" v-model="editAddress.Address" :needLabel="true"  labelWidth="300px" type="textarea" :must="true"/>
               <InsButton :nama="$t('Action.Save')"  @click="save ('adderform')" style="margin-top: 24px;"/>
             </InsForm>
           </div>
@@ -92,21 +92,20 @@
       </div>
       <!-- 自提時間 -->
       <div class="pickup_info" v-show="$store.state.pickUpExpress && ((newSF && PiUpPointList.length) || !newSF)">
-        <InsSelect v-if="newSF" :disabled="lockFare" :Placeholder="$t('CheckOut.Address')" :items="PiUpPointList" name="Address" :label="$t('CheckOut.Address')" v-model="ChosenExpressPoint" labelWidth="300px"/>
+        <InsSelect v-if="newSF" :disabled="lockFare" :Placeholder="$t('CheckOut.Address')" :items="PiUpPointList" name="Address" :label="$t('CheckOut.Address')" v-model="ChosenExpressPoint" labelWidth="250px"/>
 
         <template v-if="ChosenExpress.ExpressCompanyId === 'P' || newSF">
-          <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true" :must="PickupInfoRequire" labelWidth="300px"  v-model="PickAddress.Name" :disabled="lockFare"/>
-          <InsInput2 :label="$t('CheckOut.Phone')" :needLabel="true" :must="PickupInfoRequire" labelWidth="300px" v-model="PickAddress.Phone" :disabled="lockFare"  type="phone"/>
+          <InsInput2 :label="$t('CheckOut.Name')" :needLabel="true" :must="PickupInfoRequire" labelWidth="250px"  v-model="PickAddress.Name" :disabled="lockFare"/>
+          <InsInput2 :label="$t('CheckOut.Phone')" :needLabel="true" :must="PickupInfoRequire" labelWidth="250px" v-model="PickAddress.Phone" :disabled="lockFare"  type="phone"/>
         </template>
 
         <!-- 非新順豐自提點和門店自提不顯示，正確邏輯為 自提點皆顯示 ，舊邏輯未處理好 -->
         <template v-if="ChosenExpress.ExpressCompanyId === 'P' || newSF">
-          <InsInput2 :label="$t('CheckOut.PickupDate')" :needLabel="true" :must="PickupDateRequire" labelWidth="300px" v-model="PickAddress.PD" type="date" :disabled="lockFare"/>
-          <InsSelect labelWidth="300px" :needLabel="true" :must="PickupDateRequire" :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare"/>
+          <InsInput2 :label="$t('CheckOut.PickupDate')" :needLabel="true" :must="PickupDateRequire" labelWidth="250px" v-model="PickAddress.PD" type="date" :disabled="lockFare"/>
+          <InsSelect labelWidth="250px" :needLabel="true" :must="PickupDateRequire" :items="pickupTimeList" :label="$t('CheckOut.PickupTime')" :value="PickAddress.PickupTime" @input="(v)=>{ this.PickAddress.PickupTime = v.Id }"  :disabled="lockFare"/>
         </template>
       </div>
-     </div>
-     <div style="clear:both;"></div>
+      <div style="clear:both;"></div>
      <div class="TimeRangMain" v-show="IsSelfDefineDeliveryDate">
       <div class="TimeRangItem">
           <p class="date">{{$t('Message.DeliveryDate')}}</p>
@@ -129,6 +128,7 @@
             <select id="TimeRange" class="form-control" @change="selectTime()" v-model="selectExpressTimeOne" disabled>
               <option v-for="(p,index) in TimeRangeData" v-bind:value="p" v-bind:id="p.Id" :key="index">{{p.DateRange}}</option>
             </select>
+            <!-- <InsSelect id="TimeRange" class="form-control" @change="selectTime()" :items="TimeRangeData" v-model="selectExpressTimeOne" name="DateRange" :placeholder="$t('Message.DeliveryTime')" :label="$t('Message.DeliveryTime')" labelWidth="300px" :inputdisabled="newSFshow"/> -->
           </div>
       </div>
        <div class="TimeRangItem">
@@ -137,6 +137,7 @@
             <textarea id="TimeNote" v-model="TimeNote" @change="TimeNoteChange" disabled></textarea>
           </div>
       </div>
+     </div>
      </div>
   </div>
 </template>
@@ -220,6 +221,10 @@ export default class InsExpressWay extends Vue {
     // 自定義送貨時間列表
     private TimeRangeData:any[]=[];
 
+    // private SFTimeRangeData: SFPickupAddress [] = [];
+
+    // private SFTimeRangeDatalist: SFPickupAddress = new SFPickupAddress[];
+
     // 选择的自定义送货时间的组别
      private selectExpressTimeOne:any = Object.create(null);
 
@@ -250,6 +255,8 @@ export default class InsExpressWay extends Vue {
     // 自取(人)信息是否必填
     private PickupInfoRequire: boolean = false;
 
+    private newSFshow: boolean = true;
+
     @Prop({ default: false }) private lockFare!: boolean;
     pickerOptions : object = {
       disabledDate(time) {
@@ -259,6 +266,7 @@ export default class InsExpressWay extends Vue {
     DateSelectAct () {
       $('#TimeRange').removeAttr('disabled');
       $('#TimeNote').removeAttr('disabled');
+      this.newSFshow = true;
       this.$emit('getDeliveryDate', this.DateSelect);
     }
     TimeNoteChange () {
@@ -678,7 +686,7 @@ export default class InsExpressWay extends Vue {
       float: right;
 }
 .pc .el-date-editor.el-input, .el-date-editor.el-input__inner{
-  width: 300px;
+  width: 100%;
   input{
     width: 100%!important;
   }
@@ -733,6 +741,20 @@ export default class InsExpressWay extends Vue {
     .express{
       .none{
         padding: 20px;
+        padding-bottom: 30px !important;
+        /deep/.in_select_warpper{
+          .in_select_main{
+            box-sizing: border-box;
+          }
+          .in_select_dropdown{
+            box-sizing: border-box;
+          }
+
+        }
+        /deep/ .in_select_container{
+            margin-top: 30px;
+            margin-bottom: 0;
+          }
       }
       .address_item_warpper{
         .address_footer{
@@ -800,9 +822,27 @@ export default class InsExpressWay extends Vue {
         }
         }
     }
+    .newSF{
+      .SF_Select{
+        width: 48%;
+        float: left;
+        margin-top: 0;
+        &:nth-child(2n){
+          margin-left: 4%;
+        }
+      }
+    }
+
   }
   .express_pickup,.store_pickup,.pickup_info{
     padding: 0 20px 20px 20px;
+  }
+  .pickup_info{
+    .in_select_container{
+      margin-top: 30px;
+      margin-bottom: 0;
+      display: -webkit-box;
+    }
   }
 }
 .TimeRangMain{
@@ -827,13 +867,16 @@ export default class InsExpressWay extends Vue {
         height: 100px;
         border: 1px solid #DCDFE6;
         color: #606266;
-        outline: 0;
+        outline: none;
+        padding-left:12px;
+        padding-top: 12px;
       }
       select{
-        width: 300px;
+        width: 100%;
         border: 1px solid #DCDFE6;
         padding-left: 10px;
         color: #606266;
+        outline: none;
       }
     }
   }
@@ -846,6 +889,21 @@ export default class InsExpressWay extends Vue {
   .el-button {
     background: @base_color;
     border-color: @base_color;
+  }
+}
+.textArea{
+  /deep/.input_label{
+    // display: none;
+    color: transparent;
+    span{
+      color: transparent !important;
+    }
+  }
+}
+#TimeRange{
+  width: 100%;
+  .in_select_warpper{
+    width: 100%;
   }
 }
 </style>

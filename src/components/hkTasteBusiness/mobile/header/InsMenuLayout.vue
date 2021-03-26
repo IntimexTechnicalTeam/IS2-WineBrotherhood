@@ -296,6 +296,16 @@ export default class InsMenuLayout extends Vue {
         border: 1px solid #8b0b04;
         border-radius: 16px;
         margin-top: 3px;
+        position: relative;
+        &::before{
+            content: '';
+            width: 1px;
+            height: 24px;
+            background-color: #8b0b04;
+            position: absolute;
+            right: 32px;
+            top: 4px;
+        }
     }
     .close-meun{
         float: right;

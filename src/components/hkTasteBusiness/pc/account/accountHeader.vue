@@ -59,15 +59,11 @@ ul,li{
     clear: both;
 }
 .router-link-active{
-    border:1px solid #fff;
     background-size: contain;
     float: left;
-    width: 200px!important;
-    height: 120px!important;
     text-align: center;
-    padding: 10px;
     .innerStyle{
-      background: #fff;
+      background: #14234f !important;
       display: block;
       width: 100%;
       height: 100%;
@@ -77,18 +73,17 @@ ul,li{
     }
    span{
     font-weight: 600!important;
+    color: #fff;
   }
 }
 .iconBg{
-    border:1px solid #fff;
     background-size: contain;
     float: left;
     width: 180px;
     height: 111px;
     text-align: center;
-    padding: 10px;
     .innerStyle{
-      background: #fff;
+      background: #8b0b04;
       display: block;
       width: 100%;
       height: 100%;
@@ -103,7 +98,7 @@ ul,li{
     width: 100%;
     display: inline-block;
 
-    color:#191919;
+    color:#fff;
     font-size: 20px;
     font-weight: 500;
     text-transform:uppercase;
@@ -153,6 +148,7 @@ ul,li{
             font-size: 24px;
             color:#FFF;
             margin-bottom: 30px;
+            text-align: center;
           }
           a{
             display: inline-block;
@@ -163,6 +159,11 @@ ul,li{
             img{
               width: 100%;
             }
+          }
+          .leftnav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
         .rightside{

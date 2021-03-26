@@ -59,15 +59,15 @@ ul,li{
 }
 .detail-select-attribute .common-select li{
     display: inline-block;
-    background-color: #262626;
+    background-color: @base_color;
     color: #FFF;
-    margin-right: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    margin-right: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 5px;
 }
 </style>

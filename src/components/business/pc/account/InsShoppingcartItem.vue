@@ -82,7 +82,7 @@ export default class InsShoppingcartItem extends Vue {
 .shoppingcart_item_code,
 .shoppingcart_item_attr,
 .shoppingcart_item_price{
-    font-size: 12px;
+    font-size: 14px;
     padding: 6px 0;
     span{
         font-size: 12px;
@@ -95,8 +95,11 @@ export default class InsShoppingcartItem extends Vue {
     display: flex;
     justify-content: space-between;
     .qty_count{
-        font-size: 12px;
+        font-size: 14px;
         line-height: 26px;
+        &:last-child{
+            color: #8b0b04;
+        }
     }
 }
 .shoppingcart_item_attr{

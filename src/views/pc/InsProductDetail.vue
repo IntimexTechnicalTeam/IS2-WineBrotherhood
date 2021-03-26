@@ -4,8 +4,8 @@
     <div class="productDetail_main">
       <inPreview style="width:50%" :imgList="ImgList" :pageNum="userAgent === 'mobile' ?  1 : 4" :ProductTitleName="ProductTitleName"></inPreview>
       <div style="width:45%;margin-left:5%;float:right;">
-          <PkProductInfo :panelDetail.sync="PanelDetail"  :ProductSku="ProductCode" width="100%" :AddPrice="getNewsPrice" style="margin-top:4rem;margin-bottom: 2rem;"></PkProductInfo>
-          <div class="ProductRate"><Rate  v-model="Score" disabled  disabled-void-color="#5f6548" disabled-void-icon-class="el-icon-star-off"></Rate></div>
+          <PkProductInfo :panelDetail.sync="PanelDetail"  :ProductSku="ProductCode" width="100%" :AddPrice="getNewsPrice" style="margin-top:56px;margin-bottom: 6px;"></PkProductInfo>
+          <div class="ProductRate"><Rate  v-model="Score" disabled  disabled-void-color="#14234f" disabled-void-icon-class="el-icon-star-off"></Rate></div>
           <PkProductDetailCate :source="ExtAttrList" :cateTree="CatalogTree"  width="100%" style="margin-top:2rem;"></PkProductDetailCate>
           <inPanel :panelDetail.sync="PanelDetail" :ProductSku="ProductCode" @getPrice="showPrice" width="100%"></inPanel>
       </div>
@@ -21,14 +21,14 @@
     </div>
   </div>
     <div class="commentsLine"></div>
-    <div class="maincontent">
+    <!-- <div class="maincontent">
     <inYouWouldLike
       styla="margin-bottom:50px;"
       :pageNum="4"
       :title="$i18n.t('product.youWouldLike')"
       :ProductSku="ProductCode"
     ></inYouWouldLike>
-    </div>
+    </div> -->
 </div>
 </template>
 <script lang="ts">
@@ -156,34 +156,22 @@ export default class InsProductDetail extends Vue {
 .PcVersion .productDetail_container {
   .currentPricesMain{
     display: flex;
-    float: right;
+    float: left;
     align-items: baseline;
-    height: 3rem;
     .huge{
       display: inline-block;
-      &:nth-child(1){
-        font-size: 1.6rem;
-      }
-      &:nth-child(2){
-        font-size:2rem;
-        color:#b40606;
-        font-weight: 700;
-      }
+      font-size:24px;
+      color:#b40606;
+      font-weight: 700;
     }
   }
   .primePricesMain{
     .huge{
       display: inline-block;
-      &:nth-child(1){
-        font-size: 1rem;
-        color: #999;
-        text-decoration: line-through;
-      }
-      &:nth-child(2){
-        font-size: 1rem;
-        color: #999;
-        text-decoration: line-through;
-      }
+      font-size: 14px;
+      color: #999999;
+      text-decoration: line-through;
+      font-weight: 700;
     }
   }
 }
@@ -217,8 +205,9 @@ export default class InsProductDetail extends Vue {
 }
 .isActive{
   color:#FFF!important;
-  background: #262626 !important;
-  border:1px solid #262626;
+  background: #8b0b04 !important;
+  box-shadow: 0 0 5px #c8c8c8;
+  border:1px solid #8b0b04;
 }
 .productDetail_container {
   margin:0 auto;
@@ -230,25 +219,26 @@ export default class InsProductDetail extends Vue {
       display: inline-block;
       width: 100%;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 40px;
       .comment_title,.detail_title{
-        width: 20%;
+        width: 248px;
+        height: 64px;
+        line-height: 64px;
         text-align: center;
         font-size: 20px;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        border:1px solid #000;
         float: left;
-        margin-right:24px;
+        margin-right:18px;
         cursor: pointer;
         background: #FFF;
-        border-radius: 5px;
-        color:#000;
+        border-radius: 10px;
+        color:#8b0b04;
+        border:1px solid #d4d4d4;
       }
       .comment_title{
-        border:1px solid #000;
-        color:#000;
+        border:1px solid #d4d4d4;
+        color:#8b0b04;
         cursor: pointer;
+        box-shadow: 0 0 5px #c8c8c8;
       }
     }
     .product_detail{
@@ -259,8 +249,10 @@ export default class InsProductDetail extends Vue {
       min-height: 300px;
       border:1px solid #000;
       border-radius: 5px;
+      font-size: 20px;
+      text-align: center;
       p{
-        font-size: 1.6rem;
+        font-size: 20px;
      }
     }
   }
@@ -269,6 +261,15 @@ export default class InsProductDetail extends Vue {
   box-sizing: border-box;
   width: 100%;
   display: inline-block;
+  .ProductRate{
+    text-align: right;
+    /deep/ .el-icon-star-on:before{
+      color: #14234f;
+    }
+    /deep/ .el-icon-star-off:before{
+      color: #14234f;
+    }
+  }
 }
 .productDetail_price_warpper {
   display: flex;

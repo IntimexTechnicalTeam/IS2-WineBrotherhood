@@ -26,7 +26,7 @@
                                 <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                                 <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                                 <div class="coupon_is_valid">
-                                  <span class="valid_content">{{$t('MyCoupon.NotUse')}}</span>
+                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.NotUse') }}</span>
                                 </div>
                               </div>
                             </Checkbox>
@@ -81,7 +81,7 @@
               </div>
               <div class="discount">
                 <p class="price_item" v-show="checkouting">
-                  <span>{{$t('CheckOut.Couponcode')}}</span>
+                  <span class="price_conter">{{$t('CheckOut.Couponcode')}}</span>
                   <span style="flex-shrink:0;">
                     <ElInput :placeholder="$t('CheckOut.Couponcode')" class="input-text promotion_code" v-bind:disabled="orderSure" v-model="promotionCode" clearable></ElInput>
                     <a
@@ -91,11 +91,16 @@
                     >{{$t('CheckOut.confirm')}}</a>
                   </span>
                 </p>
-                <p v-if="promotionCode===''" class="promotionCodeTips">{{$t('Action.PromotionCodeTips')}}</p>
+                <div v-if="promotionCode===''" class="promotionCodeTips">
+                  <p>{{$t('Action.PromotionCodeTips')}}</p>
+                </div>
                 <div class="price_item">
-                  <span>{{$t('Order.Discount')}}:</span>
-                  <p v-show="showDistcount" style="width:100%">
-                    <span class="promotionA"><i>{{promotionCode}};</i><br/>{{$t('Message.AdditionalDiscount')}}</span>
+                  <span class="Discountbox">{{$t('Order.Discount')}}:</span>
+                  <p v-show="showDistcount" class="Discount_promotion">
+                    <span class="promotionA">
+                      <!-- <i>{{promotionCode}};</i><br/> -->
+                      {{$t('Message.AdditionalDiscount')}}
+                    </span>
                     <span class="promotionB">-{{Shoppcart.DefaultCurrency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
                     <span class="promotionC" @click="promotionCodeCancel">{{$t('Message.Delete')}}</span>
                   </p>
@@ -436,11 +441,13 @@ export default class InsCheckoutN extends Vue {
     }).catch((error) => {
       console.log(this.$t('Message.Message'), error);
       this.$Confirm(this.$t('Message.Message'), this.$t('CheckOut.promotionCodeError'));
+      this.promotionCode = '';
     });
   }
   promotionCodeCancel () {
       this.$store.dispatch('setPromotionDiscount', new PromotionDiscount());
       this.$emit('promotionCode', '');
+      this.promotionCode = '';
       this.showDistcount = false;
       this.$message({
         message: this.$t('Message.SuccessfullyDeleted') as string,
@@ -480,21 +487,42 @@ export default class InsCheckoutN extends Vue {
     .el-checkbox__label{
       width: 100%;
       padding: 0;
+
     }
   }
   .el-checkbox__input.is-checked+.el-checkbox__label {
       color: @primary_color2;
       border: solid 1px @primary_color2;
+      box-sizing: border-box;
+      .coupon_title{
+        background-color: #F6A139 !important;
+      }
+      .coupon_is_valid{
+        background-color: #F6A139 !important;
+      }
+      .coupon_item{
+        border: none !important;
+      }
+
   }
   .el-checkbox__label{
       // color: @primary_color2;
       border: solid 1px transparent;
   }
+  .is-disabled{
+    box-sizing: border-box;
+    .coupon_title{
+      background-color: #C0C4CC !important;
+    }
+    .coupon_is_valid{
+      background-color: #C0C4CC !important;
+    }
+  }
 }
 </style>
 <style lang="less">
 .PcV .el-input__inner{
-  width: auto!important;
+  // width: auto!important;
   padding-right: 0px!important;
 }
 .PcV .el-radio, .el-radio--medium.is-bordered .el-radio__label{
@@ -509,9 +537,21 @@ export default class InsCheckoutN extends Vue {
     }
   .el-checkbox{
     width: 100%;
+    margin-right: 0;
+    display: grid;
     .el-checkbox__label{
       width: 100%;
       padding: 0;
+      margin-bottom: 15px;
+      border: 1px solid rgba(0,0,0,.1);
+      box-sizing: border-box;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    &:last-child{
+      .el-checkbox__label{
+        margin-bottom: 0;
+      }
     }
   }
   .el-checkbox__input.is-checked+.el-checkbox__label {
@@ -554,6 +594,7 @@ export default class InsCheckoutN extends Vue {
     }
     .checkoutr{
         padding: 0 20px;
+        padding-right: 0;
         width: 30%;
         // height: 500px;
         // background-color: blanchedalmond;
@@ -586,10 +627,26 @@ export default class InsCheckoutN extends Vue {
             display: flex;
             justify-content: space-between;
             padding: 20px 0;
+            padding-top: 0;
+            .price_conter{
+              padding-top: 12px;
+            }
           }
           .discount,.price{
-            margin: 20px;
+            margin: 20px 15px;
             border-bottom: solid 1px rgba(0,0,0,.1);
+          }
+          .discount{
+            .price_item{
+              padding-bottom: 10px;
+              display: flex;
+              .Discountbox{
+                width: 30%;
+              }
+              .Discountbox{
+                width: 70%;
+              }
+            }
           }
         }
         .payment_warpper{
@@ -636,18 +693,19 @@ export default class InsCheckoutN extends Vue {
       padding: 10px 30px;
       font-size: @sub_font_size;
       // line-height: 4rem;
+      color: #14234f;
     }
     .coupon_title{
       font-size: @main_font_size;
-      background-color: @base_color;
+      background-color: #14234f;
       display: inline-block;
       padding: 10px 40px;
       color: white;
+      margin-bottom: 10px;
     }
     position: relative;
     // margin-top: @main_font_size;
     padding: @main_font_size;
-    border-bottom: 1px solid rgba(0,0,0,.1);
     // border-radius: .5rem;
     overflow: hidden;
     .coupon_is_valid{
@@ -656,13 +714,13 @@ export default class InsCheckoutN extends Vue {
       right: 0;
       width: 50%;
       height: 75%;
-      background-color: black;
+      background-color: #14234f;
       color: white;
       transform:translate(50%, -50%) rotateZ(45deg);
       .valid_content{
-        font-size: @main_font_size;
+        font-size: 16px;
         position:absolute;
-        top: 75%;
+        top: 85%;
         left: 50%;
         transform: translate(-50%,-50%);
       }
@@ -672,7 +730,9 @@ export default class InsCheckoutN extends Vue {
 }
 .candp{
   text-align: center;
-  font-size: @main_font_size
+  font-size: @main_font_size;
+  color: red;
+  margin-top: 50px;
 }
 .input-text {
   appearance: none;
@@ -691,9 +751,10 @@ export default class InsCheckoutN extends Vue {
   line-height: 40px !important;
   outline: none;
   // padding: 0 5px;
-  width: 150px !important;
+  width: 130px !important;
   box-sizing: border-box;
   vertical-align: top;
+  margin-right: -4px;
 }
 .promotion-code-btn {
   background-color: #074493;
@@ -720,16 +781,19 @@ export default class InsCheckoutN extends Vue {
   font-size: 26px;
   background-color: @primary_color;
   clip-path: polygon(30px 0, 300px 0, 270px 45px, 0 45px);
-  -webkit-clip-path: polygon(30px 0, 300px 0, 270px 45px, 0 45px);
-  -moz-clip-path: polygon(30px 0, 300px 0, 270px 45px, 0 45px);
-  -ms-clip-path: polygon(30px 0, 300px 0, 270px 45px, 0 45px);
 }
 .promotionCodeTips{
   text-align: right;
-  color:#262626;
+  margin-bottom: 10px;
+  p{
+    font-size: 14px;
+    color:#8b0b04;
+  }
 }
 .DefaultCurrency {
   float: right;
+  color:#8b0b04;
+  font-weight: bold;
 }
 .Currency {
   display: flex;

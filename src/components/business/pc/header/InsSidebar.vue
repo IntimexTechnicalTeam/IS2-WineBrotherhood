@@ -217,7 +217,7 @@ export default class InsSidebar extends Vue {
   bottom: 2rem;
   width: 4rem;
   // text-align: center;
-  z-index: 997;
+  z-index: 9979;
   line-height: 0;
   // display: none;
 

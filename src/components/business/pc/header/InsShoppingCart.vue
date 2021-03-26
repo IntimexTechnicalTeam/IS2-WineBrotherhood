@@ -29,7 +29,8 @@
         <span>{{ $t("Shoppingcart.ShoppingcartTitle") }}</span>
       </div>
       <div class="cart-window-content" v-if="shopCart.Qty">
-        <table>
+        <div class="cartscroll">
+          <table>
           <tr>
             <th>{{ $t("Shoppingcart.Product") }}</th>
             <th>{{ $t("Shoppingcart.Quantity") }}</th>
@@ -62,7 +63,7 @@
             </td>
           </tr>
         </table>
-
+        </div>
         <p class="cartSubtotal">
           {{ $t("Shoppingcart.Total") }}:
           <b
@@ -79,6 +80,7 @@
       <div class="void-cart" v-else>
         <img src="@/assets/Images/void-cart.png" />
         <p>{{ $t("Shoppingcart.None") }}</p>
+        <a href="/product/search/-">{{$t('Shoppingcart.Goshoppingnow')}}</a>
       </div>
       <div class="cart-close" @click="closeDialog()"><span>+</span></div>
     </div>
@@ -222,11 +224,8 @@ export default class InsShoppingCart extends Vue {
   width: 25px;
   height: 25px;
   color: #cccccc;
-  -webkit-transition-duration: 0.1s;
   transition-duration: 0.1s;
-  -webkit-transition-property: transform;
   transition-property: transform;
-  -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
 .cart-icon {
@@ -238,7 +237,7 @@ export default class InsShoppingCart extends Vue {
     position: absolute;
     right: -6px;
     top: -2px;
-    background-color: #000;
+    background-color: #14234f;
     min-width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -316,6 +315,14 @@ export default class InsShoppingCart extends Vue {
   font-size: 16px;
   color: #666;
   margin-top: 10px;
+}
+.void-cart>a{
+  padding: 10px 20px;
+    background: #8b0b04;
+    display: inline-block;
+    margin-top: 10px;
+    color: #fff;
+    font-size: 16px;
 }
 
 .cart-window-content table tr {
@@ -408,8 +415,10 @@ export default class InsShoppingCart extends Vue {
   background: @base_color;
 }
 .cart-window-content {
-  overflow-x: hidden;
-  max-height: 500px;
-  overflow-y: scroll;
+  .cartscroll{
+    overflow-x: hidden;
+    max-height: 500px;
+    overflow-y: scroll;
+  }
 }
 </style>

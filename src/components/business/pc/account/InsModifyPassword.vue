@@ -221,12 +221,16 @@ export default class InsModifyPassword extends Vue {
   margin-left: 0px!important;
 }
 .MemberInfoMain .el-button{
-    background: #333333;
+    background: @base_color;
     border: none;
     display: block;
     border-radius: 20px;
     width: 60%;
     float: left;
     margin-left: 25%;
+}
+.MemberPc .input_outer {
+  padding-top: 0;
+  padding-bottom: 30px;
 }
 </style>

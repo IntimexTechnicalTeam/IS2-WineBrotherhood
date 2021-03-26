@@ -322,7 +322,7 @@ export default class InsLogin extends Vue {
         color: #fff;
         &.loginBtn {
           background-color: #fff;
-          color: #000;
+          color: #14234f;
         }
       }
   }
@@ -391,7 +391,6 @@ export default class InsLogin extends Vue {
 .top-member-detail .window-top {
   right: 40px;
   position: absolute;
-  right: 35px;
   top: -18px;
   width: 24px;
   height: 18px;

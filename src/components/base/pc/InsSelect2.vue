@@ -42,6 +42,7 @@ export default class InsSelect2 extends Vue {
   @Prop() private readonly value!: any;
   @Prop({ default: '120px' }) private labelWidth!:string;
   @Prop({ default: false }) disabled!: boolean;
+
   //   method
   choice (e: MouseEvent) {
     const target = e.target as HTMLElement;
@@ -138,18 +139,19 @@ export default class InsSelect2 extends Vue {
   text-align: left;
 }
 .in_select_main {
-  font-size: 12px;
+  font-size: 14px;
   height: 100%;
   line-height: 32px;
   color: rgba(0, 0, 0, 0.2);
-  padding: 0 20px;
+  padding: 0 12px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
 }
 .in_select_main::after {
   content: " ";
   position: absolute;
-  right: 20px;
+  right: 12px;
   top: 16px;
   height: 8.4px;
   width: 8.4px;

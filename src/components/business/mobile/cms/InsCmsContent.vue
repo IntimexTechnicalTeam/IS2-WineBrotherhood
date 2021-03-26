@@ -658,6 +658,12 @@ export default class InsCmsContent extends Vue {
     line-height: 2.2rem;
     font-size: 1.4rem;
     word-break: break-word;
+    a{
+      color: #000000;
+      line-height: 2.2rem;
+      font-size: 1.4rem;
+      word-break: break-word;
+    }
   }
 }
 .CmsMap

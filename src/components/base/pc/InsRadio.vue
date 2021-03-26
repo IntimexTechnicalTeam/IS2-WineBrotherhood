@@ -131,15 +131,22 @@ export default class InsRadio extends Vue {
 </script>
 <style lang="less" scoped>
 .in_radio_container{
+  display: flex;
+  margin-bottom: 15px;
     .in_radio_label{
       font-size: 16px;
-      color: #333333;
+      color: #8b0b04;
       font-weight: 700;
+      width: 113px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -18px;
     }
     .in_radio_warpper{
+      width: calc( 100% - 113px );
         .in_radio_main{
             display: flex;
-            margin: 1rem 0;
             width: 100%;
             flex-wrap: wrap;
             .in_radio_item{
@@ -151,16 +158,16 @@ export default class InsRadio extends Vue {
                 min-width: 3rem;
                 text-align: center;
                 margin-bottom: 1rem;
-                border: 1px solid #cccccc;
+                border: 2px solid #c9c9c9;
                 background-color:#fff;
-                border-radius: .2rem;
-                color: #999999;
+                border-radius: 8px;
+                color: #8b0b04;
                 cursor: pointer;
             }
             .chosen{
-                border: 1px solid #e83428;
+                border: 2px solid #8b0b04;
                 background-color: white;
-                color:#e83428;
+                color:#8b0b04;
             }
             .nochoice {
               cursor:not-allowed;

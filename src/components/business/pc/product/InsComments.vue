@@ -1,13 +1,13 @@
 <template>
     <div ref="outer" class="comments_warrper" >
-        <div class="comments_container 000" v-if="showItems.length>0">
+        <div class="comments_container" v-if="showItems.length>0">
             <div class="comments_item" :class="{comments_item_border:index !== showItems.length}" v-for="(item,index) in showItems" :key="index">
                     <div class="leftside">
                         <p class="commentsUser">{{item.ShopperName}}</p>
                         <div class="comments_date">{{item.CommentDate}}</div>
                     </div>
                     <div class="rightside">
-                        <Rate disabled v-model="item.Sorce" :colors="['#ccc', '#F7BA2A', '#FF9900']"></Rate>
+                        <Rate disabled v-model="item.Sorce" :colors="['#ccc', '#14234f', '#14234f']"></Rate>
                     </div>
                 <div class="clear"></div>
                 <div class="bottomside">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber"  v-show="TotalRecord>0"></inPage>
+            <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber"  v-show="TotalRecord>pageNumber"></inPage>
         </div>
         <div class="comments_container" v-if="showItems.length==0">{{$t('messageTips.NoComments')}}</div>
         <div class="show_comment_img" @click="showImage = false" v-show="showImage"><img :src="currentImage" /></div>
@@ -46,7 +46,7 @@ export default class InsComments extends Vue {
     @Prop() ProductSku!: string;
     private CurrentPage: number = 1;
     private showItems: Object[] = [];
-    private pageNumber: number = 10;
+    private pageNumber: number = 5;
     private currentImage: string = '';
     private showImage: boolean = false;
     private TotalRecord: number = 0;
@@ -122,8 +122,8 @@ export default class InsComments extends Vue {
     margin-right: 10%;
 }
 .comments_warrper .rightside{
-    width: 15%;
-    float: left;
+    // width: 15%;
+    float: right;
 }
 .comments_warrper .bottomside{
     width: 100%;
@@ -178,9 +178,15 @@ export default class InsComments extends Vue {
     margin-bottom: 12px;
     line-height: 24px;
     padding-bottom:20px;
+    /deep/ .page_warrper{
+        justify-content: center;
+    }
 }
 .comments_item_border{
     border-bottom: 1px solid #e0e0e0;
+}
+.comments_item_border:last-child{
+    border-bottom: none;
 }
 .comments_sender{
     width: 20%;

@@ -55,7 +55,8 @@ export default class InsPage extends Vue {
   margin: 50px auto;
   display: flex;
   flex-wrap: wrap;
-  align-items: center
+  align-items: center;
+  justify-content: center;
 }
 .container {
   display: flex;
@@ -119,36 +120,45 @@ input[type="number"]{
 .first {
   border-left: 1px solid @base_color;
 }
-.last,.next{
-  height: 2.3rem;
-  line-height: 2.3rem;
+.last, .next{
+  height: 50px;
+  line-height: 50px;
   cursor: pointer;
   display: inline-block;
-  border: 1px solid @base_color;
-  margin:0 .5rem;
-  padding: 0 1rem;
+  margin:0 22px;
+  padding: 0 22px;
+  background: @base_color;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 0 5px rgba(94, 94, 94, 0.5);
 }
 .noClick{
-  color: black;
-  background: white;
+  color: #fff;
   cursor: not-allowed;
-  border: 1px solid @base_color;
-  line-height: 2.3rem;
+  background: @base_color;
+  line-height: 50px;
   display: inline-block;
 }
 .selectPage{
-    border: 1px solid @base_color;
-    height: 2.45rem;
-    padding: 0 0.5rem;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    outline: 0;
-    background: @base_color;
-    color: #fff;
+  box-shadow: 0 0 5px rgba(94, 94, 94, 0.5);
+  background: transparent url('/images/mobile/selectPage.png') 90% 50% no-repeat;
+  border: none;
+  height: 50px;
+  padding: 0 40px 0 22px;
+  margin:0 22px;
+  box-sizing: border-box;
+  outline: 0;
+  color: #2b4071;
+  border-radius: 10px;
+  font-size: 18px;
+  text-transform: capitalize;
+  appearance: none;
 }
 .pageing{
-  letter-spacing: 2px;
   margin-left: 5px;
   margin-right: 5px;
+  font-size: 18px;
+  color: #2b4071;
 }
 </style>

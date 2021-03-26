@@ -5,7 +5,7 @@
             <i class="el-icon-arrow-up"  @click="isOpen = !isOpen" v-if="!isOpen"></i>
             <i class="el-icon-arrow-down" @click="isOpen = !isOpen" v-else></i>
         </p>
-          <transition name="fade">
+          <transition name="subcomments">
           <ul :class="{'open': isOpen}">
             <li>
                 <input type="checkbox" :id="searchGroup.Name+'-All'" v-model="isAll" @click="checkAll($event,searchGroup)">
@@ -106,26 +106,27 @@ export default class InsAdvancedSearch extends Vue {
 
       p.category {
         width: 100%;
-        font-size:1.6rem;
-        color: #333333;
+        font-size:20px;
+        color: #8b0b04;
         background-color: #FFF;
         display: flex;
         justify-self: start;;
         align-items: center;
         flex-shrink: 0;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
         position: relative;
         i{
           position: absolute;
           right: 0px;
-          top: 2rem;
-          font-size: 1.6rem;
+          top: 2px;
+          font-size: 20px;
         }
     }
 
      >ul {
-       transition: all 3s;
+       transition: all .3s;
+       margin-top: 10px;
+       position: relative;
+        overflow: hidden;
         >li {
             height: 50px;
             display: flex;
@@ -133,29 +134,30 @@ export default class InsAdvancedSearch extends Vue {
             justify-content: flex-start;
             padding-right: 1rem;
             input[type="checkbox"] {
-                width: 2rem;
-                height: 2rem;
+                width: 16px;
+                height: 16px;
                 background-color: #fff;
                 -webkit-appearance:none;
-                border: 1px solid #cccccc;
+                border: 1px solid #8b0b04;
                 outline: none;
             }
 
             input[type="checkbox"]:checked {
-                border: 1px solid #666666;
-                background-image: url('/images/mobile/checked.png'); /*复选框的背景图*/
+                border: 1px solid #8b0b04;
+                background-color: #8b0b04;
+                // background-image: url('/images/mobile/checked.png'); /*复选框的背景图*/
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: auto;
 
                 &+label {
-                    color: #000;
+                    color: #8b0b04;
                 }
             }
 
             label {
             font-size: 18px;
-            color: #666666;
+            color: #8b0b04;
             width: 90%;
             margin-left: 5px;
             }
@@ -166,18 +168,30 @@ export default class InsAdvancedSearch extends Vue {
             font-size: 26px;
             right: 18px;
             top: 18px;
+            transition: all .3s;
         }
 
         &.open {
-                display: none;
-                transition: all 3s;
+          display: none;
+          transition: all .3s;
+          transform: rotate(180deg);
         }
     }
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.subcomments-leave-active,
+.subcomments-enter-active {
+  transition: max-height 0.3s linear;
+  transition: height 0.3s linear;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+.subcomments-enter,
+.subcomments-leave-to {
+  max-height: 0;
+  height: 0;
+  // opacity: 0;
+}
+.subcomments-enter-to,
+.subcomments-leave {
+  max-height: 20rem;
+  height: 20rem;
 }
 </style>

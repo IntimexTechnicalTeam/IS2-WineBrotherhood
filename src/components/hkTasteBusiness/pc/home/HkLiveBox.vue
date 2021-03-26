@@ -1,10 +1,10 @@
 <template>
   <div class="indexHotVideo">
-    <div class="TitleBg"><div class="innerBox">{{$t('Cms.WhatNews')}}</div></div>
+    <!-- <div class="TitleBg"><div class="innerBox">{{$t('Cms.WhatNews')}}</div></div> -->
     <div class="HotVideoMain">
-      <div class="leftVideo">
+      <!-- <div class="leftVideo">
         <p v-html="videoContent.Body"></p>
-      </div>
+      </div> -->
       <div class="rightVideo"><p v-html="fbContent.Body"></p></div>
     </div>
   </div>
@@ -75,12 +75,9 @@ export default class PkLiveBox extends Vue {
     width: 100%;
     background-size: 100% 100%;
     display: inline-block;
-    padding-top: 90px;
-    padding-bottom: 90px;
-    background: url('/images/pc/pcindex_04.jpg') no-repeat center center;
 }
 .HotVideoMain{
-    width: 1200px;
+    // width: 1200px;
     margin: 0 auto;
 }
 .HotVideoMain .leftVideo{
@@ -96,11 +93,11 @@ export default class PkLiveBox extends Vue {
     margin: 0 auto;
 }
 .HotVideoMain .rightVideo{
-    width: 40%;
+    width: 100%;
     float: left;
     background-size: 100% 100%;
     box-sizing: border-box;
-    padding: 30px;
+    // padding: 30px;
 }
 .HotVideoMain .rightVideo img{
     width: 100%;

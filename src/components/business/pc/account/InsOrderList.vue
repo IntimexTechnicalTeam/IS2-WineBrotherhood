@@ -71,7 +71,7 @@
                 </Card>
                   <!-- 列表循环结束 -->
                   <!-- 分页开始 -->
-                  <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" styla="margin-top:20px;" v-show="TotalRecord>0"></inPage>
+                  <inPage v-model="CurrentPage" :total="TotalRecord" :pageNum="pageNumber" v-show="TotalRecord>pageNumber"></inPage>
                   <!-- 分页结束 -->
                 </div>
           </div>
