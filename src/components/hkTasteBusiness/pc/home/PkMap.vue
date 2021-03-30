@@ -71,6 +71,17 @@ export default class PkMap extends Vue {
 .map-main {
   width: 100%;
   margin: 0 auto;
+  .mapbox{
+    width: 600px;
+    float: left;
+    /deep/ iframe{
+      border: none;
+    }
+  }
+  .contact{
+    width: 550px;
+    float: right;
+  }
 }
 .contact{
       width: 100%;
@@ -80,7 +91,7 @@ export default class PkMap extends Vue {
         border-bottom: 3px solid #ffffff;
         width: 94%;
         margin: 0 auto;
-        padding-top: 48px;
+        // padding-top: 48px;
         padding-left: 5px;
         box-sizing: border-box;
         &::before{

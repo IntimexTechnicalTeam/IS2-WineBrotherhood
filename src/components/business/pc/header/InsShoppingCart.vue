@@ -24,7 +24,7 @@
     >
       <b v-if="shopCart.Qty">{{shopCart.Qty}}22333333</b>
     </a> -->
-    <div class="top-cart-detail top-window" :class="{ showCart: isShow }">
+    <div class="top-cart-detail top-window" :class="{ showCart: isShow }" >
       <div class="window-detail-title">
         <span>{{ $t("Shoppingcart.ShoppingcartTitle") }}</span>
       </div>
@@ -39,7 +39,7 @@
           </tr>
           <tr v-for="(one, index) in shopCart.Items" :key="index">
             <td class="window-cart-pic"  style="display: block;text-align: center;">
-              <a href="/">
+              <a :href="'/product/detail/'+one.Product.Sku" >
                 <img :src="one.Product.Img_M" />
               </a>
               <p style="font-size:16px;">{{ one.Product.Name }}</p>
@@ -164,6 +164,9 @@ export default class InsShoppingCart extends Vue {
 <style scoped lang="less">
 .attrList {
   font-size: 10px;
+  text-align: left;
+  margin-top: 5px;
+  color: #999;
 }
 @keyframes showcart {
   0% {
@@ -318,11 +321,11 @@ export default class InsShoppingCart extends Vue {
 }
 .void-cart>a{
   padding: 10px 20px;
-    background: #8b0b04;
-    display: inline-block;
-    margin-top: 10px;
-    color: #fff;
-    font-size: 16px;
+  background: #8b0b04;
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 16px;
 }
 
 .cart-window-content table tr {
@@ -376,10 +379,15 @@ export default class InsShoppingCart extends Vue {
 .window-cart-price {
   color: #dc1010;
 }
+.window-cart-price{
+  font-weight: bold;
+  font-size: 14px;
+}
 
 .window-cart-pic img {
   border: 1px solid #f0f0f0;
-  width: 68px;
+  width: 100px;
+  box-sizing: border-box;
 }
 
 .cartSubtotal {

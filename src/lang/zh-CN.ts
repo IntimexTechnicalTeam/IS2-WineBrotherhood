@@ -124,7 +124,9 @@ export default {
     Product: '個產品',
     ProductDetail: '產品詳情',
     Unit: '單位',
-    HotProducts: '熱門產品'
+    HotProducts: '熱門產品',
+    save: '保存',
+    AllSave: '保存所有'
   },
   Shoppingcart: {
     ShoppingcartTitle: '購物車',

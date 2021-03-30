@@ -1,16 +1,16 @@
 <template>
     <div class="memberlogin">
-        <div class="menberCentral" @click="menberCentral">
-                  <img class="showMenberCentral" src="/images/mobile/Mobile-index_01.png">
-                    <div class="lang_flow" v-show="showMenberCentral" @click="memberCentral">
-                        <div data-to="/account/memberInfo" class="ii">{{$t('Account.MemberInformation')}}</div>
-                        <div data-to="/account/notification" class="ii">{{$t('Account.MyMessages')}}</div>
-                        <div data-to="/order/List" class="ii">{{$t('Account.MyOrder')}}</div>
-                        <div data-to="/account/deliveryAddress" class="ii">{{$t('Account.DeliveryAddress')}}</div>
-                        <div data-to="/account/mycoupon" class="ii">{{$t('MyCoupon.MyCoupon')}}</div>
-                        <div @click="logout">{{$t('Account.Logout')}}</div>
-                    </div>
-          </div>
+      <div class="menberCentral" @click="menberCentral" v-click-outside="closeDialog">
+        <img class="showMenberCentral" src="/images/mobile/Mobile-index_01.png">
+        <div class="lang_flow" v-show="showMenberCentral" @click="memberCentral">
+            <div data-to="/account/memberInfo" class="ii">{{$t('Account.MemberInformation')}}</div>
+            <div data-to="/account/notification" class="ii">{{$t('Account.MyMessages')}}</div>
+            <div data-to="/order/List" class="ii">{{$t('Account.MyOrder')}}</div>
+            <div data-to="/account/deliveryAddress" class="ii">{{$t('Account.DeliveryAddress')}}</div>
+            <div data-to="/account/mycoupon" class="ii">{{$t('MyCoupon.MyCoupon')}}</div>
+            <div @click="logout">{{$t('Account.Logout')}}</div>
+        </div>
+      </div>
     </div>
 </template>
 
@@ -20,6 +20,10 @@ import Cookie from 'js-cookie';
 @Component
 export default class InsLangSwitch extends Vue {
   private showMenberCentral:boolean = false;
+
+  closeDialog () {
+    this.showMenberCentral = false;
+  }
   menberCentral () {
     if (!this.$Storage.get('isLogin')) {
       window.location.href = '/account/login';

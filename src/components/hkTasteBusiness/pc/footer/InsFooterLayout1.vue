@@ -48,12 +48,12 @@
         </ul>
           </div>
           <div class="footerRight">
-            <div class="title">Follow Us</div>
+            <!-- <div class="title">Follow Us</div>
             <div class="Follow">
               <p><img src="/images/pc/index_60.png" /></p>
               <p><img src="/images/pc/index_62.png" /></p>
               <p><img src="/images/pc/index_64.png" /></p>
-            </div>
+            </div> -->
             <div class="title">We Accept</div>
             <div class="Follow">
               <p><img src="/images/pc/index_66.png" /></p>

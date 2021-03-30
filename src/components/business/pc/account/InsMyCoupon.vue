@@ -195,10 +195,10 @@ export default class InsMyCoupon extends Vue {
 .coupon-status {
     color: #fff;
     height: 72px;
-    width: 136px;
+    width: 140px;
     position: absolute;
-    right: -70px;
-    top: -40px;
+    right: -60px;
+    top: -30px;
     text-align: center;
     line-height: 110px;
     font-family: "\9ED1\4F53";

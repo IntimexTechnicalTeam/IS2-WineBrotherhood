@@ -17,26 +17,34 @@
         <b></b>
       </div>
       <div class="cart-window-content" v-if="shopCart.Qty">
-        <table>
-            <tr>
-                <th >{{$t('Shoppingcart.Product')}}</th>
-                <th>{{$t('Shoppingcart.Quantity')}}</th>
-                <th>{{$t('Shoppingcart.Price')}}</th>
-                <th></th>
-            </tr>
-            <tr v-for="(one,index) in shopCart.Items" :key="index">
-                <td  class="window-cart-pic">
-                    <a href="/" style="text-align:left;display: block;"><img :src="one.Product.Img_M" /></a>
-                  <p style="font-size:1.2rem;text-align:left;">{{one.Product.Name}}</p>
-                  <p v-if="one.AttrName1" class="attrList" style="text-align:left;">{{one.AttrTypeName1}}：{{one.AttrName1}}</p>
-                  <p v-if="one.AttrName2" class="attrList" style="text-align:left;">{{one.AttrTypeName2}}：{{one.AttrName2}}</p>
-                  <p v-if="one.AttrName3" class="attrList" style="text-align:left;">{{one.AttrTypeName3}}：{{one.AttrName3}}</p>
-                </td>
-                <td width="60" class="window-cart-num">{{one.Qty}}</td>
-                <td width="100" class="window-cart-price">{{one.Product.Currency.Code}} {{(one.Product.SalePrice) | PriceFormat}}</td>
-                <td><b class="cart-delete" @click="removeItem(one.Id)">X</b></td>
-            </tr>
-        </table>
+        <div class="cartscroll">
+          <table>
+              <tr>
+                  <th width="50%">{{$t('Shoppingcart.Product')}}</th>
+                  <th width="20%">{{$t('Shoppingcart.Quantity')}}</th>
+                  <th width="30%">{{$t('Shoppingcart.Price')}}</th>
+                  <th></th>
+              </tr>
+              <tr v-for="(one,index) in shopCart.Items" :key="index">
+                  <td width="50%" class="window-cart-pic">
+                    <div class="left">
+                      <a :href="'/product/detail/'+one.Product.Sku" >
+                        <img :src="one.Product.Img_M" />
+                        <p>{{one.Product.Name}}</p>
+                      </a>
+                    </div>
+                    <div class="right">
+                      <p v-if="one.AttrName1" class="attrList" style="text-align:left;">{{one.AttrTypeName1}}：{{one.AttrName1}}</p>
+                      <p v-if="one.AttrName2" class="attrList" style="text-align:left;">{{one.AttrTypeName2}}：{{one.AttrName2}}</p>
+                      <p v-if="one.AttrName3" class="attrList" style="text-align:left;">{{one.AttrTypeName3}}：{{one.AttrName3}}</p>
+                    </div>
+                  </td>
+                  <td width="20%" class="window-cart-num">{{one.Qty}}</td>
+                  <td width="30%" class="window-cart-price">{{one.Product.Currency.Code}} {{(one.Product.SalePrice) | PriceFormat}}</td>
+                  <td><b class="cart-delete" @click="removeItem(one.Id)">X</b></td>
+              </tr>
+          </table>
+        </div>
         <p class="cartSubtotal"><b>{{shopCart.DefaultCurrency.Code}} {{(shopCart.TotalAmount) | PriceFormat}}</b></p>
         <p class="goToCart" @click="closeDialog"><router-link to="/account/shoppingcart">{{$t('Shoppingcart.Checkout')}}</router-link></p>
       </div>
@@ -194,6 +202,7 @@ export default class InsShoppingCart extends Vue {
     border-bottom: 1px solid @base_color;
     // padding-left: 20px;
     background: @base_color;
+
 }
 
 .window-detail-title b {
@@ -201,6 +210,7 @@ export default class InsShoppingCart extends Vue {
   width: 70px;
   height: 3px;
   border-top: 1px solid #fff;
+  margin: 0 10px;
 }
 
 .window-detail-title span {
@@ -212,10 +222,12 @@ export default class InsShoppingCart extends Vue {
   line-height: 40px;
 }
 .cart-window-content{
-    overflow-x: hidden;
-    max-height: 500px;
-    overflow-y: scroll;
-    padding: .5rem;
+    // padding: .5rem;
+    .cartscroll{
+      overflow-x: hidden;
+      max-height: 40rem;
+      overflow-y: scroll;
+    }
 }
 .cart-window-content table {
   width: 100%;
@@ -246,6 +258,10 @@ export default class InsShoppingCart extends Vue {
 
 .cart-window-content table tr {
   border-bottom: 1px solid #d9d9d9;
+  display: block;
+  &:last-child{
+    border-bottom: none;
+  }
 }
 
 .cart-window-content table td,
@@ -297,8 +313,32 @@ export default class InsShoppingCart extends Vue {
 }
 
 .window-cart-pic img {
-  border: 1px solid #f0f0f0;
-  width: 68px;
+  width: 80px;
+  display: inline-block;
+  box-sizing: border-box;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+.window-cart-pic{
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  .left{
+    text-align: center;
+    p{
+      color: #000;
+      font-size: 1.3rem;
+    }
+  }
+  .right{
+    p.attrList{
+      font-size: 1rem;
+      color: #999999;
+      margin-top: 5px;
+    }
+  }
 }
 
 .cartSubtotal {

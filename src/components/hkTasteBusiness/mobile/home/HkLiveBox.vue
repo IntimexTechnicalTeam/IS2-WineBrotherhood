@@ -5,9 +5,9 @@
         <!-- <div class="videoBg">
             <p v-html="videoContent.Body"></p>
         </div> -->
-        <div class="mapBg">
+        <!-- <div class="mapBg">
            <p v-html="fbContent.Body"></p>
-        </div>
+        </div> -->
     </div>
   </div>
 </template>

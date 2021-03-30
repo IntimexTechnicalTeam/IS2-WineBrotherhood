@@ -61,7 +61,7 @@ Vue.filter('PriceFormat', function (value) {
 });
 
 // // 掛載方法到實例
-// Vue.prototype.$LoadScript = LoadScript;
+Vue.prototype.$LoadScript = LoadScript;
 // // 判斷運行環境引入外鏈相關js
 // if (process.env.NODE_ENV === 'development') { // 本地测试
 //   LoadScript('http://pm.dev.in-store.hk:84/Scripts/jquery-1.12.4.min.js');

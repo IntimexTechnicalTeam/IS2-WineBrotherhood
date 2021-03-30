@@ -3,7 +3,7 @@
     <div class="SalesMain">
           <HkHotProduct />
     </div>
-    <div class="Category">
+    <!-- <div class="Category">
       <div class="main fix">
         <div v-for="(item, index) in catalogs" :key="index">
           <div class="title">{{item.Name}}</div>
@@ -17,12 +17,15 @@
               </router-link>
             </div>
           </div>
+          <div class="Categorylist">
+            <PkCate />
+          </div>
         </div>
       </div>
       <div class="more">
         <router-link to="/product/search/-">{{$t('home.ShopAll')}}</router-link>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script lang="ts">
@@ -32,6 +35,7 @@ import Catalogs from '@/model/Catalogs';
 @Component({
   components: {
     HkHotProduct: () => import('@/components/hkTasteBusiness/mobile/home/HkHotProduct.vue'),
+    PkCate: () => import('@/components/hkTasteBusiness/mobile/home/PkCate.vue'),
     swiper,
     swiperSlide
   }
@@ -48,6 +52,7 @@ export default class HkPromotion extends Vue {
   Title3:string='';
   current:boolean=false;
   private catalogs: Catalogs[] = [];
+  productCate:any[]=[];
 
   swiperOptionT1: object = {
     pagination: {
@@ -110,12 +115,18 @@ export default class HkPromotion extends Vue {
       console.log(this.catalogs, 'result产品根目录');
     });
   }
+  getProductCate () {
+    this.$Api.product.getAttrList().then(result => {
+      this.productCate = result[0].Children;
+    });
+  }
   get lang () {
     return this.$Storage.get('locale');
   }
   created () {
     this.getHeaderBannerLst();
     this.getAttrList();
+    this.getProductCate();
   }
 }
 </script>
@@ -235,7 +246,7 @@ export default class HkPromotion extends Vue {
       width: 47%;
       position: relative;
       margin-bottom: 2rem;
-      &:nth-child(2n){
+      &:nth-child(2n+1){
         float: right;
       }
       .Categorybox{

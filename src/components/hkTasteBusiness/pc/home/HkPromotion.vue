@@ -6,7 +6,7 @@
       <HkHotProduct />
       <!-- 限时平卖结束 -->
     </div>
-    <div class="Category">
+    <!-- <div class="Category">
       <div class="main fix">
         <div v-for="(item, index) in catalogs" :key="index">
           <div class="catalogstitle">{{ item.Name }}</div>
@@ -36,12 +36,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="more">
-        <router-link to="/product/search/-">{{
-          $t("home.ShopAll")
-        }}</router-link>
-      </div> -->
-    </div>
+    </div> -->
   </div>
 </template>
 <script lang="ts">

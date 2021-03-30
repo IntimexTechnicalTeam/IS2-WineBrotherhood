@@ -2,6 +2,7 @@
   <div class="home" v-cloak>
     <HomeBanner :page="'Home'" :initSwiper="true" class="banner" />
     <HkPromotion />
+    <PkCate />
     <HkNews />
     <HkLiveBox />
     <HkMap/>
@@ -60,7 +61,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
     HkBranch: () => import('@/components/hkTasteBusiness/mobile/home/HkBranch.vue'),
     HkLiveBox: () => import('@/components/hkTasteBusiness/mobile/home/HkLiveBox.vue'),
     HkNews: () => import('@/components/hkTasteBusiness/mobile/home/PkNews.vue'),
-    HkMap: () => import('@/components/hkTasteBusiness/mobile/home/PkMap.vue')
+    HkMap: () => import('@/components/hkTasteBusiness/mobile/home/PkMap.vue'),
+    PkCate: () => import('@/components/hkTasteBusiness/mobile/home/PkCate.vue')
   }
 })
 export default class InsHome extends Vue {

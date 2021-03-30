@@ -507,17 +507,35 @@ export default class InsCheckoutN extends Vue {
     .el-checkbox__label{
       width: 100%;
       padding: 0;
+      .coupon_title{
+        font-size: 1.4rem;
+        background-color: #14234f;
+        display: inline-block;
+        padding: 0 2rem;
+        color: white;
+        margin-bottom: 1rem;
+      }
     }
   }
   .el-checkbox__input.is-checked+.el-checkbox__label {
-      color: #8b0b04;
-      border: solid 1px #8b0b04;
+      color: #F6A139 !important;
+      border: solid 1px #F6A139 !important;
       box-sizing: border-box;
       border-radius: 0.5rem;
       .coupon_item {
-      border: none !important;
-      border-radius: 0.2rem;
-    }
+        border: none !important;
+        border-radius: 0.2rem;
+      }
+      .coupon_title{
+        background-color: #F6A139 !important;
+      }
+      .coupon_is_valid{
+        background-color: #F6A139 !important;
+      }
+      .coupon_remark, .coupon_expiryDate{
+        color: #F6A139 !important;
+      }
+
   }
   .el-checkbox__label{
       // color: @primary_color2;
@@ -530,6 +548,12 @@ export default class InsCheckoutN extends Vue {
     }
     .coupon_is_valid {
       background-color: #c0c4cc !important;
+    }
+    .coupon_title{
+      background-color: #c0c4cc !important;
+    }
+    .coupon_remark, .coupon_expiryDate{
+      color: #c0c4cc !important;
     }
   }
 }
@@ -651,16 +675,16 @@ export default class InsCheckoutN extends Vue {
             }
             .Discountbox{
               display: inline-block;
-              width: 30%;
-              font-size: 1.2rem;
+              width: 36%;
+              font-size: 1.4rem;
             }
             .Discount_promotion{
               display: inline-block;
-              width: 70%;
+              width: 64%;
             }
           }
           .discount,.price{
-            margin: 20px;
+            margin: 1rem;
             border-bottom: solid 1px rgba(0,0,0,.1);
           }
           .discount_price{
@@ -727,7 +751,7 @@ export default class InsCheckoutN extends Vue {
     }
     position: relative;
     padding: 1.4rem 1rem;
-    border: 1px solid rgba(0,0,0,.1);
+    // border: 1px solid rgba(0,0,0,.1);
     border-radius: .5rem;
     overflow: hidden;
     .coupon_is_valid{
@@ -736,7 +760,7 @@ export default class InsCheckoutN extends Vue {
       right: 0;
       width: 50%;
       height: 80%;
-      background-color: #8b0b04;
+      background-color: #14234f;
       color: white;
       transform:translate(50%, -50%) rotateZ(45deg);
       .valid_content{
@@ -746,6 +770,11 @@ export default class InsCheckoutN extends Vue {
         left: 50%;
         transform: translate(-50%,-50%);
       }
+    }
+    .coupon_remark, .coupon_expiryDate{
+      color: #14234f;
+      font-size: 1.2rem;
+      font-weight: bold;
     }
   }
 }
@@ -801,6 +830,8 @@ export default class InsCheckoutN extends Vue {
 .DefaultCurrency {
   float: right;
   font-size: 1.4rem;
+  font-weight: bold;
+  color: #8b0b04;
 }
 .Currency {
   display: flex;

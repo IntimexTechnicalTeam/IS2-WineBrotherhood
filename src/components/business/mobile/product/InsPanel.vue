@@ -240,7 +240,7 @@ export default class InsPanel extends Vue {
         margin-bottom: 0;
       }
       span{
-        font-size:1.8rem;
+        font-size:1.6rem;
         font-weight: bold;
         font-family: 'Microsoft YaHei';
       }

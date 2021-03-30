@@ -2,6 +2,7 @@
   <div class="home" v-cloak>
     <HomeBanner :page="'Home'" :initSwiper="true" class="banner" />
     <HkPromotion />
+    <PkCate />
     <!-- <HkBranch /> -->
     <div class="homeback fix">
       <div class="fix">
@@ -11,9 +12,9 @@
         <div class="left">
           <HkMap />
         </div>
-        <div class="right">
+        <!-- <div class="right">
           <HkLiveBox />
-        </div>
+        </div> -->
       </div>
 
     </div>
@@ -30,7 +31,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
     HkBranch: () => import(/* webpackChunkName: "home" */ '@/components/hkTasteBusiness/pc/home/HkBranch.vue'),
     HkLiveBox: () => import(/* webpackChunkName: "home" */ '@/components/hkTasteBusiness/pc/home/HkLiveBox.vue'),
     HkNews: () => import('@/components/hkTasteBusiness/pc/home/PkNews.vue'),
-    HkMap: () => import('@/components/hkTasteBusiness/pc/home/PkMap.vue')
+    HkMap: () => import('@/components/hkTasteBusiness/pc/home/PkMap.vue'),
+    PkCate: () => import('@/components/hkTasteBusiness/pc/home/PkCate.vue')
   }
 })
 export default class InsHome extends Vue {
@@ -407,8 +409,8 @@ v-cloak{
     width: 1200px;
     margin: 0 auto;
     .left{
-      float: left;
-      width: 600px;
+      // float: left;
+      width: 1200px;
     }
     .right{
       float: right;

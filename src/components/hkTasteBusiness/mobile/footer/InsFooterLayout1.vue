@@ -47,9 +47,9 @@
         </ul>
               </div>
           <div class="footerAccept">
-            <p><img src="/images/mobile/index_60.png"></p>
+            <!-- <p><img src="/images/mobile/index_60.png"></p>
             <p><img src="/images/mobile/index_62.png"></p>
-            <p><img src="/images/mobile/index_64.png"></p>
+            <p><img src="/images/mobile/index_64.png"></p> -->
             <p><img src="/images/mobile/index_66.png"></p>
             <p><img src="/images/mobile/index_68.png"></p>
             <p><img src="/images/mobile/index_70.png"></p>

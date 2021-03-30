@@ -15,7 +15,7 @@
                   filterable
                   v-model="status"
                 >
-                  <Option :label="$t('MyCoupon.NotUse')" :value="2"></Option>
+                  <Option :label="$t('MyCoupon.Used')" :value="2"></Option>
                   <Option :label="$t('MyCoupon.All')" :value="3"></Option>
                 </Select>
               </FormItem>
@@ -146,7 +146,18 @@ export default class InsMyCoupon extends Vue {
   }
 @Watch('CurrentPage')
   onPageChange (o, n) {
-    this.getAllCoupon();
+    this.$ShowLayer();
+    console.log(this.status, '状态CurrentPage');
+    if (this.status === 2) {
+      this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
+        this.NewArarry = result.Coupon;
+        this.TotalRecord = result.TotalRecord;
+        this.TotalPage = result.TotalPage;
+        this.$HiddenLayer();
+        document.body.style.overflow = '';
+      });
+    } else if (this.status === 3) { this.getAllCoupon().then(() => { this.$HiddenLayer(); }); }
+    // this.getAllCoupon();
   }
 }
 </script>

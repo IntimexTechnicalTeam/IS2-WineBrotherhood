@@ -111,6 +111,7 @@ export default class InsShoppingcartItem extends Vue {
     span{
         margin-right: 1rem;
         font-size: 1.2rem;
+        color: #999999;
         &:last-child{
             margin-right: 0;
         }

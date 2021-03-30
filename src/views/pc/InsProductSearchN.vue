@@ -271,11 +271,11 @@ export default class InsProductSearch extends Vue {
 .nocontentTips {
   width: 95%;
   margin: 0 auto;
-  font-size: 1.2rem;
+  font-size: 24px;
   font-weight: 500;
-  text-align: left;
+  text-align: center;
   display: block;
-  padding: 1rem;
+  padding: 40px 0;
   color: #666;
 }
 .faker {

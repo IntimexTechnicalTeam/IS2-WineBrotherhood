@@ -29,7 +29,7 @@
                             <div class="block">
                             <Rate
                                 v-model="item.Sorce"
-                                :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+                                :colors="['#99A9BF', '#243978', '#14234f']">
                             </Rate>
                             </div>
                         </div>
@@ -38,9 +38,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn_warpper"><ElButton type="primary" @click="save(index)">保存</ElButton></div>
+                <div class="btn_warpper"><ElButton type="primary" @click="save(index)">{{$t('product.save')}}</ElButton></div>
             </Card>
-            <div class="btn_warpper"><ElButton type="primary" @click="saveAll">保存所有</ElButton></div>
+            <div class="btn_warpper"><ElButton type="primary" @click="saveAll">{{$t('product.AllSave')}}</ElButton></div>
         </div>
     </div>
 </template>
@@ -194,6 +194,17 @@ export default class InsAddComments extends Vue {
             }
             .comments{
                 width: 60%;
+                /deep/ .el-upload--picture-card{
+                  line-height: 154px;
+                }
+                /deep/ .el-upload-list__item-thumbnail{
+                  display: block;
+                  object-fit: cover;
+                  object-position: 50% 50%;
+                }
+                /deep/ .content_warpper{
+                  margin-bottom: 15px;
+                }
             }
         }
 

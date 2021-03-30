@@ -29,7 +29,7 @@
                             <div class="block">
                             <Rate
                                 v-model="item.Sorce"
-                                :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
+                                :colors="['#99A9BF', '#243978', '#14234f']">
                             </Rate>
                             </div>
                         </div>
@@ -38,9 +38,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn_warpper"><Button type="primary" @click="save(index)">保存</Button></div>
+                <div class="btn_warpper"><Button type="primary" @click="save(index)">{{$t('product.save')}}</Button></div>
             </Card>
-            <div class="btn_warpper"><Button type="primary" @click="saveAll">保存所有</Button></div>
+            <div class="btn_warpper"><Button type="primary" @click="saveAll">{{$t('product.AllSave')}}</Button></div>
         </div>
     </div>
 </template>
@@ -59,6 +59,7 @@ export default class InsAddComments extends Vue {
     private dialogVisible: boolean = false;
     created () {
       this.$Api.comments.getOrderComments(this.orderId).then((result) => {
+        console.log(result, '评论图片');
         this.commentsList = result.Comments;
         this.files = this.commentsList.map((element) => {
           return element.CommentImages.map((e) => {
@@ -152,20 +153,21 @@ export default class InsAddComments extends Vue {
           border:0px!important;
           .btn_warpper{
               text-align: center;
-              margin: 0.5rem 0;
+              margin: 1rem 0;
               .el-button{
                 span{font-size: 1.5rem;}
               }
           }
           .el-upload--picture-card {
-          background-color: #fbfdff;
-          border: 1px dashed #c0ccda;
-          border-radius: 6px;
-          -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-          width: calc(48% - 2px);
-          height: calc(48% - 2px);
-          vertical-align: top;
+            background-color: #fbfdff;
+            border: 1px dashed #c0ccda;
+            border-radius: 6px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            width: calc(48% - 2px);
+            height: calc(48% - 2px);
+            vertical-align: top;
+            float: right;
           }
           .el-upload-list__item {
             overflow: hidden;
@@ -181,11 +183,12 @@ export default class InsAddComments extends Vue {
             margin-bottom: 4%;
             &:nth-child(2n){
               margin-right: 0px!important;
+              float: right;
             }
         }
         .rate_warpper{
           .el-rate__icon {
-            font-size: 3rem;
+            font-size: 1.8rem;
           }
         }
       }
@@ -212,12 +215,15 @@ export default class InsAddComments extends Vue {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 2rem;
             .product{
             width: 100%;
             .product_description{
               .product_name{
                 font-size: 2rem;
-                line-height: 4rem;
+                line-height: 3rem;
+                margin-bottom: 1rem;
+                margin-top: 1rem;
               }
             }
             div{
@@ -225,19 +231,22 @@ export default class InsAddComments extends Vue {
                 margin: 0 auto;
             }
             .product_img{
-                width: 100vw;
-                height: 100vw;
+                width: 100%;
+                // height: 100vw;
                 img{
                     width: 100%;
                     height: 100%;
                     border: 1px solid rgba(0, 0, 0, 0.1);
+                    object-fit: cover;
+                    object-position: 50% 50%;
+                    box-sizing: border-box;
                 }
             }
             }
             .comments{
                 width: 100vw;
                 .content_warpper{
-                  margin: 0 4px;
+                  // margin: 0 4px;
                 }
                 .rate_warpper{
                   height: 3rem;
@@ -246,6 +255,11 @@ export default class InsAddComments extends Vue {
                   margin-bottom: 1rem;
                   align-items: center;
                   justify-content: flex-start;
+                }
+                /deep/.el-upload-list__item-delete{
+                  .el-icon-delete{
+                    font-size: 2rem;
+                  }
                 }
             }
         }

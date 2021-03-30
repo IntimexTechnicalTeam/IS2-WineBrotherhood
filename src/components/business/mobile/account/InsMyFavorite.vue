@@ -61,7 +61,7 @@
                 :current-page="currentPage"
                 :total="FavoriteLength"
                 :pager-count="5"
-                v-if="FavoriteLength>1"
+                v-if="FavoriteLength>pagesize"
                 background
               ></Pagination>
               <!-- 分页结束 -->

@@ -124,7 +124,9 @@ export default {
     Product: 'Products',
     ProductDetail: 'Product Detail',
     Unit: 'Unit',
-    HotProducts: 'Hot Products'
+    HotProducts: 'Hot Products',
+    save: 'Save',
+    AllSave: 'Save all'
   },
   Shoppingcart: {
     ShoppingcartTitle: 'Shopping Cart ',
