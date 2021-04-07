@@ -6,18 +6,18 @@
       /></a> -->
 
       <span v-show="show">
-        <a
+        <!-- <a
           href="https://api.whatsapp.com/send?phone=8529876%205436&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%8B"
           target="_blank"
           ><img src="/static/Image/mobile/home/whatsapp.png"
-        /></a>
-        <a href="javascript:;" class="livechat" @click="showLivechat"
+        /></a> -->
+        <!-- <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/static/Image/mobile/home/facebook.png"
-        /></a>
+        /></a> -->
         <a href="tel:85228989211" class="fb-button" target="_blank"
           ><img src="/static/Image/mobile/home/phone.png"
         /></a>
-        <a href="mailto:info@hktaste.com.hk" class="fb-button"
+        <a href="mailto:info@winebrotherhood.com.hk" class="fb-button"
           ><img src="/static/Image/mobile/home/news.png"
         /></a>
       </span>

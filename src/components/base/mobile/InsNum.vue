@@ -36,15 +36,9 @@ export default class InsNum extends Vue {
     width: 100px;
     line-height: 26px;
 }
-.in_num_main{
-  .el-input-number__decrease, .el-input-number__increase{
-    background-color: #fff;
-    color: #999999;
-    width: 2rem;
-  }
-}
+
 </style>
-<style scoped>
+<style scoped lang="less">
 .el-input-number{
     position: relative;
     display: inline-block;
@@ -62,5 +56,12 @@ export default class InsNum extends Vue {
   width: 100px;
   text-align: left;
   line-height: 36px;
+}
+.in_num_main{
+  .el-input-number__decrease, .el-input-number__increase{
+    background-color: #fff !important;
+    color: #999999 !important;
+    width: 2rem;
+  }
 }
 </style>

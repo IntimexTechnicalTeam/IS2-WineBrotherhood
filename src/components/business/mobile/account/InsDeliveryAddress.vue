@@ -466,6 +466,7 @@ export default class InsDeliveryAddress extends Vue {
       color:#161616!important;
       border: none;
       border-radius: 0px;
+      outline: none;
 }
 .MembercenterMobile .MemberInfoMain  .el-input__inner{
       border: 1px solid #535353!important;
@@ -473,6 +474,7 @@ export default class InsDeliveryAddress extends Vue {
       color:#161616!important;
       border: none;
       border-radius: 0px;
+      outline: none;
 }
 .MembercenterMobile .MemberInfoMain .el-radio__input.is-checked .el-radio__inner{
     border-color: #333333;

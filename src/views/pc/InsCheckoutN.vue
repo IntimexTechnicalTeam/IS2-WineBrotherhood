@@ -110,9 +110,9 @@
               <div class="price">
                 <div class="priceTotal">
                   <span>{{$t('CheckOut.Total')}}:</span>
-                  <span class="DefaultCurrency">{{Shoppcart.DefaultCurrency.Code}} {{parseFloat((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost).toFixed(2)}}</span>
+                  <span class="DefaultCurrency">{{Shoppcart.DefaultCurrency.Code}} {{parseFloat((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost) | PriceFormat}}</span>
                   <p v-show="Shoppcart.DefaultCurrency.Code!=Shoppcart.Currency.Code" class="Currency">
-                      <span>≈{{Shoppcart.Currency.Code}} {{parseFloat(((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost)*Shoppcart.ExchangeRate).toFixed(2)}}</span>
+                      <span>≈{{Shoppcart.Currency.Code}} {{parseFloat(((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost)*Shoppcart.ExchangeRate) | PriceFormat}}</span>
                   </p>
                 </div>
               </div>

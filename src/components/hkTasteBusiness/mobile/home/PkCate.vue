@@ -24,6 +24,13 @@
         </div>
     </div>
     <div class="clear"></div>
+    <div class="more">
+      <router-link :to="'/product/search/-'">
+        <div class="title">
+            {{$t('home.ShopAll')}}
+        </div>
+      </router-link>
+    </div>
   </div>
 </template>
 <script lang="ts" scoped>
@@ -132,5 +139,19 @@ ul,li{
   line-height: 1.1rem;
   color: #fff;
   font-family: "PingFang";
+}
+.more{
+  .title{
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 60%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #8b0b04;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #fff;
+    border-radius: 8px;
+  }
 }
 </style>

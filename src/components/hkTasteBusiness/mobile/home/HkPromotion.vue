@@ -124,7 +124,7 @@ export default class HkPromotion extends Vue {
     return this.$Storage.get('locale');
   }
   created () {
-    this.getHeaderBannerLst();
+    // this.getHeaderBannerLst();
     this.getAttrList();
     this.getProductCate();
   }

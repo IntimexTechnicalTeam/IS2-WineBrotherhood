@@ -35,7 +35,7 @@
                     </div>
                 </InsForm>
               </div>
-              <InsButton :nama="$t('Login.doLogin')" @click="login"  style="margin-top: 124px;"/>
+              <InsButton :nama="$t('Login.doLogin')" @click="login"  style="margin-top: 199px;"/>
           </div>
           <div class="register">
               <div>
@@ -47,10 +47,11 @@
                     <InsInput2 :placeholder="$t('Register.UserRegPassword')" width="100%" v-model="registerForm.password" type="password"/>
                     <InsInput2 :placeholder="$t('Register.UserConfirmPassword')" width="100%" v-model="registerForm.confirmPassword" type="confirmpassword" :rule="registerForm.password" />
                 </div>
+                <InsInput2 :placeholder="$t('DeliveryAddress.Mobile')" width="100%" v-model="registerForm.Mobile" type="phone" :must="false" />
                 <InsInput2 :placeholder="$t('Register.UserEmail')" v-model="registerForm.email" width="100%" type="email" />
                 </InsForm>
                 <!-- <div></div> -->
-                <CheckboxGroup v-model="terms" style="margin: 10px 0 0 0">
+                <CheckboxGroup v-model="terms" style="margin: 15px 0 0 0">
                     <Checkbox name="type"></Checkbox><span><router-link to="/CMS/content/20298" target="_blank" style="font-size: 14px;padding-left: 14px;color: #666666;
     text-decoration: none;">{{$t('Register.RegisterAgree')}}</router-link></span>
                 </CheckboxGroup>
@@ -82,7 +83,8 @@ export default class InsLoginN extends Vue {
       firstName: '',
       lastName: '',
       confirmPassword: '',
-      Language: ''
+      Language: '',
+      Mobile: ''
     }
     get currentlang () {
       return this.$Storage.get('locale');

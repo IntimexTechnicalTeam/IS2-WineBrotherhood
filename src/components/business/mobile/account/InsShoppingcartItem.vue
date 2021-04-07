@@ -1,7 +1,9 @@
 <template>
     <div class="ShoppingCartItem_warpper" :style="index===0?'border-top:1px solid #eee;':''">
         <div class="shoppingcart_item_image">
-            <img :src="ShopcartItem.Product.Img" />
+            <router-link class="product-img" :to="'/product/detail/'+ShopcartItem.Product.Sku">
+                <img :src="ShopcartItem.Product.Img" />
+            </router-link>
         </div>
         <div class="shoppingcart_item_detail">
             <div class="shoppingcart_item_name">{{ShopcartItem.Product.Name}}</div>
@@ -80,7 +82,7 @@ export default class InsShoppingcartItem extends Vue {
 .shoppingcart_item_image{
     margin: 0 0 0 1rem;
 }
-.shoppingcart_item_image > img{
+.shoppingcart_item_image .product-img > img{
     width: 10rem;
     height: 10rem;
 }

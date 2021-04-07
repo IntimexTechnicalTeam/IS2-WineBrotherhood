@@ -17,9 +17,9 @@
               <div class="clear"></div>
             </div>
             <div class="favorite-one merchant-one" v-for="(one,index) in items" :key="index">
-              <a class="product-img" v-bind:href="'/product/Detail?id='+one.Product.Sku">
+              <router-link class="product-img" :to="'/product/detail/'+one.Product.Sku">
                 <img v-bind:src="one.Product.Img_M" alt />
-              </a>
+              </router-link>
               <div class="favorite-one-messge">
                 <p class="product-title">{{one.Product.Name}}</p>
                 <p class="product-code">{{one.Product.Code}}</p>
@@ -281,6 +281,9 @@ export default class InsShoppingcart extends Vue {
 }
 .favorite-one .product-img img {
   width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 .merchant-one .favorite-one-messge {
   width: 38.7%;

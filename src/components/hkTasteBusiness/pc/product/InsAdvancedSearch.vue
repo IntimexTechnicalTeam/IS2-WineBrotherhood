@@ -3,10 +3,26 @@
       <p class="resetTitle">{{$t('product.Screening')}}<span class="el-icon-close" @click="closeSub"></span></p>
        <p class="resetAll" @click="resetAll">{{$t('product.Resetall')}}</p>
         <ul class="attrSearch" v-if="init">
-          <ReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect" />
+          <ReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect"/>
         </ul>
         <ul class="catSearch" v-if="init">
           <ReSearchItem v-for="(cat, index) in catalogs" :key="index" :searchGroup="cat" :defaultSelected="deCatGIds.indexOf(cat.Id) !== -1 ? selectedCats[deCatGIds.indexOf(cat.Id)].Vals : []" :searchType="2"  @changeSelect="changeCatSelect" />
+        </ul>
+        <ul class="yearlist" v-if="attrList.Name=='Vintages'">
+          <li  class="yearBox">
+            <div class="range">
+              <p>Range</p>
+              <input type="checkbox" name="checkOne" v-model="isRangeList">
+            </div>
+            <div class="rangeList" v-if="!isRangeList" style="display: flex;justify-content: flex-end;">
+              <input type="text" v-model="startYear" style="width:50%;margin-right:10px">year
+              <button v-on:click="getYearVal(startYear)" class="yearBtn">Confirm</button>
+            </div>
+            <div class="rangeList" v-else>
+              from<input type="text" v-model="startYear">to<input type="text" v-model="endYear">
+              <button v-on:click="getYearVal(startYear,endYear)" class="yearBtn">Confirm</button>
+            </div>
+          </li>
         </ul>
     </div>
 </template>
@@ -33,6 +49,7 @@ export default class InsAdvancedSearch extends Vue {
     deCatGIds: number[] = []; // url获取的选中产品目录组id
     paramCats: number[] = []; // 选中的产品目录数据传参数组
     init: boolean = false; // 判断是否渲染子组件标识
+    isRangeList: boolean = false;
 
     // 获取产品库存属性
     async getAttrList (Type) {
@@ -244,6 +261,13 @@ export default class InsAdvancedSearch extends Vue {
 
     get routerType () {
       return JSON.parse(this.$route.query.type as string || '0');
+    }
+    getYearVal (startYear, endYear) {
+      if (this.isRangeList === false && startYear !== '' && startYear.length === 4) {
+
+      } else if (this.isRangeList === true && startYear !== '' && endYear !== '' && startYear.length === 4 && endYear.length === 4) {
+
+      }
     }
 
     mounted () {}

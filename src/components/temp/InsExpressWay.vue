@@ -39,7 +39,8 @@
                   <div>{{item.FullName}}
                   </div>
                   <div>{{item.Phone}}</div>
-                  <div>{{item.Country.Name + '  ' + item.ProvinceName + ' ' + item.Address}}</div>
+                  <!-- <div>{{item.Country.Name + '  ' + item.ProvinceName + ' ' + item.Address}}</div> -->
+                  <div>{{item.Country.Name}} {{item.ProvinceName}} {{item.City==null?'':item.City}} {{item.Address}}</div>
                 </div>
             </div>
             <div class="address_footer">
@@ -70,6 +71,7 @@
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile" labelWidth="300px" /> -->
               <InsSelect styla="display:inline-flex;vertical-align:middle;width:535px;" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" labelWidth="300px"/>
               <InsSelect styla="display:inline-flex;vertical-align:middle;width:235px;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo" labelWidth="20px"/>
+              <InsInput2 :label="$t('DeliveryAddress.Area')" v-show="editAddress.Country.Code !== 'HKG'" :needLabel="true" v-model="editAddress.City" :must="false" labelWidth="300px" type="City"/>
               <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="$t('DeliveryAddress.Detail')" v-model="editAddress.Address" :needLabel="true"  labelWidth="300px" type="textarea" :must="true"/>
               <InsButton :nama="$t('Action.Save')"  @click="save ('adderform')" style="margin-top: 24px;"/>
             </InsForm>
@@ -545,7 +547,8 @@ export default class InsExpressWay extends Vue {
         Mobile: this.editAddress.Mobile,
         PostalCode: this.editAddress.PostalCode,
         Address: this.editAddress.Address,
-        MemberId: this.Profile.MemberId
+        MemberId: this.Profile.MemberId,
+        City: this.editAddress.City
       };
       setTimeout(() => {
         (this.$refs[formName] as InsForm).validate((valid) => {

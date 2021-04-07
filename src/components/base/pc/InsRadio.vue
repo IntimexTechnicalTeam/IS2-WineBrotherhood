@@ -1,10 +1,10 @@
 <template>
-  <div class="in_radio_container" :style="styla" v-if="items.length>0">
+  <div class="in_radio_container" :class="{'detail-select-titleeng':$Storage.get('locale') === 'E'}" :style="styla" v-if="items.length>0">
     <div class="in_radio_label">{{items[0].Type.Name}}</div>
     <div class="in_radio_warpper">
       <input type="text" style="display:none;" v-model="Value" />
-      <div class="in_radio_main" @click="choice">
-          <span class="in_radio_item" :class="{ chosen:Current == index && content.IsDisplay,'nochoice': !content.IsDisplay}" v-for="(content,index) in items" :key="index" :data-key="index">{{content.Name}}</span>
+      <div class="in_radio_main" >
+          <span class="in_radio_item" @click="choice" :class="{ chosen:Current == index && content.IsDisplay,'nochoice': !content.IsDisplay}" v-for="(content,index) in items" :key="index" :data-key="index">{{content.Name}}</span>
       </div>
       <!-- <div
         class="in_select_main"
@@ -137,11 +137,14 @@ export default class InsRadio extends Vue {
       font-size: 16px;
       color: #8b0b04;
       font-weight: 700;
-      width: 113px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: -18px;
+      width: 90px;
+      margin-right: 15px;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      // margin-top: -18px;
+      line-height: 46px;
+      text-align: center;
     }
     .in_radio_warpper{
       width: calc( 100% - 113px );
@@ -153,21 +156,24 @@ export default class InsRadio extends Vue {
                 display: block;
                 font-size: 16px;
                 line-height: 40px;
-                margin: 0 1rem 0 0;
-                padding: 0 0.5rem;
+                margin: 0 10px 0 0;
+                padding: 0 15px;
                 min-width: 3rem;
                 text-align: center;
-                margin-bottom: 1rem;
-                border: 2px solid #c9c9c9;
+                margin-bottom: 10px;
+                border: 1px solid #c9c9c9;
                 background-color:#fff;
                 border-radius: 8px;
                 color: #8b0b04;
                 cursor: pointer;
+                box-sizing: border-box;
+                box-shadow: 0 0 3px #bebebe;
             }
             .chosen{
-                border: 2px solid #8b0b04;
+                border: 1px solid #8b0b04;
                 background-color: white;
                 color:#8b0b04;
+                box-shadow: 0 0 3px #8b0b04;
             }
             .nochoice {
               cursor:not-allowed;
@@ -175,5 +181,8 @@ export default class InsRadio extends Vue {
             }
         }
     }
+}
+.detail-select-titleeng .in_radio_label{
+  // width: 155px;
 }
 </style>

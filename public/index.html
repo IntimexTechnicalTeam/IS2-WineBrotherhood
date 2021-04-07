@@ -9,16 +9,16 @@
     <title>Wine Brotherhood</title>
     <meta name=description content="Wine Brotherhood">
     <meta name=keywords content="Wine Brotherhood">
-    <meta property="og:image:secure_url" content="https://winebrotherhood.uat.intimex.hk/static/logo.png" />
+    <meta property="og:image:secure_url" content="/forweb/metalogo.png" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Wine Brotherhood" />
     <meta property="og:url" content="https://winebrotherhood.uat.intimex.hk/">
     <meta property="og:title" content="Wine Brotherhood" />
     <meta property="og:description" content="Wine Brotherhood" />
-    <meta property="og:image" content="https://winebrotherhood.uat.intimex.hk/static/logo.png" />
+    <meta property="og:image" content="/forweb/metalogo.png" />
 
     <meta name="twitter:card" content="Summary Card">
-    <meta name="twitter:image" content="https://winebrotherhood.uat.intimex.hk/static/logo.png">
+    <meta name="twitter:image" content="/forweb/metalogo.png">
     <meta name="twitter:title" content="Wine Brotherhood">
     <meta name="twitter:description" content="Wine Brotherhood">
 
@@ -35,17 +35,10 @@
         <h2>Wine Brotherhood</h2>
     </div>
     </div>
-    <!-- DEV -->
-    <script src="http://pm.dev.in-store.hk:84/Scripts/jquery-1.12.4.min.js" rel=preload as=script></script>
-    <script src="http://pm.dev.in-store.hk:84/scripts/store/regnpay-2.0.js" rel=preload as=script></script>
-    <!-- UAT -->
-    <!-- <link rel=stylesheet href=https://unpkg.com/element-ui/lib/theme-chalk/index.css rel=prefetch>
-    <script src=https://cdn.jsdelivr.net/npm/vue rel=prefetch></script> -->
-    <!-- <script src=https://unpkg.com/element-ui/lib/index.js rel=prefetch></script> -->
-    <!-- <script src="/ClientResources/Script/jquery-1.12.4.min.js" rel=preload as=script></script>
-    <script src="/ClientResources/Script/regnpay-2.0.js" rel=preload as=script></script> -->
-
-    <script src="/fbLogin.js" rel=prefetch></script>
+    <% for (var i in htmlWebpackPlugin.options.JS_CDN) { %>
+        <script src="<%= htmlWebpackPlugin.options.JS_CDN[i] %>"></script>
+        <% } %>
+            <script src="/fbLogin.js" rel=prefetch></script>
 </body>
 
 </html>

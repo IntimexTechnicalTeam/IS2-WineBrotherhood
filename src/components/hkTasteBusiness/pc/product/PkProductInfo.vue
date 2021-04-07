@@ -126,7 +126,7 @@ export default class PkProductInfo extends Vue {
 .in_panel_product .ProductCode .leftpart{
     // width: 60%;
     float: left;
-    font-size: 14px;
+    font-size: 16px;
     word-break: break-all;
     display: -webkit-box;
     display: -ms-flexbox;

@@ -109,6 +109,8 @@ export default class InsShoppingCart extends Vue {
 .shoppingcart_total{
     text-align: right;
     padding: 1rem;
+    display: inline-block;
+    float: right;
 }
 .shoppingcart_total1{
     font-size: 1.5rem;

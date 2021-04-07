@@ -115,8 +115,8 @@ export default class InsAdvancedSearch extends Vue {
         justify-self: start;;
         align-items: center;
         flex-shrink: 0;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        // padding-top: 20px;
+        // padding-bottom: 20px;
         position: relative;
         i{
           position: absolute;

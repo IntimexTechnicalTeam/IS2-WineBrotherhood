@@ -1,7 +1,7 @@
 <template>
   <div id="container" class="ProductSearch">
         <div class="ProducBanner">
-            <ProductListSwiper :TitleName="$t('product.Producttitle')"/>
+            <ProductListSwiper :TitleName="$t('product.OnlineShop')"/>
         </div>
         <div class="SearchSlide">
           <div class="drawer-bg" v-if="showSearchSlide"  @click="handleClickOutside"/>
@@ -25,21 +25,27 @@
           </ul>
         </div>
     <!-- <advancedSearch :attrType="2"  @advancedChange="advancedChange" /> -->
-
-    <div class="prolist-box">
-      <div class="products_container" v-if="proList.length>0">
-        <InsProductList v-for="item in proList" :key="item.productCode" :item="item" :needCode="false" class="product_item" ></InsProductList>
+    <transition name="slide">
+      <div key="1" v-if="!waiting">
+        <div class="prolist-box">
+          <div class="products_container" v-if="proList.length>0">
+            <InsProductList v-for="item in proList" :key="item.productCode" :item="item" :needCode="false" class="product_item" ></InsProductList>
+          </div>
+          <div class="products_container" v-else>
+                <h3 class="nocontentTips">{{$t('messageTips.NoContent')}}</h3>
+          </div>
+              <!-- <div ref="load" class="loading" @touchstart="loading" v-if="totalRecord>pageSize"><p>{{tips?$t('Action.LoadMore'):$t('home.Thatsall')}}</p></div>
+              <div class="loading" v-else>{{$t('home.Thatsall')}}</div> -->
+          <div class="clear"></div>
+          <div class="pager" v-if="totalRecord > pageSize">
+            <ins-page v-model="currentPage" :total="totalRecord" :pageNum="pageSize" ></ins-page>
+          </div>
+        </div>
       </div>
-      <div class="products_container" v-else>
-            <h3 class="nocontentTips">{{$t('messageTips.NoContent')}}</h3>
-      </div>
-          <!-- <div ref="load" class="loading" @touchstart="loading" v-if="totalRecord>pageSize"><p>{{tips?$t('Action.LoadMore'):$t('home.Thatsall')}}</p></div>
-          <div class="loading" v-else>{{$t('home.Thatsall')}}</div> -->
-      <div class="clear"></div>
-      <div class="pager" v-if="totalRecord > pageSize">
-        <ins-page v-model="currentPage" :total="totalRecord" :pageNum="pageSize" ></ins-page>
-      </div>
-    </div>
+    </transition>
+    <transition name="slide">
+      <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
+    </transition>
   </div>
 </template>
 <script lang="ts">
@@ -70,6 +76,7 @@ export default class InsProductSearch extends Vue {
   PriceItem: string='desc';
   isAdvanced: boolean = true;
   searchKey: string = '';
+  private waiting: boolean = true;
 
   searchFun (key) {
     this.$store.dispatch('setSearchKey', key);
@@ -130,6 +137,7 @@ export default class InsProductSearch extends Vue {
       // }
       this.proList = result.YouWouldLike;
       this.totalRecord = result.TotalRecord;
+      this.waiting = false;
       this.$HiddenLayer();
     });
   }
@@ -356,12 +364,13 @@ export default class InsProductSearch extends Vue {
     overflow: inherit;
     input{
       width: 100%;
-      border: none;
+      border: 1px solid rgba(200, 200, 200, 0.6);
       box-shadow: 0 0 5px #c8c8c8;
       border-radius: 20px;
       outline: none;
       text-indent: 5rem;
       font-size: 1.4rem;
+      box-sizing: border-box;
     }
     .search_btn{
       left: 0;
@@ -385,5 +394,10 @@ export default class InsProductSearch extends Vue {
 .pager{
   width: 100%;
   display: flex;
+}
+.faker{
+  width: 100%;
+  height: 30vw;
+  background-color: aliceblue;
 }
 </style>

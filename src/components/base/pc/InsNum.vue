@@ -49,5 +49,7 @@ export default class InsNum extends Vue {
   text-align: left;
   line-height: 36px;
 }
-
+.el-input-number .el-input{
+  text-align: center !important;
+}
 </style>

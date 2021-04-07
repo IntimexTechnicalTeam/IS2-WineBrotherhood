@@ -31,7 +31,7 @@
                   </div>
                   <div class="right">
                     <p>{{$t('home.Email')}}</p>
-                    <p><a href="mailto:XXXX@Gmail.com">XXXX@Gmail.com</a></p>
+                    <p><a href="mailto:info@winebrotherhood.com.hk">info@winebrotherhood.com.hk</a></p>
                   </div>
                 </div>
                 <div class="contactlist">

@@ -126,7 +126,8 @@ export default {
     Unit: '單位',
     HotProducts: '熱門產品',
     save: '保存',
-    AllSave: '保存所有'
+    AllSave: '保存所有',
+    OnlineShop: '網上商店'
   },
   Shoppingcart: {
     ShoppingcartTitle: '購物車',
@@ -479,7 +480,7 @@ export default {
     Email: '電郵',
     Detailedaddress: 'Room E, 20/F, COS Centre, 56 Tsun Yip Street, Kwun Tong, Kowloon, Hong Kong',
     ShopAll: '選購全部',
-    HongKongLaw: '根據香港法律，在經營過程中不得將醉酒出售或供應給未成年人。'
+    HongKongLaw: '「根據香港法律，不得在業務過程中，向未成年人售賣或供應令人醺醉的酒類」'
   },
   Action: {
     ReturnHomePage: '返回首頁',

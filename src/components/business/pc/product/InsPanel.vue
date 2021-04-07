@@ -159,7 +159,7 @@ export default class Panel extends Vue {
     height: 2.5rem;
     line-height: 2.5rem;
 }
-.PcVersion .el-input-number__decrease i, .el-input-number__increase i{
+.PcVersion .el-input-number__decrease i, .PcVersion .el-input-number__increase i{
   color:#000;
 }
 .PcVersion  .el-input-number{

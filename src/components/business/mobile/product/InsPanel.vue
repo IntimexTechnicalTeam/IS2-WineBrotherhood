@@ -21,17 +21,20 @@
       <ElButton @click="click('addToCart')" class="actionBtn addToCart" :loading="Loading">{{$t('product.addToCart')}}</ElButton>
       <ElButton @click="click('buy')" class="actionBtn buyNow" :loading="buyLoading">{{$t('product.buy')}}</ElButton>
     </div> -->
-    <div class="in_panel_footer" v-show="panelDetail.ProductStatus!==-1">
+    <div class="in_panel_footer" v-if="panelDetail.ProductStatus!==-1 && panelDetail.SoldOutAttrComboList.length===0">
       <inButton
         v-for="item in panelDetail.button"
         :nama="$i18n.t('product.'+item.nama)"
         :key="item.nama"
         :loading="(item.action === 'addToCart')?Loading:buyLoading"
-        width="100%"
         :type="(item.action === 'addToCart' || item.action === 'favorite' || item.action === 'buy') ? 'primary' : 'error'"
         :action="item.action"
         @click="click"
       ></inButton>
+    </div>
+    <div class="in_panel_footer" v-else>
+      <button type="button" :disabled="SoldOutAttr" @click="click('addToCart')" class="CartBtn">{{$t('product.addToCart')}}</button>
+      <button type="button" :disabled="SoldOutAttr" @click="click('buy')" class="BuyBtn">{{$t('product.buy')}}</button>
     </div>
   </div>
 </template>
@@ -56,6 +59,8 @@ export default class InsPanel extends Vue {
   private delay = 0;
   private NewPrice:number=0;
   private attrPrices:any[]=[];
+  private SoldOutAttr:boolean= false;
+  private AttrArray:any = '';
   private ProductInfor: ShopCartItem = new ShopCartItem();
   get warpperStyle (): string {
     return 'width:' + this.width + ';height:' + this.height + ';';
@@ -134,6 +139,28 @@ export default class InsPanel extends Vue {
   // }
   changeAttr () {
     this.Shake(() => {
+      if (this.panelDetail.AttrList[0].length > 0) {
+        this.AttrArray = this.ProductInfor.Attr1;
+      }
+      if (this.panelDetail.AttrList[0].length > 0 && this.panelDetail.AttrList[1].length > 0) {
+        this.AttrArray = this.ProductInfor.Attr1 + '-' + this.ProductInfor.Attr2;
+      }
+      if (this.panelDetail.AttrList[0].length > 0 && this.panelDetail.AttrList[1].length > 0 && this.panelDetail.AttrList[2].length) {
+        this.AttrArray = this.ProductInfor.Attr1 + '-' + this.ProductInfor.Attr2 + '-' + this.ProductInfor.Attr3;
+      }
+      if (this.panelDetail.SoldOutAttrComboList.length > 0) {
+      let flag = false;
+        for (var k = 0; k < this.panelDetail.SoldOutAttrComboList.length; k++) {
+          if (this.panelDetail.SoldOutAttrComboList[k] === this.AttrArray) {
+                this.SoldOutAttr = true;
+                flag = true;
+                    break;
+          };
+        }
+        if (!flag) {
+          this.SoldOutAttr = false;
+        }
+      }
       this.$Api.product.checkProductStatus(this.ProductSku, this.ProductInfor.Attr1, this.ProductInfor.Attr2, this.ProductInfor.Attr3).then((result) => {
         this.panelDetail.ProductStatus = result.object0.ReturnValue;
       });
@@ -179,39 +206,41 @@ export default class InsPanel extends Vue {
 .in_panel_footer .actionBtn span{
   font-size: 1.6rem;
 }
-.in_panel_warpper .in_num_label{
+.mobileWarper .in_num_label{
   display: inline-block;
   width: auto!important;
   margin-right: 1rem;
 }
-.in_panel_warpper .el-input-number{
+.mobileWarper .el-input-number{
   border:none!important;
   box-sizing: border-box;
   background-color: #8b0b04;
 }
-.in_panel_warpper .el-input__inner{
+.mobileWarper .el-input__inner{
   border:none!important;
   box-sizing: border-box;
   width: 4rem;
 }
-.in_panel_warpper .in_num_main .el-input-number__decrease, .in_panel_warpper .in_num_main .el-input-number__increase{
+.mobileWarper .in_num_main .el-input-number__decrease, .mobileWarper .in_num_main .el-input-number__increase{
     width: 3.5rem!important;
     border: none;
-    background-color: transparent;
+    background-color: transparent !important;
+    color: #fff !important;
     // height: 38px;
     line-height: 38px;
     top: 0;
 }
-.in_panel_warpper .in_num_main .el-input-number__decrease i, .in_panel_warpper .in_num_main .el-input-number__increase i{
+.mobileWarper .in_num_main .el-input-number__decrease i, .mobileWarper .in_num_main .el-input-number__increase i{
   color:#fff;
   font-size: 1.4rem;
   line-height: inherit;
+  padding: 0 !important;
 }
-.in_panel_warpper .el-input-number{
+.mobileWarper .el-input-number{
   width: 60% !important;
   border-radius: 10px;
 }
-.in_panel_warpper .el-input-number .el-input__inner{
+.mobileWarper .el-input-number .el-input__inner{
   padding-left: 0rem;
   padding-right: 0rem;
   background: transparent!important;
@@ -225,7 +254,7 @@ export default class InsPanel extends Vue {
 .mobileWarper{
   .in_panel_footer {
     .in_btn {
-      height: 50px;
+      height: 3.5rem;
       font-size:1.8rem;
       color: #14234f;
       display: inline-flex;
@@ -236,6 +265,8 @@ export default class InsPanel extends Vue {
       border-radius: 10px;
       margin-bottom: 2rem;
       box-shadow: 0 0 5px #c7c7c7;
+      width: 100%;
+      overflow: hidden;
       &:last-child{
         margin-bottom: 0;
       }
@@ -249,6 +280,69 @@ export default class InsPanel extends Vue {
       //   color: #fff;
       // }
     }
+    .CartBtn{
+      height: 4rem;
+      font-size:1.6rem;
+      font-weight: bold;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #999999;
+      color: #fff;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border:1px solid #999999;
+      text-transform: uppercase;
+      width: 100%;
+      float: left;
+      margin-left: 0px!important;
+      box-sizing: border-box;
+        &:disabled{
+          cursor:not-allowed;
+          background: #ccc;
+          border: 1px solid #ccc;
+          color: #333333;
+           &:hover{
+           transform: translateY(0px)!important;
+          }
+        }
+      }
+      .BuyBtn{
+      height: 4rem;
+      font-size:1.6rem;
+      font-weight: bold;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #999999;
+      color: #fff;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border:1px solid #999999;
+      text-transform: uppercase;
+      width: 100%;
+      float: left;
+      box-sizing: border-box;
+        &:disabled{
+          cursor:not-allowed;
+          background: #ccc;
+          border: 1px solid #ccc;
+          color: #333333;
+           &:hover{
+           transform: translateY(0px)!important;
+          }
+        }
+      }
+      .error{
+        background: #999999;
+        color: #fff;
+        border: 1px solid #999999;
+        &:hover{
+          background: #999999;
+          color: #fff;
+          border: 1px solid #999999;
+        }
+      }
   }
 }
 </style>

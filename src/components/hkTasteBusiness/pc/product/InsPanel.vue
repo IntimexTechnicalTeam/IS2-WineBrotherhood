@@ -22,7 +22,7 @@
       <ElButton @click="click('addToCart')" class="actionBtn addToCart" :loading="Loading">{{$t('product.addToCart')}}</ElButton>
       <ElButton @click="click('buy')" class="actionBtn buyNow" :loading="buyLoading">{{$t('product.buy')}}</ElButton>
     </div> -->
-    <div class="in_panel_footer" v-show="panelDetail.ProductStatus!==-1">
+    <div class="in_panel_footer" v-if="panelDetail.ProductStatus!==-1 && panelDetail.SoldOutAttrComboList.length===0">
       <inButton
         v-for="item in panelDetail.button"
        :loading="(item.action === 'addToCart')?Loading:buyLoading"
@@ -33,6 +33,10 @@
         :action="item.action"
         @click="click"
       ></inButton>
+    </div>
+    <div class="in_panel_footer" v-else>
+        <button type="button" :disabled="SoldOutAttr" @click="click('addToCart')" class="CartBtn">{{$t('product.addToCart')}}</button>
+        <button type="button" :disabled="SoldOutAttr" @click="click('buy')" class="BuyBtn">{{$t('product.buy')}}</button>
     </div>
     <!-- <inRecommend :Skus="ProductSku"></inRecommend> -->
   </div>
@@ -61,6 +65,8 @@ export default class Panel extends Vue {
   private ProductInfor: ShopCartItem = new ShopCartItem();
   private NewPrice:number=0;
   private attrPrices:any[]=[];
+  private SoldOutAttr:boolean= false;
+  private AttrArray:any = '';
   get warpperStyle (): string {
     return 'width:' + this.width + ';height:' + this.height + ';';
   }
@@ -115,6 +121,29 @@ export default class Panel extends Vue {
   // }
   changeAttr () {
     this.Shake(() => {
+      if (this.panelDetail.AttrList[0].length > 0) {
+        this.AttrArray = this.ProductInfor.Attr1;
+      }
+      if (this.panelDetail.AttrList[0].length > 0 && this.panelDetail.AttrList[1].length > 0) {
+        this.AttrArray = this.ProductInfor.Attr1 + '-' + this.ProductInfor.Attr2;
+      }
+      if (this.panelDetail.AttrList[0].length > 0 && this.panelDetail.AttrList[1].length > 0 && this.panelDetail.AttrList[2].length) {
+        this.AttrArray = this.ProductInfor.Attr1 + '-' + this.ProductInfor.Attr2 + '-' + this.ProductInfor.Attr3;
+      }
+      if (this.panelDetail.SoldOutAttrComboList.length > 0) {
+           let flag = false;
+            for (var k = 0; k < this.panelDetail.SoldOutAttrComboList.length; k++) {
+                if (this.panelDetail.SoldOutAttrComboList[k] === this.AttrArray) {
+                        this.SoldOutAttr = true;
+                        flag = true;
+                           break;
+                  };
+                  }
+                  if (!flag) {
+                    this.SoldOutAttr = false;
+                  }
+            }
+           console.log(this.SoldOutAttr, 'this.SoldOutAttr');
       this.$Api.product.checkProductStatus(this.ProductSku, this.ProductInfor.Attr1, this.ProductInfor.Attr2, this.ProductInfor.Attr3).then((result) => {
         this.panelDetail.ProductStatus = result.object0.ReturnValue;
         this.getAttrImage();
@@ -208,15 +237,27 @@ export default class Panel extends Vue {
     border: none;
     height: 46px;
     line-height: 46px;
-    background-color: transparent;
+    background-color: transparent !important;
+    margin-top: -1px;
+    margin-right: -1px;
+    transition: all 0.3s;
 }
-.PcVersion .el-input-number__decrease i, .el-input-number__increase i{
+.PcVersion .el-input-number__increase{
+  border-radius: 0 10px 10px 0;
+}
+.PcVersion  .el-input-number__decrease{
+  border-radius: 10px 0 0 10px;
+}
+.PcVersion  .el-input-number__decrease:hover, .PcVersion .el-input-number__increase:hover{
+  background-color: #bd0e05;
+}
+.PcVersion .el-input-number__decrease i, .PcVersion .el-input-number__increase i{
   color:#fff;
   font-size: 16px;
   padding: 0 20px;
   font-weight: bold;
 }
-.PcVersion .el-input-number{
+.PcVersion .in_panel_warpper .el-input-number{
   width: 210px!important;
   background-color: @base_color;
   border-radius: 10px;
@@ -226,7 +267,7 @@ export default class Panel extends Vue {
   padding-left: 0;
   padding-right: 0;
   background: transparent!important;
-  width: 210px;
+  width: 210px !important;
   line-height: 46px!important;
   height: 46px!important;
   color:#fff!important;
@@ -332,6 +373,7 @@ export default class Panel extends Vue {
         border-radius: 14px;
         transition: all .3s;
         color: #14234f;
+        overflow: hidden;
         &:hover{
           // transform: translateY(-3px);
           background-color: @base_color;
@@ -339,6 +381,67 @@ export default class Panel extends Vue {
         }
         &:first-child {
           margin-right: 4%;
+        }
+      }
+      .CartBtn{
+        height: 60px;
+        font-size: 24px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #999999;
+        background-color: #999999;
+        border-radius: 3px;
+        transition: .1s;
+        text-transform: uppercase;
+        width: 48%;
+        background-color: unset;
+        color: #fff;
+        margin-right: 4%;
+        &:disabled{
+          cursor:not-allowed;
+          background: #ccc;
+          border: 1px solid #ccc;
+          color: #333333;
+           &:hover{
+           transform: translateY(0px)!important;
+          }
+        }
+      }
+      .BuyBtn{
+        height: 60px;
+        font-size: 24px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #999999;
+        background-color: #999999;
+        color: #fff;
+        border-radius: 3px;
+        transition: .1s;
+        text-transform: uppercase;
+        width: 48%;
+        &:disabled{
+          cursor:not-allowed;
+          background: #ccc;
+          border: 1px solid #ccc;
+          color: #333333;
+           &:hover{
+           transform: translateY(0px)!important;
+          }
+        }
+      }
+      .CartBtn {
+          margin-right: 4%;
+        }
+      .error{
+        background: #999999;
+        color: #fff;
+        border: 1px solid #999999;
+        &:hover{
+          background: #999999;
+          color: #fff;
+          border: 1px solid #999999;
         }
       }
     }

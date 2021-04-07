@@ -128,7 +128,7 @@ export default class HkPromotion extends Vue {
     });
   }
   created() {
-    this.getHeaderBannerLst();
+    // this.getHeaderBannerLst();
     this.getAttrList();
   }
   get lang() {

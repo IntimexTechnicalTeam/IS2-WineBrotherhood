@@ -54,6 +54,7 @@
                     <InsInput2 :placeholder="$t('Register.UserRegPassword')" width="100%" v-model="registerForm.password" type="password"/>
                     <InsInput2 :placeholder="$t('Register.UserConfirmPassword')" width="100%" v-model="registerForm.confirmPassword" type="password" :rule="registerForm.password" />
                 </div>
+                <InsInput2 :placeholder="$t('DeliveryAddress.Mobile')" v-model="registerForm.Mobile" width="100%" type="phone" :must="false"/>
                 <InsInput2 :placeholder="$t('Register.UserEmail')" v-model="registerForm.email" width="100%" type="email" />
                 </InsForm>
                 <!-- <div></div> -->
@@ -91,7 +92,8 @@ export default class InsLoginN extends Vue {
       firstName: '',
       lastName: '',
       confirmPassword: '',
-      Language: ''
+      Language: '',
+      Mobile: ''
     }
     toggleTab (index) {
       this.tabIndex = index;

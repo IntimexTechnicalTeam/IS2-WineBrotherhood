@@ -166,4 +166,20 @@ export default class PkHotProduct extends Vue {
   height: 29vw;
   background-color: aliceblue;
 }
+@media screen and (max-width: 1366px){
+  .indexSale {
+    width: 1100px;
+    margin: 0 auto;
+    padding-top: 0;
+    position: relative;
+  }
+  .swiper-button-prev {
+    background-image: url("/Images/mobile/hotleft.png");
+    left: -70px;
+  }
+  .swiper-button-next {
+    background-image: url("/Images/mobile/hotright.png");
+    right: -70px;
+  }
+}
 </style>

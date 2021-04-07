@@ -1,12 +1,17 @@
 // 引入外部js
-export function LoadScript (src) {
-  if (!isInclude(src)) {
-    const oScript = document.createElement('script');
-    oScript.type = 'text/javascript';
-    oScript.src = src;
-    document.getElementsByTagName('head')[0].appendChild(oScript);
-    // document.body.appendChild(oScript);
-  }
+export default function LoadScript (src) {
+  return new Promise((resolve, reject) => {
+    if (!isInclude(src)) {
+      const oScript = document.createElement('script');
+      oScript.type = 'text/javascript';
+      oScript.src = src;
+
+      // document.getElementsByTagName('head')[0].appendChild(oScript);
+      document.body.appendChild(oScript);
+
+      resolve(true);
+    }
+  });
 }
 
 // 判斷js是否已引入

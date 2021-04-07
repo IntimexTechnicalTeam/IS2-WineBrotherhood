@@ -110,7 +110,7 @@ export default class InsAdvancedSearch extends Vue {
         color: #8b0b04;
         background-color: #FFF;
         display: flex;
-        justify-self: start;;
+        justify-self: start;
         align-items: center;
         flex-shrink: 0;
         position: relative;

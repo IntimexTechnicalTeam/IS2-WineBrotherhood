@@ -3,7 +3,7 @@
     <div class="ProducBanner">
       <ProductListSwiper
         class="innerBanner"
-        :TitleName="$t('product.Producttitle')"
+        :TitleName="$t('product.OnlineShop')"
       />
     </div>
     <div class="ProductSearch">
@@ -65,6 +65,7 @@
 <script lang="ts">
 import { Vue, Prop, Component, Watch } from 'vue-property-decorator';
 import YouWouldLike from '@/model/youWouldLike';
+import { Loading } from 'element-ui';
 import $ from 'jquery';
 @Component({
   components: {

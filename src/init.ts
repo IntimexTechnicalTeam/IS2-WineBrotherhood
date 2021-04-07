@@ -11,6 +11,7 @@ import storage from '@/sdk/common/Storage';
 import message from 'element-ui/lib/message';
 import language from '@/lang/index';
 import { FrontE } from '@/sdk/common/SysConst';
+import LoadScript from './sdk/common/LoadScript';
 const util = {
   info: function (options, type) {
     if (options === undefined || options === null) {
@@ -215,6 +216,8 @@ const util = {
     Vue.prototype.Shake = util.Shake;
     Vue.prototype.FrontE = FrontE;
     Vue.prototype.CheckMemberInfo = util.CheckMemberInfo;
+    // 掛載方法（引入外部js）到實例
+    Vue.prototype.$LoadScript = LoadScript;
     Vue.prototype.Reload = function () {
       window.location.reload();
     };

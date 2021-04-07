@@ -19,7 +19,7 @@
           </Row>
            <Row :gutter="10" >
               <ElCol :xs="8" :md="8">
-                <router-link class="product-img" :to="'/product/detail/'+d.OrderItems[0].Sku">
+                <router-link class="product-img" :to="'/order/detail/'+d.OrderId">
                   <img v-bind:src="d.OrderItems[0].Product.Images[2]" alt />
                 </router-link>
               </ElCol>
@@ -112,6 +112,7 @@ export default class InsOrderList extends Vue {
   getOrder () {
     let that = this;
     return that.$Api.order.getPageOrder(that.pageNumber, that.CurrentPage).then((result) => {
+      console.log(result, '订单');
       that.OrderList = result.Data;
       that.TotalRecord = result.TotalRecord;
       that.waiting = false;
@@ -210,9 +211,10 @@ export default class InsOrderList extends Vue {
   color: #666;
 }
 .OrderStatus {
-  text-align: center;
+  text-align: right;
   font-size: 13px;
   color: #d92526;
+  padding-right: 10px;
 }
 .OrderPer {
   line-height: 35px;
@@ -220,6 +222,8 @@ export default class InsOrderList extends Vue {
   margin-bottom: 20px;
 }
 .OrderListHole {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   margin-bottom: 20px;
   padding-top: 20px;
   cursor: pointer;

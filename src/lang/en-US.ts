@@ -126,7 +126,8 @@ export default {
     Unit: 'Unit',
     HotProducts: 'Hot Products',
     save: 'Save',
-    AllSave: 'Save all'
+    AllSave: 'Save all',
+    OnlineShop: 'Online Shop'
   },
   Shoppingcart: {
     ShoppingcartTitle: 'Shopping Cart ',
@@ -482,7 +483,7 @@ export default {
     Email: 'Email',
     Detailedaddress: 'Room E, 20/F, COS Centre, 56 Tsun Yip Street, Kwun Tong, Kowloon, Hong Kong',
     ShopAll: 'Shop All',
-    HongKongLaw: 'Under ths law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business.'
+    HongKongLaw: '"Under the law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business."'
   },
   Action: {
     ReturnHomePage: 'Return Homepage',

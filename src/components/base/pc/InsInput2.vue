@@ -86,7 +86,8 @@ export default class InsInput extends Vue {
     range: '',
     color: '',
     password: '',
-    phone: ''
+    phone: '',
+    City: ''
   };
   created() {
     this.Value = this.value;

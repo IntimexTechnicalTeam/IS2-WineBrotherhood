@@ -102,6 +102,7 @@ export default class InsProductDetail extends Vue {
       that.$nextTick(() => {
         document.title = result.PanelDetail.Name;
       });
+      console.log(result, 'result.PanelDetail.CatalogTree');
       that.PanelDetail = result.PanelDetail;
       that.ExtAttrList = result.PanelDetail.ExtAttrList;
       that.CatalogTree = result.PanelDetail.CatalogTree;

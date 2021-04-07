@@ -7,10 +7,10 @@
     <a @click="whatsApp" class="xq-whatsapp" data-action="share/whatsapp/share"
       ><img src="/images/mobile/productDetail_03.png"
     /></a>
-    <a
+    <!-- <a
       onclick="window.open('https://lineit.line.me/share/ui?url='+window.location.href);"
       ><img src="/images/mobile/productDetail_04.png"
-    /></a>
+    /></a> -->
   </div>
 </template>
 <script lang="ts">
