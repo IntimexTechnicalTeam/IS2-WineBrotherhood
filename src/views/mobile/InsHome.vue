@@ -16,7 +16,7 @@
                   </div>
                   <div class="right">
                     <p>{{$t('home.TEL')}}</p>
-                    <p><a href="tel:85228989211">+852 2898 9211</a></p>
+                    <p><a href="tel:85228989211">+852 2898 9900</a></p>
                   </div>
                 </div>
                 <div class="contactlist">

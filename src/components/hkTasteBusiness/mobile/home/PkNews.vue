@@ -137,5 +137,10 @@ export default class PkNews extends Vue {
   color: #000000;
   line-height: 2.4rem;
   margin-bottom: 1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
 }
 </style>

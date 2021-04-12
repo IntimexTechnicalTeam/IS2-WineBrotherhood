@@ -14,7 +14,7 @@
         <!-- <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/static/Image/mobile/home/facebook.png"
         /></a> -->
-        <a href="tel:85228989211" class="fb-button" target="_blank"
+        <a href="tel:85228989900" class="fb-button" target="_blank"
           ><img src="/static/Image/mobile/home/phone.png"
         /></a>
         <a href="mailto:info@winebrotherhood.com.hk" class="fb-button"
