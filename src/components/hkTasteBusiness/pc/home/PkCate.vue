@@ -8,9 +8,9 @@
             <router-link
               :to="
                 '/product/search/-?' +
-                  'catalogs=' +
+                  'attrs=[]&catalogs=' +
                   JSON.stringify([b.Id]) +
-                  '&type=0'
+                  '&type=1'
               "
             >
               <img :src="b.ImgB" alt="" />

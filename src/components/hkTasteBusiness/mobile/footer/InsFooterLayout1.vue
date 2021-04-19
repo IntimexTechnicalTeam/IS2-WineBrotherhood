@@ -55,7 +55,7 @@
             <p><img src="/images/mobile/index_70.png"></p>
           </div>
           <div class="footerCpy">
-            <p>Copyright {{currentYear}} © Wine Brotherhood Company Limited.<br>powered by intimex
+            <p>Copyright {{currentYear}} © Wine Brotherhood Hong Kong Limited.<br>powered by intimex
             <a href="https://www.intimex.hk/" target="_blank">
               <img src="/images/mobile/footerlogo.png">
             </a>

@@ -5,7 +5,7 @@
           <h2>{{productName.Name}}</h2>
           <ul class="category_box_right">
             <li v-for="(b,index) in productCate" :key="'b'+index">
-              <router-link :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([b.Id]) + '&type=0'">
+              <router-link :to="'/product/search/-?' + 'attrs=[]&catalogs=' + JSON.stringify([b.Id]) + '&type=1'">
               <img :src="b.ImgB" alt="">
               <div class="title">
                   <h2>{{b.Name}}</h2>

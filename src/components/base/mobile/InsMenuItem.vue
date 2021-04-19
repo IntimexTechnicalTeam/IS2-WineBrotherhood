@@ -1,7 +1,7 @@
 <template>
     <el-submenu :index="item.Name" v-if="item.Childs && item.Childs.length">
         <template slot="title">
-            <span class="name">{{item.Name}}</span>
+            <span class="name" @click="toUrl(item)">{{item.Name}}</span>
         </template>
         <menu-item :textColor="textColor" v-for="(child,index) in item.Childs" :key="index" :item="child" :level="level+1" />
     </el-submenu>

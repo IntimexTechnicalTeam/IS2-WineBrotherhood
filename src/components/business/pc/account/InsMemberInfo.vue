@@ -50,8 +50,8 @@
                 </FormItem>
             <FormItem :label="$t('Register.UserGender')" prop="Gender">
               <RadioGroup v-model="ruleForm.Gender">
-                <Radio label="1">{{$t('Register.UserMale')}}</Radio>
-                <Radio label="0">{{$t('Register.UserFemale')}}</Radio>
+                <Radio label="0">{{$t('Register.UserMale')}}</Radio>
+                <Radio label="1">{{$t('Register.UserFemale')}}</Radio>
               </RadioGroup>
             </FormItem>
             <FormItem :label="$t('Register.UserLanguage')" prop="Language">

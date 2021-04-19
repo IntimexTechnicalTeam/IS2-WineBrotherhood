@@ -73,7 +73,7 @@
               <InsSelect styla="display:inline-flex;vertical-align:middle;width:235px;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo" labelWidth="20px"/>
               <InsInput2 :label="$t('DeliveryAddress.Area')" v-show="editAddress.Country.Code !== 'HKG'" :needLabel="true" v-model="editAddress.City" :must="false" labelWidth="300px" type="City"/>
               <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="$t('DeliveryAddress.Detail')" v-model="editAddress.Address" :needLabel="true"  labelWidth="300px" type="textarea" :must="true"/>
-              <InsButton :nama="$t('Action.Save')"  @click="save ('adderform')" style="margin-top: 24px;"/>
+              <InsButton :nama="$t('Action.Confirm')"  @click="save ('adderform')" style="margin-top: 24px;"/>
             </InsForm>
           </div>
           </Collaspe>

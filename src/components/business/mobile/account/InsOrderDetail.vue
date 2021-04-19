@@ -69,7 +69,7 @@
 
           <!-- 支付按钮和关闭开始 -->
           <Row :gutter="20" class="OrderBtnGroup">
-            <ElCol :xs="12" :md="12" class="OrderBottomBtn" v-show="OrderDetail.StatusCode=='0'" >
+            <ElCol :xs="12" :md="12" class="OrderBottomBtn" v-show="OrderDetail.StatusCode=='0' && !OrderDetail.OffLinePay" >
               <ElButton type="success" round @click="PayNow(OrderDetail)" >
                 <i class="el-icon-bank-card"></i>
                 <span>{{$t('Order.OrderPay')}}</span>
