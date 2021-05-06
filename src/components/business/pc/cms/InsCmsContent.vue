@@ -48,13 +48,13 @@
     <div class="CmsNormal" v-else>
       <transition name="slide">
         <div key="1" v-if="!waiting" style="display:flex;">
-            <div class="DetailTitle"><img :src="OtherPageImg" v-if="OtherPageImg"><div class="TitleBg"><div class="innerBoxText 333">{{TitleName}}</div></div></div>
+            <div class="DetailTitle"><img :src="OtherPageImg" v-if="OtherPageImg"><div class="TitleBg"><div class="innerBoxText">{{TitleName}}</div></div></div>
       </div>
       </transition>
       <transition name="slide">
         <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
       </transition>
-      <div class="CmsContent 444">
+      <div class="CmsContent">
         <!-- <p class="TitleName">{{TitleName}}</p> -->
         <div v-html="content.Body"></div>
       </div>

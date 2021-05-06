@@ -676,7 +676,7 @@ export default class InsCheckoutN extends Vue {
             .Discountbox{
               display: inline-block;
               width: 36%;
-              font-size: 1.4rem;
+              font-size: 1.2rem;
             }
             .Discount_promotion{
               display: inline-block;

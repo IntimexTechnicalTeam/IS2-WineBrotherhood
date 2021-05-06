@@ -96,7 +96,39 @@ export default class InsFooterLayout1 extends Vue {
     }, 1);
   }
   To (n) {
-    return n.Type === 1 ? '/cms/catDetail/' + n.Value.Id : n.Type === 2 ? '/CMS/content/' + n.Value.Id : n.Type === 3 ? '/RegNPay/Form/' + n.Value.Id : n.Type === 4 && !this.$store.state.catMenuType ? '/product/cat/' + n.Value.Id : n.Type === 4 && this.$store.state.catMenuType ? '/product/search/-?catalogs=' + JSON.stringify([parseInt(n.Value.Id)]) + '&type=0' : n.Type === 5 ? '/product/search/-?attrs=' + JSON.stringify([{ Id: parseInt(n.Value.Id), Vals: [] }]) + '&type=0' : '/product/search/-?attrs=' + JSON.stringify([{ Id: parseInt(n.ParentId), Vals: [parseInt(n.Value.Id)] }]) + '&type=0';
+    let url = '';
+    if (n.Type === 0) {
+      url = n.Url;
+    } else if (n.Type === 1 && n.IsAnchor === false) {
+      url = '/cms/catDetail/' + n.Value.Id;
+    } else if (n.Type === 1 && n.IsAnchor === true) {
+      url = '/CMS/catDetail/' + n.ParentId + '#' + n.Value.Id;
+    } else if (n.Type === 2) {
+      url = '/CMS/content/' + n.Value.Id;
+    } else if (n.Type === 3) {
+      url = '/RegNPay/Form/' + n.Value.Id;
+    } else if (n.Type === 4 && !this.$store.state.catMenuType) {
+      url = '/product/cat/' + n.Value.Id;
+    } else if (n.Type === 4 && this.$store.state.catMenuType) {
+      url =
+        '/product/search/-?catalogs=' +
+        JSON.stringify([parseInt(n.Value.Id)]) +
+        '&type=0';
+    } else if (n.Type === 5) {
+      url =
+        '/product/search/-?attrs=' +
+        JSON.stringify([{ Id: parseInt(n.Value.Id), Vals: [] }]) +
+        '&type=0';
+    } else {
+      url =
+        '/product/search/-?attrs=' +
+        JSON.stringify([
+          { Id: parseInt(n.ParentId), Vals: [parseInt(n.Value.Id)] }
+        ]) +
+        '&type=0';
+    }
+    return url;
+    // return n.Type === 1 ? '/cms/catDetail/' + n.Value.Id : n.Type === 2 ? '/CMS/content/' + n.Value.Id : n.Type === 3 ? '/RegNPay/Form/' + n.Value.Id : n.Type === 4 && !this.$store.state.catMenuType ? '/product/cat/' + n.Value.Id : n.Type === 4 && this.$store.state.catMenuType ? '/product/search/-?catalogs=' + JSON.stringify([parseInt(n.Value.Id)]) + '&type=0' : n.Type === 5 ? '/product/search/-?attrs=' + JSON.stringify([{ Id: parseInt(n.Value.Id), Vals: [] }]) + '&type=0' : '/product/search/-?attrs=' + JSON.stringify([{ Id: parseInt(n.ParentId), Vals: [parseInt(n.Value.Id)] }]) + '&type=0';
   }
   getMenu () {
     this.$Api.promotion.getMenu().then((result) => {
