@@ -80,7 +80,8 @@
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
                   <div class="payment_item" v-for="(pay, index) in payments" :key="index">
-                    <Radio v-model="payment" :label="pay"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <Radio v-model="payment" :label="pay" :disabled="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <p class="noRMBStripe" v-if="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'">{{$t('Message.noRMBStripe')}}</p>
                   </div>
                 </div>
             </div>
@@ -91,11 +92,11 @@
               <div class="price">
                 <div class="price_item">
                   <span>{{$t('Order.DeliveryCharge')}}:</span>
-                  <span>{{Shoppcart.DefaultCurrency.Code}} {{($store.state.express.DiscountPrice + AdditionlCost) | PriceFormat}}</span>
+                  <span>{{Shoppcart.Currency.Code}} {{($store.state.express.DiscountPrice + AdditionlCost) | PriceFormat}}</span>
                 </div>
                 <div class="price_item">
                   <span>{{$t('Order.CommodityPrice')}}:</span>
-                  <span>{{Shoppcart.DefaultCurrency.Code}} {{(totalAmount) | PriceFormat}}</span>
+                  <span>{{Shoppcart.Currency.Code}} {{(totalAmount) | PriceFormat}}</span>
                 </div>
               </div>
               <div class="discount discount_price">
@@ -118,17 +119,17 @@
                       <!-- <i>{{promotionCode}};</i><br/> -->
                       {{$t('Message.AdditionalDiscount')}}
                       </span>
-                    <span class="promotionB">-{{Shoppcart.DefaultCurrency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
+                    <span class="promotionB">-{{Shoppcart.Currency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
                     <span class="promotionC" @click="promotionCodeCancel">{{$t('Message.Delete')}}</span>
                   </p>
-                  <span v-show="!showDistcount">{{Shoppcart.DefaultCurrency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
+                  <span v-show="!showDistcount">{{Shoppcart.Currency.Code}} {{(totalAmount - (parseFloat(cp))) | PriceFormat}}</span>
                 </div>
               </div>
               <div class="price">
                 <div class="priceTotal">
                   <span class="TotalFont">{{$t('CheckOut.Total')}}:</span>
-                  <span class="DefaultCurrency">{{Shoppcart.DefaultCurrency.Code}}  {{parseFloat((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost) | PriceFormat}}</span>
-                   <p v-show="Shoppcart.DefaultCurrency.Code!=Shoppcart.Currency.Code" class="Currency">
+                  <span class="DefaultCurrency">{{Shoppcart.Currency.Code}}  {{parseFloat((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost) | PriceFormat}}</span>
+                   <p v-show="Shoppcart.Currency.Code!=Shoppcart.Currency.Code" class="Currency">
                       <span>≈{{Shoppcart.Currency.Code}} {{parseFloat(((parseFloat(cp))+ $store.state.express.DiscountPrice + AdditionlCost)*Shoppcart.ExchangeRate) | PriceFormat}}</span>
                   </p>
                 </div>
@@ -138,7 +139,8 @@
                 <div class="payment_main">
                   <div class="payment_title">{{$t('CheckOut.PayBy')}}</div>
                   <div class="payment_item" v-for="(pay, index) in payments" :key="index">
-                    <Radio v-model="payment" :label="pay"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <Radio v-model="payment" :label="pay" :disabled="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'"><img v-bind:src="pay.Img" /><span v-show="pay.Code==='FPS'">{{pay.Desc}}</span></Radio>
+                    <p class="noRMBStripe" v-if="Shoppcart.Currency.Code === 'RMB' && pay.Code === 'Stripe'">{{$t('Message.noRMBStripe')}}</p>
                   </div>
                 </div>
             </div>
@@ -324,6 +326,11 @@ export default class InsCheckoutN extends Vue {
             () => { profile.Mobile = order.PickupPhone; this.updateProfile(profile).then(() => { this.createOrder(order); }); },
             () => { this.createOrder(order); }
           );
+        } else if (this.Shoppcart.Currency.Code === 'RMB' && this.payment.Code === 'Stripe') {
+          this.$Confirm(
+            this.$t('Message.Message'),
+            this.$t('Message.noRMBStripe')
+          );
         } else {
           this.createOrder(order);
         }
@@ -481,8 +488,13 @@ export default class InsCheckoutN extends Vue {
 .mobileV{
   .payment_item{
     .el-radio__label{
-      display: flex;
+      display: inline-flex;
       align-items: center;
+    }
+    .el-radio__input.is-disabled+span.el-radio__label{
+      img{
+        opacity: 0.3;
+      }
     }
   }
 }
@@ -606,9 +618,10 @@ export default class InsCheckoutN extends Vue {
         //     }
         // }
         .payment_warpper{
-          width: 100vw;
+          width: 100%;
           background-color: white;
-          border-radius: .5rem;
+          // border-radius: .5rem;
+          margin-bottom: 2rem;
           // margin-top: 1rem;
           .title{
             font-size: 1.5rem;
@@ -616,7 +629,7 @@ export default class InsCheckoutN extends Vue {
           .payment_item{
           // display: flex;
           // flex-wrap: nowrap;
-          margin: 1rem;
+          // margin: 1rem;
           }
           .payment_item_name{
               // width: 60%;
@@ -650,6 +663,7 @@ export default class InsCheckoutN extends Vue {
           .item_change{
             overflow: hidden;
             transition: 1s height ease-in-out;
+            padding-bottom: 10px;
           }
           .shopcartItem_border{
               margin: 20px;
@@ -663,7 +677,7 @@ export default class InsCheckoutN extends Vue {
                   top: 50%;
                   left: 50%;
                   transform: translate(-50%, -50%);
-                  font-size: 1.6rem;
+                  font-size: 1.3rem;
               }
           }
           .price_item{
@@ -714,11 +728,11 @@ export default class InsCheckoutN extends Vue {
               }
             }
             .payment_item{
-                padding: 10px 20px;
-                display: flex;
+                padding: 10px 10px;
+                // display: inline-flex;
                 align-items: flex-start;
                 img{
-                    height:40px;
+                    height:50px;
                 }
             }
         }
@@ -878,6 +892,12 @@ export default class InsCheckoutN extends Vue {
   cursor: pointer;
   color: green;
   font-size: 1.2rem !important;
+}
+.noRMBStripe{
+  display: inline-block;
+  color: red;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
 }
 @media screen and (max-width: 375px){
   .price_Couponcode > span{

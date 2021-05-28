@@ -243,6 +243,7 @@ export default class InsLogin extends Vue {
      this.getAccount();
    }
    fbLogin () {
+     console.log(window, 'FB login');
      window['FB'].login(function (response) {
        window['checkLoginState']();
      }, { scope: 'email' });

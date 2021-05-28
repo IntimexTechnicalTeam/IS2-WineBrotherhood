@@ -24,6 +24,12 @@ export default {
     Message: '消息',
     Confirm: '確認',
     Cancel: '關閉',
+    msg401: '權限不足！',
+    msg400: '系統異常！',
+    msg404: '請求接口不存在！',
+    msg500: '服務器錯誤！',
+    msg502: '网络错误！',
+    msg503: '服務不可用，服務器暫時過載或維護。',
     SucceedInOperating: '操作成功',
     SavedSuccessfully: '保存成功',
     Loading: '頁面正在加載，請稍候',
@@ -45,7 +51,11 @@ export default {
     NoneAddPiUpAddr: '查詢不到相關自提地址信息！',
     AdditionalDiscount: '額外折扣已生效',
     Delete: '刪除',
-    SuccessfullyDeleted: '刪除成功'
+    SuccessfullyDeleted: '刪除成功',
+    Save: '保存',
+    SaveAll: '保存所有',
+    noRMBStripe: '貨幣RMB不支持Stripe支付，請選擇其他支付方式或切換貨幣模式',
+    textareaError: '請輸入5個字符以上'
   },
   Account: {
     MemberCenter: '會員中心',

@@ -114,7 +114,7 @@ export default class InsShoppingcart extends Vue {
   load () {
     let load = this.$Api.shoppingCart.getShoppingCart().then((result) => {
       this.ShoppingCart = result.ShopCart;
-      this.Currency = result.ShopCart.DefaultCurrency;
+      this.Currency = result.ShopCart.Currency;
       this.items = result.ShopCart.Items;
       if (this.ShoppingCart.Items.length === 0) this.$Confirm(this.$t('Message.Message'), this.$t('Shoppingcart.None'), () => { this.$router.push('/product/search/-'); }, () => { this.$router.push('/'); });
     });

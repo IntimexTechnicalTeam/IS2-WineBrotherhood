@@ -7,12 +7,23 @@ import Vue from 'vue';
 import { ApiVersion, ApiServer } from '../common/SysConst';
 import { FrontE } from '@/sdk/common/SysConst';
 import lang from '@/lang/index';
+import i18n from '@/lang';
 let defaultLang = storage.get('locale') || FrontE.defaultLang;
 class WSAPI {
   debug: boolean = true;
   apiPath: string = ApiServer + '/' + ApiVersion;
   controller: Object[];
   qs = require('qs');
+  lang: string = i18n.locale;
+  msgTitle: string = (i18n.messages[this.lang].Message as any).Message;
+  codeMessage: object = {
+    400: (i18n.messages[this.lang].Message as any).msg400,
+    401: (i18n.messages[this.lang].Message as any).msg401,
+    404: (i18n.messages[this.lang].Message as any).msg404,
+    500: (i18n.messages[this.lang].Message as any).msg500,
+    502: (i18n.messages[this.lang].Message as any).msg502,
+    503: (i18n.messages[this.lang].Message as any).msg503
+  }
   get instance (): AxiosInstance {
     let ins = Axios.create({
       //  baseURL: this.apiPath,
@@ -68,12 +79,9 @@ class WSAPI {
                 });
             });
           } else { Vue.prototype.Shake(() => { storage.set('isLogin', 0); Auth.GetToken().then(() => Vue.prototype.Reload()); }); }
-        } else if (status === 401) Vue.prototype.$SingtonConfirm((lang.messages[defaultLang].Message as any).Message, (lang.messages[defaultLang].Message as any).msg401);
-        else if (status === 400) Vue.prototype.$SingtonConfirm((lang.messages[defaultLang].Message as any).Message, (lang.messages[defaultLang].Message as any).msg400);
-        else if (status === 404) Vue.prototype.$SingtonConfirm((lang.messages[defaultLang].Message as any).Message, (lang.messages[defaultLang].Message as any).msg404);
-        else if (status === 500) Vue.prototype.$SingtonConfirm((lang.messages[defaultLang].Message as any).Message, (lang.messages[defaultLang].Message as any).msg500);
-        else if (status === 502) Vue.prototype.$SingtonConfirm((lang.messages[defaultLang].Message as any).Message, (lang.messages[defaultLang].Message as any).msg502);
-        else if (status === 503) Vue.prototype.$SingtonConfirm((lang.messages[defaultLang].Message as any).Message, (lang.messages[defaultLang].Message as any).msg503);
+        } else {
+          Vue.prototype.$Confirm(this.msgTitle, this.codeMessage[status]);
+        }
         // return Promise.reject(error);
       }
     );

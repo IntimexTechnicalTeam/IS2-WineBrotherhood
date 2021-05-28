@@ -24,6 +24,12 @@ export default {
     Message: 'Message',
     Confirm: 'Ok',
     Cancel: 'Close',
+    msg401: 'Insufficient authority!',
+    msg400: 'System abnormal!',
+    msg404: 'Request interface does not exist!',
+    msg500: 'Server error!',
+    msg502: 'Network error!',
+    msg503: 'The service is not available, the server is temporarily overloaded or maintained.',
     SucceedInOperating: 'Succeed in Operating',
     SavedSuccessfully: 'Saved successfully',
     Loading: 'Page Loading, Please Wait',
@@ -45,7 +51,11 @@ export default {
     NoneAddPiUpAddr: 'Unable to query the relevant address information!',
     AdditionalDiscount: 'The Additional Discount is In Effect',
     Delete: 'Delete',
-    SuccessfullyDeleted: 'Successfully Deleted'
+    SuccessfullyDeleted: 'Successfully Deleted',
+    Save: 'Save',
+    SaveAll: 'SaveAll',
+    noRMBStripe: 'Currency RMB does not support Stripe payment, please choose another payment method or switch currency mode',
+    textareaError: 'Please enter more than 5 characters'
   },
   RegNPay: {
     BackText: 'Back',

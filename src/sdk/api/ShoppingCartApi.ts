@@ -21,24 +21,8 @@ export class ShoppingCartApi extends WSAPI {
     // }
   };
   // @Proxy(ShopCart)
-  // getShoppingCart () {
-  //   let result = this.instance.get(this.apiPath + '/ShoppingCart',
-  //     {}).then((result) => {
-  //     // do someting about check success
-  //     // return result.data;
-  //     let shopCart = new ShopCart();
-  //     Object.keys(shopCart).forEach((element) => {
-  //       element = element.replace('_', '');
-  //       shopCart[element] = result.data[element];
-  //     });
-  //     return { ShopCart: shopCart };
-  //   });
-  //   // store.dispatch('setShopCart', result);
-  //   return result;
-  // };
-  // @Proxy(ShopCart)
   getShoppingCart () {
-    let result = this.instance.get(this.apiPath + '/DefaultShoppingCart/GetDefaultShoppingCarts',
+    let result = this.instance.get(this.apiPath + '/ShoppingCart',
       {}).then((result) => {
       // do someting about check success
       // return result.data;
@@ -52,6 +36,22 @@ export class ShoppingCartApi extends WSAPI {
     // store.dispatch('setShopCart', result);
     return result;
   };
+  // @Proxy(ShopCart)
+  // getShoppingCart () {
+  //   let result = this.instance.get(this.apiPath + '/DefaultShoppingCart/GetDefaultShoppingCarts',
+  //     {}).then((result) => {
+  //     // do someting about check success
+  //     // return result.data;
+  //     let shopCart = new ShopCart();
+  //     Object.keys(shopCart).forEach((element) => {
+  //       element = element.replace('_', '');
+  //       shopCart[element] = result.data[element];
+  //     });
+  //     return { ShopCart: shopCart };
+  //   });
+  //   // store.dispatch('setShopCart', result);
+  //   return result;
+  // };
 
   // @Proxy(Message)
   updateItemQty (itemId: string, qty: number) {

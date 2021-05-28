@@ -3,22 +3,22 @@ import { CreateOrder } from '@/model/order';
 import Proxy from '../common/Proxy';
 export class OrderApi extends WSAPI {
   // @Proxy('Message')
-  // createOrder (order: CreateOrder) {
-  //   return this.instance.post(
-  //     this.apiPath + '/order',
-  //     order).then((result) => {
-  //     // console.log(result.data);
-  //     return result.data;
-  //   });
-  // }
   createOrder (order: CreateOrder) {
     return this.instance.post(
-      this.apiPath + '/DefaultOrder/CreateDefaultOrder',
+      this.apiPath + '/order',
       order).then((result) => {
       // console.log(result.data);
       return result.data;
     });
   }
+  // createOrder (order: CreateOrder) {
+  //   return this.instance.post(
+  //     this.apiPath + '/DefaultOrder/CreateDefaultOrder',
+  //     order).then((result) => {
+  //     // console.log(result.data);
+  //     return result.data;
+  //   });
+  // }
   UploadFile (param) {
     return Promise.resolve(this.apiPath + '/FileUpload/UploadFile');
   }

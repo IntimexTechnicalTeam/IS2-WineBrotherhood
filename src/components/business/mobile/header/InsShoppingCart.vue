@@ -45,7 +45,7 @@
               </tr>
           </table>
         </div>
-        <p class="cartSubtotal"><b>{{shopCart.DefaultCurrency.Code}} {{(shopCart.TotalAmount) | PriceFormat}}</b></p>
+        <p class="cartSubtotal"><b>{{shopCart.Currency.Code}} {{(shopCart.TotalAmount) | PriceFormat}}</b></p>
         <p class="goToCart" @click="closeDialog"><router-link to="/account/shoppingcart">{{$t('Shoppingcart.Checkout')}}</router-link></p>
       </div>
       <div class="void-cart" v-else>

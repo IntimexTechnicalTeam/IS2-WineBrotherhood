@@ -67,7 +67,7 @@
         <p class="cartSubtotal">
           {{ $t("Shoppingcart.Total") }}:
           <b
-            >{{ shopCart.DefaultCurrency.Code }}
+            >{{ shopCart.Currency.Code }}
             {{ shopCart.TotalAmount | PriceFormat }}</b
           >
         </p>
