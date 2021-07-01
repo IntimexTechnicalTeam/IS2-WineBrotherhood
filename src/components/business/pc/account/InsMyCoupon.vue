@@ -197,8 +197,8 @@ export default class InsMyCoupon extends Vue {
     height: 72px;
     width: 140px;
     position: absolute;
-    right: -60px;
-    top: -30px;
+    right: -70px;
+    top: -40px;
     text-align: center;
     line-height: 110px;
     font-family: "\9ED1\4F53";

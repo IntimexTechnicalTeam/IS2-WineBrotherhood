@@ -849,6 +849,7 @@ export default class InsExpressWay extends Vue {
     width: 100%;
     display:flex;
     padding-top: 30px;
+
     .date,.time,.note{
       width: 120px;
       font-size: 16px;

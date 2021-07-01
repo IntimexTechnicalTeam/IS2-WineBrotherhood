@@ -247,6 +247,7 @@ export default {
     NotUse: 'Invalid',
     Used: 'Valid',
     Among: 'Among',
+    DoNotUse: 'Invalid',
     All: 'All'
   },
   MyFavorite: {

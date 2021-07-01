@@ -122,6 +122,7 @@ export default class InsMyCoupon extends Vue {
         this.TotalRecord = result.ReturnValue.TotalRecord;
         this.TotalPage = result.ReturnValue.TotalPage;
         this.AllRecord = result.ReturnValue.TotalRecord;
+        document.body.style.overflow = '';
       } else {
       }
     }).catch((error) => {
@@ -141,6 +142,7 @@ export default class InsMyCoupon extends Vue {
         this.TotalRecord = result.TotalRecord;
         this.TotalPage = result.TotalPage;
         this.$HiddenLayer();
+        document.body.style.overflow = '';
       });
     } else if (this.status === 3) { this.getAllCoupon().then(() => { this.$HiddenLayer(); }); }
   }

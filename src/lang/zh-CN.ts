@@ -244,9 +244,10 @@ export default {
     SelectCouponStatus: '請選擇優惠券狀態',
     TotalNum: '共有',
     Piece: '張',
-    NotUse: '不可用',
+    NotUse: '已用',
     Used: '可用',
     Among: '其中',
+    DoNotUse: '不可用',
     All: '全部'
   },
   MyFavorite: {

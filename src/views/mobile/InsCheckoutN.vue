@@ -32,7 +32,7 @@
                                 <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                                 <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                                 <div class="coupon_is_valid">
-                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.NotUse') }}</span>
+                                  <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.DoNotUse') }}</span>
                                 </div>
                               </div>
                             </Checkbox>
@@ -47,7 +47,7 @@
                               <div class="coupon_remark" v-else>{{$t('Order.Full')}} {{item.MeetAmount}} {{$t('Order.Hit')}} {{item.DiscountAmount}} {{$t('Order.Precent')}}</div>
                               <div class="coupon_expiryDate">{{$t('CheckOut.expiryDate')}} : {{item.EffectiveDate}}-{{item.ExpiryDate}}</div>
                               <div class="coupon_is_valid">
-                                <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.NotUse') }}</span>
+                                <span class="valid_content">{{ !item.canCheck ? $t('MyCoupon.Used') : $t('MyCoupon.DoNotUse') }}</span>
                               </div>
                             </div>
                           </Checkbox>
@@ -233,7 +233,7 @@ export default class InsCheckoutN extends Vue {
         this.$Api.member.getActiveCoupon({ Page: this.CurrentPage, PageSize: this.pageNumber }).then((result) => {
           this.coupon = result.Coupon;
           this.coupon.forEach((element) => {
-            if (element.MeetAmount >= this.totalP) return;
+            if (element.MeetAmount > this.totalP) return;
             element.canCheck = false;
             this.$set(this.all, element.Id, element);
             if (element.IsAdditional === true) this.multiple.push(element);
@@ -519,6 +519,12 @@ export default class InsCheckoutN extends Vue {
     .el-checkbox__label{
       width: 100%;
       padding: 0;
+      margin-bottom: 15px;
+      border: 1px solid rgba(0,0,0,.1);
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border-radius: 10px;
+      overflow: hidden;
       .coupon_title{
         font-size: 1.4rem;
         background-color: #14234f;
@@ -533,7 +539,7 @@ export default class InsCheckoutN extends Vue {
       color: #F6A139 !important;
       border: solid 1px #F6A139 !important;
       box-sizing: border-box;
-      border-radius: 0.5rem;
+      border-radius: 10px;
       .coupon_item {
         border: none !important;
         border-radius: 0.2rem;
