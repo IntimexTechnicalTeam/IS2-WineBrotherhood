@@ -273,9 +273,13 @@ export default class InsExpressWay extends Vue {
         this.Profile = result.MemberResult;
         // this.$store.dispatch('setMemberInfo', result.MemberResult);
         this.PickAddress.Name = this.Profile.LastName ? this.Profile.FirstName + ' ' + this.Profile.LastName : this.Profile.FirstName;
-        this.PickAddress.Phone = this.Profile.Mobile;
+        // this.PickAddress.Phone = this.Profile.Mobile;
         this.PickName = this.PickAddress.Name;
-        this.PickPhone = this.PickAddress.Phone;
+        // this.PickPhone = this.PickAddress.Phone;
+        if (this.PickPhone === null || this.PickPhone === undefined || this.PickAddress.Phone === null || this.PickAddress.Phone === undefined) {
+          this.PickAddress.Phone = this.Profile.Mobile;
+          this.PickPhone = this.PickAddress.Phone;
+        }
       });
       let express = this.$Api.delivery.getExpressAndOutlets().then((result) => {
         this.Express = result.ExpressAndOutlets;

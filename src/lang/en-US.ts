@@ -17,7 +17,8 @@ export default {
     confirmpassword: 'Two inconsistent input passwords',
     nomessage: 'No Message',
     phoneincorrect: 'The phone number format is incorrect',
-    phone: ''
+    pleaseenterphone: 'Please input phone',
+    phone: 'Please input phone'
   },
   Message: {
     Logout: 'Timeout ! login now ?',

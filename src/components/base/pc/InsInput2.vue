@@ -26,6 +26,16 @@
           :picker-options="pickerOptions"
         >
         </el-date-picker>
+        <el-date-picker
+          v-else-if="type === 'Brithdate'"
+          v-model="Value"
+          type="date"
+          format = "dd/MM"
+          value-format="dd/MM"
+          :placeholder="placeholder"
+          :disabled="disabled"
+        >
+        </el-date-picker>
         <input
           v-model="Value"
           @blur="blur"
@@ -139,15 +149,19 @@ export default class InsInput extends Vue {
       if (this.type === 'phone') {
         /* eslint-disable */
         var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
-        if (mobile.test(this.Value) === false) {
+        if (this.Value === '') {
           this.ruleerr = false;
-          this.ruleerrmsg = this.$t("Input.phoneincorrect") + "";
+          this.ruleerrmsg = this.$t('Input.pleaseenterphone') + '';
+          return false;
+        } if (mobile.test(this.Value) === false) {
+          this.ruleerr = false;
+          this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
           return false;
         } else {
           this.ruleerr = true;
-          this.ruleerrmsg = "";
+          this.ruleerrmsg = '';
         }
-      }
+    }
       if (!this.rule || this.rule === "") {
       } else {
         if (this.rule instanceof RegExp) {
@@ -200,18 +214,22 @@ export default class InsInput extends Vue {
         }
       }
       // 国内电话和香港电话正则表达式
-      if (this.type === "phone") {
+      if (this.type === 'phone') {
         /* eslint-disable */
         var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
-        if (mobile.test(this.Value) === false) {
+        if (this.Value === '') {
           this.ruleerr = false;
-          this.ruleerrmsg = this.$t("Input.phoneincorrect") + "";
+          this.ruleerrmsg = this.$t('Input.pleaseenterphone') + '';
+          return false;
+        } if (mobile.test(this.Value) === false) {
+          this.ruleerr = false;
+          this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
           return false;
         } else {
           this.ruleerr = true;
-          this.ruleerrmsg = "";
+          this.ruleerrmsg = '';
         }
-      }
+    }
     }
   }
   validate() {
@@ -237,17 +255,21 @@ export default class InsInput extends Vue {
       }
     }
     // 国内电话和香港电话正则表达式
-    if (this.type === "phone") {
-      /* eslint-disable */
-      var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
-      if (mobile.test(this.Value) === false) {
-        this.ruleerr = false;
-        this.ruleerrmsg = this.$t("Input.phoneincorrect") + "";
-        return false;
-      } else {
-        this.ruleerr = true;
-        this.ruleerrmsg = "";
-      }
+      if (this.type === 'phone') {
+        /* eslint-disable */
+        var mobile = /^(\+)?(\d{0,4}\-?)?\d{7,11}$/;
+        if (this.Value === '') {
+          this.ruleerr = false;
+          this.ruleerrmsg = this.$t('Input.pleaseenterphone') + '';
+          return false;
+        } if (mobile.test(this.Value) === false) {
+          this.ruleerr = false;
+          this.ruleerrmsg = this.$t('Input.phoneincorrect') + '';
+          return false;
+        } else {
+          this.ruleerr = true;
+          this.ruleerrmsg = '';
+        }
     }
     if (!this.rule || this.rule === "") {
     } else {

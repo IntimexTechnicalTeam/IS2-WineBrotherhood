@@ -17,7 +17,8 @@ export default {
     confirmpassword: '兩次輸入密碼不一致',
     nomessage: '暫無數據',
     phoneincorrect: '電話號碼格式不正確',
-    phone: ''
+    pleaseenterphone: '請輸入電話',
+    phone: '請輸入電話'
   },
   Message: {
     Logout: '您尚未登陸或已登錄超時，請重新登陸',
