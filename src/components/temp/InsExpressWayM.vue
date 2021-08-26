@@ -795,11 +795,12 @@ export default class InsExpressWay extends Vue {
       .none{
         padding: 1rem;
         /deep/ .input_outer{
-          padding-top: 0;
-          padding-bottom: 2rem;
+          // padding-top: 0;
+          // padding-bottom: 2rem;
         }
 
         /deep/ .in_btn{
+          margin-top: 1rem;
           span{
             font-size: 1.2rem;
           }
