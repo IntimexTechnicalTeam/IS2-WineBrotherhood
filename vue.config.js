@@ -51,6 +51,7 @@ module.exports = {
         // 根據運行環境动态注入CDN
         config.plugin('html')
             .tap(args => {
+                args[0].minify = false;
                 args[0].JS_CDN = JS_CDN;
                 return args;
             });

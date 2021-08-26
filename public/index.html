@@ -41,15 +41,16 @@
       enabled. Please enable it to continue.</strong>
   </noscript>
     <div id="app">
-        <div style="color: white;" itemtype=https://winebrotherhood.com.hk/>
-        <h1>Wine Brotherhood</h1>
-        <h2>Wine Brotherhood</h2>
-    </div>
+        <div style="color: white;" itemtype="https://winebrotherhood.com.hk/">
+            <h1>Wine Brotherhood</h1>
+            <h2>Wine Brotherhood</h2>
+        </div>
     </div>
     <% for (var i in htmlWebpackPlugin.options.JS_CDN) { %>
         <script src="<%= htmlWebpackPlugin.options.JS_CDN[i] %>"></script>
         <% } %>
             <script src="/fbLogin.js" rel=prefetch></script>
+
 </body>
 
 </html>

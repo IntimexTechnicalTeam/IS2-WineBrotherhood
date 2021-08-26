@@ -69,8 +69,32 @@
               </Collaspe>
               <InsInput2 :label="$t('DeliveryAddress.UserContactNumber')" :needLabel="true" v-model="editAddress.Phone"  type="phone" />
               <!-- <InsInput2 :label="$t('DeliveryAddress.Mobile')" :needLabel="true" v-model="editAddress.Mobile"  /> -->
-              <InsSelect class="SelectArea" styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
-              <InsSelect class="SelectProvince" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/>
+              <!-- <InsSelect class="SelectArea" styla="display:inline-flex;vertical-align:middle;width:100%" :must="true"  :Placeholder="$t('DeliveryAddress.Area')" :items="countryList" :label="$t('DeliveryAddress.Address')" v-model="editAddress.Country" />
+              <InsSelect class="SelectProvince" styla="display:inline-flex;vertical-align:middle;width:100%;" :Placeholder="$t('DeliveryAddress.Province')" :items="provinceList" :label="' '" v-model="editAddress.Provinceo"/> -->
+              <div class="input_warpper"><label>{{$t('DeliveryAddress.Address')}}</label>
+                  <div class="select_main">
+                      <el-select v-model="editAddress.Country" value-key="Id" :placeholder="$t('CheckOut.PleaseSelect')">
+                          <el-option
+                            v-for="(item,index) in countryList"
+                            :key="index"
+                            :label="item.Name"
+                            :value="item">
+                          </el-option>
+                        </el-select>
+                  </div>
+              </div>
+              <div class="input_warpper"><label></label>
+                  <div class="select_main">
+                        <el-select v-model="editAddress.Provinceo" value-key="Id" :placeholder="$t('CheckOut.PleaseSelect')" v-show="provinceList.length">
+                          <el-option
+                            v-for="(item,index) in provinceList"
+                            :key="index"
+                            :label="item.Name"
+                            :value="item">
+                          </el-option>
+                        </el-select>
+                  </div>
+              </div>
               <InsInput2 :label="$t('DeliveryAddress.Area')" v-show="editAddress.Country.Code !== 'HKG'" :needLabel="true" v-model="editAddress.City" :must="false" type="City"/>
               <InsInput2 class="textArea" :placeholder="$t('DeliveryAddress.Detail')"  :label="$t('DeliveryAddress.Address')" v-model="editAddress.Address" :needLabel="true"  type="textarea"/>
               <InsButton :nama="$t('Action.Confirm')" @click="save ('adderform')" class="SaveBtn" />
@@ -471,6 +495,7 @@ export default class InsExpressWay extends Vue {
       });
       this.$Api.delivery.getCountyForEx(this.ChosenExpress.Id).then((result) => {
         this.countryList = result.Country;
+        this.editAddress.Country = result.Country[0];
       }).then(() => {
         this.$Api.delivery.getProvinceForEx(this.ChosenExpress.Id, this.editAddress.Country.Id).then((result) => {
           this.provinceList = result.Province;
@@ -669,6 +694,16 @@ export default class InsExpressWay extends Vue {
 }
 </script>
 <style lang="less">
+.mobile{
+  .selectArea{
+    .in_select_dropdown ul {
+      margin: 3px 3px 3px 3px;
+      height: 150px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
 .mobileEx .my_textarea{
       width: calc(100% - 120px)!important;
       float: right;
@@ -696,6 +731,31 @@ export default class InsExpressWay extends Vue {
   }
 </style>
 <style lang="less" scoped>
+.input_warpper {
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+  label {
+    font-size: 16px;
+    width: 120px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .select_main {
+    flex:1;
+    flex-flow: 1;
+    /deep/ .el-select {
+      width: 100%;
+      .el-input__inner {
+        width: 100%!important;
+      }
+    }
+  }
+}
 .DeliveryMark{
   color:red;
   font-size: 1.5rem;
