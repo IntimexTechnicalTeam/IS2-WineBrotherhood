@@ -312,5 +312,8 @@ export default class InsMenuLayout extends Vue {
         width: 30px;
         height: 30px;
     }
+    /deep/ .main-code select{
+        text-align: left;
+    }
 }
 </style>

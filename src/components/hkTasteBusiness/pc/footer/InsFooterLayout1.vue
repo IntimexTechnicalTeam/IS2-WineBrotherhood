@@ -63,8 +63,8 @@
           </div>
           <div class="clear"></div>
            <p class="footercopy">
-             <span>Copyright {{currentYear}} © Wine Brotherhood Hong Kong Limited. powered by intimex
-               <a href="https://www.intimex.hk/" target="_blank">
+             <span>Copyright {{currentYear}} © Wine Brotherhood Hong Kong Limited. powered by Eventizer
+               <a href="https://eventizer.hk/" target="_blank">
                <img src="/images/pc/footerlogo.png">
                </a>
               </span>

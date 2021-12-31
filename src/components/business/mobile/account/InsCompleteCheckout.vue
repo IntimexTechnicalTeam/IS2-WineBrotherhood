@@ -6,7 +6,7 @@
         <div> <span>{{$t('Order.OrderNumber')}}:</span>  {{Order.InvoiceNO}}</div>
         <div> <span>{{$t('Order.OrderDateTime')}}:</span> {{Order.CreateAt}}</div>
         <div> <span>{{$t('Order.TotalPrice')}}:</span> {{currentCode}}&nbsp;{{(Order.TotalAmount) | PriceFormat}}</div>
-        <div> <span>{{$t('Order.OrderStatus')}}:</span>{{Order.StatusName}}</div>
+        <div> <span>{{$t('Order.OrderStatus')}}:</span> {{Order.StatusName}}</div>
             <div v-if="Order.OffLinePay">
                   <a href="javascript:;"  class="evidenceBtn" v-on:click="evidence()">{{$t('Message.Evidence')}}</a>
             </div>

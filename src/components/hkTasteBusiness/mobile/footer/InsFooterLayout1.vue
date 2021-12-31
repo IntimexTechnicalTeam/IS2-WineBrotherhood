@@ -55,8 +55,8 @@
             <p><img src="/images/mobile/index_70.png"></p>
           </div>
           <div class="footerCpy">
-            <p>Copyright {{currentYear}} © Wine Brotherhood Hong Kong Limited.<br>powered by intimex
-            <a href="https://www.intimex.hk/" target="_blank">
+            <p>Copyright {{currentYear}} © Wine Brotherhood Hong Kong Limited.<br>powered by Eventizer
+            <a href="https://eventizer.hk/" target="_blank">
               <img src="/images/mobile/footerlogo.png">
             </a>
             </p>
@@ -215,7 +215,7 @@ export default class InsFooter extends Vue {
         font-size: 1.2rem;
         text-align: center;
         img{
-          width: 1.5rem;
+          width: 4rem;
           display: inline-block;
           margin-left: 1rem;
           vertical-align: middle;
