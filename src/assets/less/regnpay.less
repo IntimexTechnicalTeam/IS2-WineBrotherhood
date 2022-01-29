@@ -57,7 +57,9 @@
                 }
               }
             }
-
+            .multi_connected_dropdown{
+              display: flex;
+            }
             fieldset {
               border: 0;
               padding: 0;
@@ -81,6 +83,10 @@
                 background-position: right 10px center;
                 background-size: 11px auto;
                 border-radius: 0;
+                margin-right: 10px;
+                &:last-child{
+                  margin-right: 0;
+                }
               }
 
               input[type="date"] {

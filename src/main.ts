@@ -5,6 +5,7 @@ import router from './router';
 import store from './store';
 import { setRem } from './rem';
 import MetaInfo from 'vue-meta-info';
+import { getQueryString } from './assets/scripts/common';
 // import { ValidationProvider } from 'vee-validate';
 // 引入指令文件
 import * as directives from '@/directives/index';
@@ -62,6 +63,13 @@ Vue.filter('PriceFormat', function (value) {
 Auth.GetToken().then(() => {
   import('./init').then(async (result) => {
     Vue.use(result.default as any);
+
+    // 根據url傳參優先設置语言
+    let queryLang = getQueryString('lang');
+    // 判斷傳值是否存在現有語言列表中
+    if (queryLang === 'E' || queryLang === 'C' || queryLang === 'S') {
+      i18n.locale = queryLang;
+    }
 
     // 向後台傳遞前台默認語言設置
     let lang = i18n.locale;

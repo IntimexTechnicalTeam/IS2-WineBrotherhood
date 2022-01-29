@@ -469,6 +469,7 @@ export default class InsHeader extends Vue {
     // margin-left: 20px;
     /deep/ .langSwitch select{
       text-align: left;
+      font-weight: bold;
     }
 }
 .langBox a{

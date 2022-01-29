@@ -11,7 +11,7 @@ import storage from '@/sdk/common/Storage';
 import message from 'element-ui/lib/message';
 import language from '@/lang/index';
 import { FrontE } from '@/sdk/common/SysConst';
-import LoadScript from './sdk/common/LoadScript';
+import { LoadScript } from './assets/scripts/common';
 const util = {
   info: function (options, type) {
     if (options === undefined || options === null) {

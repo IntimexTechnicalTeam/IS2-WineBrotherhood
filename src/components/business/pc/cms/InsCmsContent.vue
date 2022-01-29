@@ -444,6 +444,27 @@ export default class InsCmsContent extends Vue {
       color:red;
       margin-bottom:.5rem;
     }
+    .multi_connected_dropdown{
+      display: flex;
+      select{
+        background-color: #fff;
+        border:1px solid #e6e6e6;
+        height: 45px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 2px;
+        margin-bottom: 0;
+        text-indent: 10px;
+        outline: none;
+        font-family: 'Roboto-Light';
+        color: #333333;
+        font-size: 16px;
+        margin-right: 10px;
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
   }
  }
 }

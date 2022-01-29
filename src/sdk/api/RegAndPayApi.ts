@@ -69,6 +69,22 @@ export default class RegAndPayApi extends WSAPI {
     });
   }
 
+  // 嵌套单选跳出下一层问题
+  getPanel (id: string, callback: Function) {
+    return this.instance.get(
+      this.apiPath + '/RegNPay/GetPanel', { params: { id: id } }).then((result) => {
+      return result;
+    });
+  }
+
+  // 多聯子選項下拉列表
+  getSubOptionList (optionId: string, callback: Function) {
+    return this.instance.get(
+      this.apiPath + '/RegNPay/getSubOptionList', { params: { id: optionId } }).then((result) => {
+      return result;
+    });
+  }
+
   // 轉碼
   base64StringToImageURL (signature: any, callback: Function) {
     return this.instance.post(this.apiPath + '/RegNPay/Base64StringToImageURL', signature).then((result) => {
