@@ -64,26 +64,33 @@ Auth.GetToken().then(() => {
   import('./init').then(async (result) => {
     Vue.use(result.default as any);
 
-    // 根據url傳參優先設置语言
-    let queryLang = getQueryString('lang');
-    // 判斷傳值是否存在現有語言列表中
-    if (queryLang === 'E' || queryLang === 'C' || queryLang === 'S') {
-      i18n.locale = queryLang;
-    }
+    // // 根據url傳參優先設置语言
+    // let queryLang = getQueryString('lang');
+    // // 判斷傳值是否存在現有語言列表中
+    // if (queryLang === 'E' || queryLang === 'C' || queryLang === 'S') {
+    //   i18n.locale = queryLang;
+    // }
 
-    // 向後台傳遞前台默認語言設置
-    let lang = i18n.locale;
-    await Vue.prototype.$Api.member.setUILanguage(lang).then((result) => {
-      Vue.prototype.$Storage.set('locale', lang);
-    }).catch((error) => {
-      console.log(error);
-    });
+    // // 向後台傳遞前台默認語言設置
+    // let lang = i18n.locale;
+    // await Vue.prototype.$Api.member.setUILanguage(lang).then((result) => {
+    //   Vue.prototype.$Storage.set('locale', lang);
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
   }).then(result => {
     Vue.prototype.root = new Vue({
       router,
       store,
       i18n,
-      mounted () {
+      async mounted () {
+        // 向後台傳遞前台默認語言設置
+        let lang = i18n.locale;
+        await Vue.prototype.$Api.member.setUILanguage(lang).then((result) => {
+          Vue.prototype.$Storage.set('locale', lang);
+        }).catch((error) => {
+          console.log(error);
+        });
         if (Vue.prototype.userAgent === 'mobile') setRem();
       },
       render: h => h(App)

@@ -73,7 +73,7 @@ export default class InsLogin extends Vue {
   isShow: boolean = false;
   lang:string[] = ['E', 'C', 'S'];
   checkEmail (rule, value, callback) {
-    const mailReg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/;
+    const mailReg = /^\w+([.-]\w+)*@\w+([.-]\w+)*\.\w+$/;
     if (!value) {
       callback(new Error(this.$t('Login.EnterEmail')as string));
     }

@@ -34,7 +34,7 @@
           class="fb-page"
           data-href="https://www.facebook.com/hktastefood/"
           data-tabs="messages"
-          data-width="360"
+          :data-width="userAgent=='pc'?360:320"
           data-height="400"
           data-small-header="true"
           data-hide-cover="true"
@@ -133,11 +133,11 @@ export default class InsSidebar extends Vue {
   background: #fff;
   z-index: 2;
   position: absolute;
-  width: 360px;
-  height: 435px;
+  // width: 360px;
+  // height: 435px;
   overflow: hidden;
   bottom: 0;
-  right: 70px;
+  // right: 70px;
   border-radius: 6px;
   -o-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -148,9 +148,16 @@ export default class InsSidebar extends Vue {
 }
 @media screen and (max-width: 768px) {
   .fb-widget {
-    width: 300px;
-    height: 500px;
-    right: 5rem;
+    width: 320px;
+    height: 435px;
+    right:15px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .fb-widget {
+    width: 360px;
+    height: 435px;
+    right: 70px;
   }
 }
 .fb-credit {
@@ -194,6 +201,7 @@ export default class InsSidebar extends Vue {
   line-height: 20px;
   float: right;
   cursor: pointer;
+  text-align: center;
 }
 
 .fb-close::after {

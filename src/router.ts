@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import storage from './sdk/common/Storage';
+import i18n from '@/lang';
 // import Auth from './sdk/common/Auth';
 // import lang from './lang/index';
 // import Home from './views/Home.vue';
@@ -660,6 +661,33 @@ const router = new Router({
 
 export default router;
 router.beforeEach((to, from, next) => {
+  if (to.matched.length === 0) { // 如果未匹配到路由
+    // SEO判斷處理
+    let lang = to.path.toLowerCase().match(/\/en|\/xc|\/tc/i);
+
+    if (lang) {
+      let transLang;
+      switch (lang[0]) {
+        case '/en':
+          transLang = 'E';
+          break;
+        case '/xc':
+          transLang = 'S';
+          break;
+        case '/tc':
+          transLang = 'C';
+          break;
+      }
+
+      i18n.locale = transLang;
+
+      next({
+        path: to.path.toLowerCase().replace(lang[0], '')
+      });
+    } else {
+      from.name ? next({ name: from.name }) : next('/'); // 如果上級也未匹配到路由則跳轉首頁，如果上級能匹配到則轉上級路由
+    }
+  }
   if (from.name) {
     Vue.prototype.$ShowLayer();
     setTimeout(() => {

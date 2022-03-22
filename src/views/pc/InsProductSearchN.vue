@@ -48,6 +48,7 @@
                 :total="totalRecord"
                 v-model="currentPage"
                 :pageNum="pageSize"
+                :currentPage = "currentPage"
               ></InsPage>
             </div>
           </div>

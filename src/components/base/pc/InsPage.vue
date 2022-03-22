@@ -9,12 +9,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Prop, Component } from 'vue-property-decorator';
+import { Vue, Prop, Component, Watch } from 'vue-property-decorator';
 @Component
 export default class InsPage extends Vue {
   @Prop() total!: number;
   @Prop() styla!: string;
   @Prop() pageNum!: number;
+  @Prop() currentPage!: number;
   private Page: number = 1;
   set current (num) {
     if (num < 1 || num > Math.ceil(this.total / this.pageNum)) {
@@ -35,6 +36,10 @@ export default class InsPage extends Vue {
   }
   get T () {
     return Array(Math.ceil(this.total / this.pageNum));
+  }
+  @Watch('currentPage', { deep: true })
+  onCurrentPageChange () {
+    this.current = this.currentPage;
   }
   // first () {
   //   this.current = 1;
