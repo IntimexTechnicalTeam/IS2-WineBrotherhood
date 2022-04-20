@@ -17,12 +17,7 @@ Router.prototype.push = function push (location) {
   return (originalPush.call(this, location) as any).catch(err => { console.log(err); });
 };
 export const pRoutes = [
-  {
-    path: '/building',
-    name: 'building',
-    component: () => import('./components/service/InsBuilding.vue'),
-    children: []
-  },
+
   {
     path: '/',
     name: 'main',
@@ -35,6 +30,12 @@ export const pRoutes = [
         path: '',
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */ './views/pc/InsHome.vue')
+      },
+      {
+        path: '/building',
+        name: 'building',
+        component: () => import(/* webpackChunkName: "InsBuilding" */ './components/service/InsBuilding.vue'),
+        children: []
       },
       {
         path: '/product/detail/:id',
@@ -328,12 +329,7 @@ export const pRoutes = [
 ];
 
 export const mRoutes = [
-  {
-    path: '/building',
-    name: 'building',
-    component: () => import('./components/service/InsBuilding.vue'),
-    children: []
-  },
+
   {
     path: '/',
     name: 'main',
@@ -343,6 +339,12 @@ export const mRoutes = [
         path: '',
         name: 'home',
         component: () => import(/* webpackChunkName: "home" */'./views/mobile/InsHome.vue')
+      },
+      {
+        path: '/building',
+        name: 'building',
+        component: () => import(/* webpackChunkName: "InsBuilding" */'./components/service/InsBuilding.vue'),
+        children: []
       },
       {
         path: '/product/detail/:id',

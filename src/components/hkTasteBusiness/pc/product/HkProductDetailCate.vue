@@ -60,10 +60,14 @@ ul,li{
     text-align: center;
     line-height: 18px;
     font-weight: 700;
-    padding-top: 10px;
+    // padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
 }
 .detail-select-attribute:nth-child(2) .detail-select-title{
-  padding-top: 0;
+  // padding-top: 0;
 }
 .detail-select-titleeng .detail-select-title{
   // width: 140px;

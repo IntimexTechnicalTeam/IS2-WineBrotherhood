@@ -1,8 +1,8 @@
 <template>
   <div class="main_warpper">
-    <ins-header />
+    <ins-header v-show="routerPath!=='/building'"/>
     <router-view></router-view>
-    <ins-footer />
+    <ins-footer v-show="routerPath!=='/building'" />
     <ins-sidebar />
     <ins-slide-menu :direction="'right'">
       <ins-menu-layout />
@@ -29,6 +29,9 @@ export default class mobileIndex extends Vue {
     this.changLange(this.$Storage.get('locale') || 'E');
   }
   mounted () {
+  }
+  get routerPath() {
+    return this.$route.path;
   }
   private changLange (lang) {
     this.$Api.member.setUILanguage(lang).then((result) => {

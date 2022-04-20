@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Header />
+    <Header v-show="routerPath!=='/building'" />
     <router-view></router-view>
-    <Footer />
+    <Footer v-show="routerPath!=='/building'" />
     <Sidebar />
   </div>
 </template>
@@ -17,7 +17,8 @@ import { Component, Vue } from 'vue-property-decorator';
   }
 })
 export default class pcIndex extends Vue {
-  mounted () {
+  get routerPath() {
+    return this.$route.path;
   }
 }
 </script>

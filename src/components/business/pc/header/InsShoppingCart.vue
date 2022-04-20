@@ -133,10 +133,11 @@ export default class InsShoppingCart extends Vue {
     return this.$route.path;
   }
   mounted() {
-    this.$store.dispatch(
-      'setShopCart',
-      this.$Api.shoppingCart.getShoppingCart()
-    );
+    // this.$store.dispatch(
+    //   'setShopCart',
+    //   this.$Api.shoppingCart.getShoppingCart()
+    // );
+    this.getShopCart();
   }
   get shopCarts() {
     return this.$store.state.shopCart;
@@ -158,6 +159,7 @@ export default class InsShoppingCart extends Vue {
     } else {
       this.hiddenClick = true;
     }
+    this.getShopCart();
   }
 }
 </script>
